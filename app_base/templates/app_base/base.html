@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app_base/css/base.css' %}">
+    {% block links %}
+    {% endblock %}
+</head>
+<body>
+    <div class="video-background">
+        <video autoplay loop muted>
+            <source src="{% static 'app_base/video/background.mp4' %}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <aside>
+        <h1>тут сайдбар</h1>
+    </aside>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>
