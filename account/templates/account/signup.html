@@ -1,0 +1,82 @@
+{% extends "app_base/log-reg.html" %}
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'app_base/css/log-reg.css' %}">
+{% endblock %}
+{% block content %}
+<div class="main-container">
+    <div class="container-first">
+        <div class="content-confirst-first">
+            <h1 class="con-c1-1-t1">LinkLounge</h1>
+            <p class="con-c1-1-t2">'Мiсце, де розмови оживають'</p>
+        </div>
+        <div class="content-confirst-second">
+            <p class="text222">LinkLounge - це ваш новий улюблений спосіб залишатися на зв'язку. 
+                Приєднуйтесь до нашої спільноти та відкрийте для себе зручний і безпечний спосіб спілкування, що  
+                 ваші розмови ще приємнішими та значущими.</p>
+        </div>
+        <div class="content-confirst-third">
+            <p class="text333">Ви вже зареєстровані?<a href="{% url 'login' %}">Увiйти</a></p>
+        </div>
+    </div>
+    <div class="container-second">
+
+    
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-names">
+                <div class="form-group" id="first_name">
+                    {{ form.first_name.label_tag }}
+                    {{ form.first_name }}
+                    {% for error in form.first_name.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="form-group" id="last_name">
+                    {{ form.last_name.label_tag }}
+                    {{ form.last_name }}
+                    {% for error in form.last_name.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="form-group" id="date_of_birth">
+                {{ form.date_of_birth.label_tag }}
+                {{ form.date_of_birth }}
+                {% for error in form.date_of_birth.errors %}
+                    <div class="error">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+                {% for error in form.username.errors %}
+                    <div class="error">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ form.password1.label_tag }}
+                {{ form.password1 }}
+                {% for error in form.password1.errors %}
+                    <div class="error">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ form.password2.label_tag }}
+                {{ form.password2 }}
+                {% for error in form.password2.errors %}
+                    <div class="error">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ form.remember_me.label_tag }}
+                {{ form.remember_me }}
+            </div>
+            <button type="submit" class="btn btn-primary">Створити аккаунт</button>
+            {% if finish %}
+                <h1>{{ finish }}</h1>
+            {% endif %}
+        </form>
+    </div>
+</div>
+{% endblock %}

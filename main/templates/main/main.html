@@ -1,5 +1,5 @@
 {% extends "app_base/base.html" %}
 {% block content %}
 <h2>Welcome to LinkLounge</h2>
-<p>Your place to connect and chat.</p>
+<p>Ласкаво просимо, {{ request.user.first_name }} {{ request.user.last_name }}!</p>
 {% endblock %}
