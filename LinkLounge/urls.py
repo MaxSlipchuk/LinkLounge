@@ -19,9 +19,12 @@ from django.urls import path
 from main.views import *
 from account.views import *
 from app_base.views import *
+from all_users.views import *
 from account.forms import CustomAuthenticationForm
 from django.contrib.auth import views as auth_views
 from django.views.generic import RedirectView
+from .settings import MEDIA_ROOT, MEDIA_URL, DEBUG
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,4 +33,8 @@ urlpatterns = [
     path('logout/', user_logout, name='logout'),  # Замінено auth_views.LogoutView на user_logout
     path('signup/', signup, name='signup'),
     path('accounts/profile/', RedirectView.as_view(url='/main/')),  # Додайте це перенаправлення
+    path('all_users/', all_users, name='all_users')
 ]
+
+if DEBUG:
+    urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
