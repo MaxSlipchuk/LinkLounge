@@ -189,3 +189,13 @@ a{
 
 }
 
+.flex-container .a{
+    display: flex;
+    flex-direction: row;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.active {
+    border-bottom: 2px solid rgb(255, 255, 255);
+}
