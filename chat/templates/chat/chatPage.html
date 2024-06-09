@@ -1,6 +1,6 @@
 <html>
   <body>
-    <h1>Hello , Welcome to my chat site ! {{request.user}}</h1>
+    <h1>Hello, Welcome to my chat site! {{request.user}}</h1>
     <br>
     <div
       class="chat__item__container"
@@ -16,10 +16,10 @@
     <script>
       const chatSocket = new WebSocket("ws://" + window.location.host + "/");
       chatSocket.onopen = function (e) {
-        console.log("The connection was setup successfully !");
+        console.log("The connection was setup successfully!");
       };
       chatSocket.onclose = function (e) {
-        console.log("Something unexpected happened !");
+        console.log("Something unexpected happened!");
       };
       document.querySelector("#id_message_send_input").focus();
       document.querySelector("#id_message_send_input").onkeyup = function (e) {
@@ -28,10 +28,8 @@
         }
       };
       document.querySelector("#id_message_send_button").onclick = function (e) {
-        var messageInput = document.querySelector(
-          "#id_message_send_input"
-        ).value;
-        chatSocket.send(JSON.stringify({ message: messageInput, username : "{{request.user.username}}"}));
+        var messageInput = document.querySelector("#id_message_send_input").value;
+        chatSocket.send(JSON.stringify({ message: messageInput, username: "{{request.user.username}}" }));
       };
       chatSocket.onmessage = function (e) {
         const data = JSON.parse(e.data);

@@ -5,10 +5,9 @@ class Chat(models.Model):
     participants = models.ManyToManyField(User)
 
 class Message(models.Model):
-    chat = models.ForeignKey(Chat, on_delete=models.CASCADE)
-    sender = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
+    username = models.CharField(max_length=255, blank=True, null=True)
+    message = models.TextField(blank=True, null=True)
 
-    class Meta:
-        ordering = ['timestamp']
+    def __str__(self):
+        return f'{self.username}: {self.message} ({self.timestamp})'
