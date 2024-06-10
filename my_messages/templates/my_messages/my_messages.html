@@ -1,0 +1,12 @@
+{% extends "app_base/base.html" %}
+{% block content %}
+<div class="chat-list">
+    {% for chat in all_messages %}
+        <a href="{% url 'chat_detail' chat.id %}">
+            <div class="chat-item">
+                <p>{{chat.user2.username}}</p>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+{% endblock %}

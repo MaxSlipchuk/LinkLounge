@@ -44,6 +44,7 @@ aside {
     color: white;
     padding: 20px;
     box-sizing: border-box;
+    padding-right: 0;
 }
 
 main {
@@ -67,22 +68,66 @@ main {
     main {
         margin-left: 0;
         padding: 10px;
+        
+
     }
 }
+/* 
+.container{
+    width: 20%;
+    
+}
+.container-second{
+    width: 30%;
 
-.main_container {
+}
+.container-third{
+    width: 20%;
+
+}
+li{
+    list-style-type: none;
+}
+.main_container{
+    display: flex;
     width: 100%;
     height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    justify-content: left;
+    align-items: left;
+    color: #fff;
+    text-align: left;
     padding: 10px;
+    list-style-type: none;
+}
+
+li{
+    list-style-type: none;
+}
+p{
+    width: 100%;
+    text-align: left;
+} */
+
+.main_container {
+    
+    /* background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px; */
+    padding-top: 10px;
 }
 
 .container {
     margin-bottom: 30px;
-    width: 100%;
+    
     height: auto;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
-    border-radius: 10px;
+    border-radius: 20px;
     box-shadow: 0 4px 6px black;
     padding: 10px;
     border: 2px outset rgb(126, 8, 180);
@@ -98,10 +143,9 @@ main {
     text-align: left;
     margin-bottom: 30px;
     height: auto;
-    width: 100%;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
-    border-radius: 10px;
+    border-radius: 20px;
     box-shadow: 0 4px 6px black;
     padding: 10px;
     border: 2px outset rgb(126, 8, 180);
@@ -123,21 +167,22 @@ main {
 }
 
 a{
-    text-decoration:none;
-    color: rgb(255, 255, 255);
+  text-decoration:none;
+  color: rgb(255, 255, 255);
 }
 
 #icon_mirror_horizontal{
+    /* transform: scaleX(-1); */
     transform: rotate(180deg)
 }
 
 .container-third{
     margin-bottom: 30px;
-    width: 100%;
+    
     height: auto;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
-    border-radius: 10px;
+    border-radius: 20px;
     box-shadow: 0 4px 6px black;
     padding: 10px;
     border: 2px outset rgb(126, 8, 180);
@@ -146,14 +191,12 @@ a{
 }
 
 .flex-container .a{
-    display: inline-flex;
+    display: flex;
     flex-direction: row;
     padding-top: 3%;
     padding-bottom: 3%;
 }
 
 .active {
-    text-decoration: underline; /* Подчеркнуть активную ссылку */
-    color: rgb(255, 255, 255);
-  }
-  
+    border-bottom: 2px solid rgb(255, 255, 255);
+}
