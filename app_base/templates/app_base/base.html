@@ -27,12 +27,12 @@
             </div>
             <div class="container-second">
                 <div class="flex-container">
-                    <a class="a" href="{% url 'main' %}"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M242.46-202.46h145.23v-234.66h184.62v234.66h145.23v-356.92L480-739.08 242.46-559.51v357.05Zm-36.92 36.92v-412.5L480-785.38l274.46 207.64v412.2H535.38v-234.65H424.62v234.65H205.54ZM480-470.77Z"/>моя сторiнка</svg>
+                    <a class="a {% if request.path == '/main/' %}active{% endif %}" href="{% url 'main' %}"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M242.46-202.46h145.23v-234.66h184.62v234.66h145.23v-356.92L480-739.08 242.46-559.51v357.05Zm-36.92 36.92v-412.5L480-785.38l274.46 207.64v412.2H535.38v-234.65H424.62v234.65H205.54ZM480-470.77Z"/>моя сторiнка</svg>
                         <p class="side_bar_1_text" >моя сторiнка</p>
                     </a>
                 </div>
                 <div class="flex-container">
-                    <a class="a" href="{% url 'all_users' %}"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M112.96-223.38v-62.16q0-27.34 13.88-46.54 13.89-19.2 38.1-30.92 51.02-24.54 101.41-39.02 50.38-14.48 121.19-14.48t120.94 14.48q50.14 14.48 101.68 39.03 24.11 11.87 37.97 31.02Q662-312.82 662-285.54v62.16H112.96Zm628.31 0v-63.39q0-34.27-14.21-64.16-14.21-29.89-39.06-51.26 27.73 6.38 53.73 16.4 25.99 10.01 52 22.98 24.89 12.73 39.29 32.63 14.4 19.89 14.4 43.41v63.39H741.27ZM387.54-504q-48.45 0-82.38-33.93-33.93-33.93-33.93-82.38 0-48.45 33.93-82.38 33.93-33.93 82.38-33.93 48.45 0 82.38 33.93 33.93 33.93 33.93 82.38 0 48.45-33.93 82.38Q435.99-504 387.54-504Zm279.69-116.66q0 48.03-33.93 82.1-33.92 34.06-82.38 34.06-1.8 0-4.84-.42t-5-.93q20.22-23.97 30.88-53.34 10.66-29.37 10.66-61.46 0-31.83-11.37-60.73-11.37-28.89-30.17-54 2.5-1.04 5.11-1.14 2.62-.1 4.73-.1 48.46 0 82.38 34.06 33.93 34.07 33.93 81.9ZM149.88-260.31h475.2v-25.13q0-14.36-7.04-24.87-7.04-10.5-25.39-20.5-44.7-23.81-93.42-36.29-48.73-12.48-111.52-12.48-62.96 0-111.85 12.48-48.9 12.48-93.55 36.29-18.73 10-25.58 20.58-6.85 10.57-6.85 24.69v25.23Zm237.6-280.61q32.94 0 56.19-23.19t23.25-56.14q0-32.94-23.19-56.19-23.18-23.25-56.13-23.25t-56.2 23.19q-23.25 23.18-23.25 56.13t23.19 56.2q23.19 23.25 56.14 23.25Zm.06 280.61Zm0-360Z"/></svg>
+                    <a class="a {% if request.path == '/all_users/' %}active{% endif %}" href="{% url 'all_users' %}"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M112.96-223.38v-62.16q0-27.34 13.88-46.54 13.89-19.2 38.1-30.92 51.02-24.54 101.41-39.02 50.38-14.48 121.19-14.48t120.94 14.48q50.14 14.48 101.68 39.03 24.11 11.87 37.97 31.02Q662-312.82 662-285.54v62.16H112.96Zm628.31 0v-63.39q0-34.27-14.21-64.16-14.21-29.89-39.06-51.26 27.73 6.38 53.73 16.4 25.99 10.01 52 22.98 24.89 12.73 39.29 32.63 14.4 19.89 14.4 43.41v63.39H741.27ZM387.54-504q-48.45 0-82.38-33.93-33.93-33.93-33.93-82.38 0-48.45 33.93-82.38 33.93-33.93 82.38-33.93 48.45 0 82.38 33.93 33.93 33.93 33.93 82.38 0 48.45-33.93 82.38Q435.99-504 387.54-504Zm279.69-116.66q0 48.03-33.93 82.1-33.92 34.06-82.38 34.06-1.8 0-4.84-.42t-5-.93q20.22-23.97 30.88-53.34 10.66-29.37 10.66-61.46 0-31.83-11.37-60.73-11.37-28.89-30.17-54 2.5-1.04 5.11-1.14 2.62-.1 4.73-.1 48.46 0 82.38 34.06 33.93 34.07 33.93 81.9ZM149.88-260.31h475.2v-25.13q0-14.36-7.04-24.87-7.04-10.5-25.39-20.5-44.7-23.81-93.42-36.29-48.73-12.48-111.52-12.48-62.96 0-111.85 12.48-48.9 12.48-93.55 36.29-18.73 10-25.58 20.58-6.85 10.57-6.85 24.69v25.23Zm237.6-280.61q32.94 0 56.19-23.19t23.25-56.14q0-32.94-23.19-56.19-23.18-23.25-56.13-23.25t-56.2 23.19q-23.25 23.18-23.25 56.13t23.19 56.2q23.19 23.25 56.14 23.25Zm.06 280.61Zm0-360Z"/></svg>
                         <p  class="side_bar_2_text">усi користувачi</p>
                     </a>
                 </div>
@@ -42,7 +42,7 @@
                     </a>
                 </div>
                 <div class="flex-container">
-                    <a class="a" href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M291.63-317.54q-12.21 0-21.15-8.84-8.94-8.85-8.94-21.31v-40h460.77l25.38 25.38v-355.84h40q12.46 0 21.31 8.84 8.85 8.85 8.85 21.14v490.02L698.46-317.54H291.63Zm-149.48-27.69v-459.24q0-12.3 8.85-21.15 8.85-8.84 21.31-8.84h431.54v294.93L545.54-578.5H142.15v233.85l.21 17.14-.21-17.14v317.96Zm548.92-21.31L682.31-295.23h-362.5q-12.3 0-21.14-8.85-8.85-8.85-8.85-21.14v-431.54q0-12.46 8.85-21.31 8.84-8.85 21.14-8.85h355.77L840-603.62v362.5q0 12.3-8.85 21.14-8.84 8.85-21.14 8.85H642.69ZM142.15-717.46h0v0 300.69-300.69Z"/></svg>
+                    <a class="a" href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M291.63-317.54q-12.21 0-21.15-8.84-8.94-8.85-8.94-21.31v-40h460.77l25.38 25.38v-355.84h40q12.46 0 21.31 8.84 8.85 8.85 8.85 21.14v490.02L698.46-317.54H291.63Zm-149.48-27.69v-459.24q0-12.3 8.85-21.15 8.85-8.84 21.31-8.84h468.31q12.46 0 21.3 8.84 8.85 8.85 8.85 21.16v309.84q0 12.31-8.85 21.16-8.84 8.84-21.3 8.84H261.54L142.15-345.23Zm491.7-156.31v-296H179.08v351.39l55.38-55.39h399.39Zm-454.77 0v-296 296Z"/></svg>
                         <p class="side_bar_4_text">мої бесiди</p>
                     </a>
                 </div>
@@ -65,81 +65,7 @@
         </div>
 
         
-    </aside>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Получаем элементы по классу
-            const sideBar1Text = document.querySelector('.side_bar_1_text');
-            const sideBar2Text = document.querySelector('.side_bar_2_text');
-            const sideBar3Text = document.querySelector('.side_bar_3_text');
-            const sideBar4Text = document.querySelector('.side_bar_4_text');
-
-            sideBar1Text.addEventListener("click", ()=>{
-                sideBar1Text.classList.add('active');
-                sideBar2Text.classList.remove('active');
-                sideBar3Text.classList.remove('active');
-                sideBar4Text.classList.remove('active');
-            })
-            sideBar2Text.addEventListener("click", ()=>{
-                sideBar1Text.classList.remove('active');
-                sideBar2Text.classList.add('active');
-                sideBar3Text.classList.remove('active');
-                sideBar4Text.classList.remove('active');
-            })
-            sideBar3Text.addEventListener("click", ()=>{
-                sideBar1Text.classList.remove('active');
-                sideBar2Text.classList.remove('active');
-                sideBar3Text.classList.add('active');
-                sideBar4Text.classList.remove('active');
-            })
-            sideBar4Text.addEventListener("click", ()=>{
-                sideBar1Text.classList.remove('active');
-                sideBar2Text.classList.remove('active');
-                sideBar3Text.classList.remove('active');
-                sideBar4Text.classList.add('active');
-            })
-        });
-        
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     // Получаем элементы по классу
-        //     const sideBar1Text = document.querySelector('.side_bar_1_text');
-        //     const sideBar2Text = document.querySelector('.side_bar_2_text');
-        //     const sideBar3Text = document.querySelector('.side_bar_3_text');
-        //     const sideBar4Text = document.querySelector('.side_bar_4_text');
-
-        //     sideBar1Text.addEventListener("click", ()=>{
-        //         side_bar_1_text.classList.add('active');
-        //         side_bar_2_text.classList.remove('active');
-        //         side_bar_3_text.classList.remove('active');
-        //         side_bar_4_text.classList.remove('active');
-        //     })
-        //     sideBar2Text.addEventListener("click", ()=>{
-        //         side_bar_1_text.classList.remove('active');
-        //         side_bar_2_text.classList.add('active');
-        //         side_bar_3_text.classList.remove('active');
-        //         side_bar_4_text.classList.remove('active');
-        //     })
-        //     sideBar3Text.addEventListener("click", ()=>{
-        //         side_bar_1_text.classList.remove('active');
-        //         side_bar_2_text.classList.remove('active');
-        //         side_bar_3_text.classList.add('active');
-        //         side_bar_4_text.classList.remove('active');
-        //     })
-        //     sideBar4Text.addEventListener("click", ()=>{
-        //         side_bar_1_text.classList.remove('active');
-        //         side_bar_2_text.classList.remove('active');
-        //         side_bar_3_text.classList.remove('active');
-        //         side_bar_4_text.classList.add('active');
-        //     })
-
-        //     // // Проверка наличия элементов
-        //     // if (sideBar1Text) sideBar1Text.textContent = 'Моя сторінка';
-        //     // if (sideBar2Text) sideBar2Text.textContent = 'Усі користувачі';
-        //     // if (sideBar3Text) sideBar3Text.textContent = 'Особисті повідомлення';
-        //     // if (sideBar4Text) sideBar4Text.textContent = 'Повідомлення';
-        // });
-    </script>    
+    </aside>  
     <main>
         {% block content %}
         {% endblock %}
@@ -149,17 +75,3 @@
 </body>
 </html>
 
-    <!-- <script>
-        const side_bar_1_text = document.querySelector('.side_bar_1_text');
-        const side_bar_2_text = document.querySelector('.side_bar_2_text');
-        const side_bar_3_text = document.querySelector('.side_bar_3_text');
-        const side_bar_4_text = document.querySelector('.side_bar_4_text');
-
-        side_bar_1_text.addEventListener("click", ()=>{
-            side_bar_1_text.classList.toggle('active');
-            side_bar_2_text.classList.remove('active');
-            side_bar_3_text.classList.remove('active');
-            side_bar_4_text.classList.remove('active');
-        })
-        
-    </script> -->
