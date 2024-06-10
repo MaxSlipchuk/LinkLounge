@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from main.views import *
 from account.views import *
 from app_base.views import *
@@ -26,8 +26,7 @@ from django.contrib.auth import views as auth_views
 from django.views.generic import RedirectView
 from .settings import MEDIA_ROOT, MEDIA_URL, DEBUG
 from django.conf.urls.static import static
-from chat.views import chatPage
-
+from my_messages.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -37,8 +36,9 @@ urlpatterns = [
     path('signup/', signup, name='signup'),
     path('accounts/profile/', RedirectView.as_view(url='/main/')),  # Додайте це перенаправлення
     path('all_users/', all_users, name='all_users'),
-    # path('all_users/', include('all_users.urls')),
-    path("chat/", chatPage),
+    path('chat_with_user/<int:user_id>/', chat_with_user, name='chat_with_user'),
+    path('chat/<int:chat_id>/', chat_detail, name='chat_detail'),
+    path('my_messages', my_messages, name='my_messages')
 ]
 
 if DEBUG:

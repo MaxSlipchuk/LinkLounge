@@ -1,19 +1,31 @@
-<!-- all_users.html -->
 {% extends "app_base/base.html" %}
 {% load static %}
 {% block links %}
 <link rel="stylesheet" href="{% static 'all_users/css/style.css' %}">
 {% endblock %}
 {% block content %}
-<h2>Welcome to all_users</h2>
-<div class="container">
+<!-- <h2>Welcome to all_users</h2> -->
+<div class="container-a">
+    <h2>Шукай, знайомся, спiлкуйся.</h2>
+    <div class="search">
+        <input type="search" name="search" class="search">
+        <button>0</button>
+    </div>
+    <div class="cards">
     {% for user in users %}
         <div class="card-user">
-            <h3>{{ user.first_name }}</h3>
-            <h4>{{ user.last_name }}</h4>
-            <h5>{{ user.username }}</h5>
+            <div class="info1">
+                <h3>{{user.first_name}}</h3>
+                <h4>{{user.last_name}}</h4>
+                <h5>@{{user.username}}</h5>
+            </div>
+            <div class="image">
+                
+            </div>
             <a href="{% url 'chat_with_user' user.id %}"><button>написати</button></a>
         </div>
     {% endfor %}
+    </div>
 </div>
 {% endblock %}
+

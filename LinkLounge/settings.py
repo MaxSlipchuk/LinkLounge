@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     'account',
     'all_users',
     'channels',
-    'chat'  
+    'chat',
+    'my_messages'
 ]
 
 ASGI_APPLICATION = 'LinkLounge.asgi.application'

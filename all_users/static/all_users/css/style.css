@@ -1,0 +1,107 @@
+.container-a{
+    display: flex;
+    top: 10px;
+    height: 570px;
+    filter:drop-shadow(0px 4px 24px rgba(0,0,0,0.20000000298023224));
+    border-radius:20px;
+    overflow-y: auto;
+    padding:40px;
+    display:flex;
+    flex-direction:column;
+    gap: 10px;
+    position: relative;
+    border: 2px outset rgb(126, 8, 180);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    
+}
+
+.card-user{
+    display: flex;
+    flex-direction: column;
+    border: rebeccapurple solid 2px;
+    align-items: center;
+    border-radius: 8px;
+    padding-bottom: 10px;
+    padding-top: -5px;
+    width: 180px;
+    border: 2px outset rgb(126, 8, 180);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+      
+    
+}
+h2{
+    font-size: 40px;
+    position: relative;
+    bottom: 5%;
+}
+input{
+    width: 40%;
+    border-radius: 8px;
+    
+}
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap:10px;
+}
+.search button{
+    border-radius: 8px;
+    
+
+}
+.search{
+    position: relative;
+    bottom: 5%;
+}
+.info1{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 10px;
+}
+h3, h4, h5{
+    margin: 5px;
+    
+}
+.image{
+    
+    width: 90%;
+    height: 90px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px outset rgb(126, 8, 180);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+}
+.card-user a button{
+    border-radius:15px;
+    width: 90%;
+    border: 2px outset rgb(126, 8, 180);
+    
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    
+
+}
+.card-user a{
+    height: 40px;
+    
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+h3{
+    font-size: 25px;
+    
+}
