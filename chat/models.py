@@ -2,12 +2,17 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Chat(models.Model):
-    participants = models.ManyToManyField(User)
-
-class Message(models.Model):
-    timestamp = models.DateTimeField(auto_now_add=True)
-    username = models.CharField(max_length=255, blank=True, null=True)
-    message = models.TextField(blank=True, null=True)
+    user1 = models.ForeignKey(User, related_name='user1_chats', on_delete=models.CASCADE, blank=True, null=True)
+    user2 = models.ForeignKey(User, related_name='user2_chats', on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
-        return f'{self.username}: {self.message} ({self.timestamp})'
+        return f"Chat between {self.user1} and {self.user2}"
+
+class Message(models.Model):
+    chat = models.ForeignKey(Chat, related_name='messages', on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    message = models.TextField(blank=True, null=True)
+    sender = models.ForeignKey(User, related_name='sent_messages', on_delete=models.CASCADE, blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.sender}: {self.message} ({self.timestamp})'
