@@ -2,11 +2,17 @@
 {% block content %}
 <div class="chat-list">
     {% for chat in all_messages %}
-        <a href="{% url 'chat_detail' chat.id %}">
-            <div class="chat-item">
-                <p>{{chat.user2.username}}</p>
-            </div>
-        </a>
+        <div class="chat-item">
+            <a href="{% url 'chat_detail' chat.id %}">
+                <p>
+                    {% if chat.user1 == request.user %}
+                        {{ chat.user2.username }}
+                    {% else %}
+                        {{ chat.user1.username }}
+                    {% endif %}
+                </p>
+            </a>
+        </div>
     {% endfor %}
 </div>
 {% endblock %}

@@ -18,10 +18,21 @@
                 <h3>{{user.first_name}}</h3>
                 <h4>{{user.last_name}}</h4>
                 <h5>@{{user.username}}</h5>
+                <!-- {% if user.userprofile.image %}
+                <img src="{{ user.userprofile.image.url }}" alt="Profile Picture">
+                {% endif %} -->
+                {% if request.user %}
+                {% if user.userprofile.image %}
+                    <img src="{{ user.userprofile.image.url }}" alt="Profile Picture">
+                {% else %}
+                    <img src="{% static 'main/img/default_profile.png' %}" alt="Default Profile Picture">
+                {% endif %}
+            {% else %}
+                <img src="{% static 'main/img/default_profile.png' %}" alt="Default Profile Picture">
+            {% endif %}
             </div>
-            <div class="image">
-                
-            </div>
+            <!-- <div class="image">
+            </div> -->
             <a href="{% url 'chat_with_user' user.id %}"><button>написати</button></a>
         </div>
     {% endfor %}

@@ -72,63 +72,19 @@ main {
 
     }
 }
-/* 
-.container{
-    width: 20%;
-    
-}
-.container-second{
-    width: 30%;
 
-}
-.container-third{
-    width: 20%;
-
-}
-li{
-    list-style-type: none;
-}
-.main_container{
-    display: flex;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    justify-content: left;
-    align-items: left;
-    color: #fff;
-    text-align: left;
-    padding: 10px;
-    list-style-type: none;
-}
-
-li{
-    list-style-type: none;
-}
-p{
-    width: 100%;
-    text-align: left;
-} */
 
 .main_container {
-    
-    /* background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border-radius: 10px;
-    box-shadow: 0 4px 6px; */
     padding-top: 10px;
 }
 
 .container {
-    margin-bottom: 30px;
-    
+    margin-bottom: 10px;
     height: auto;
-    background: rgba(255, 255, 255, 0.2);
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.201), rgba(255, 255, 255, 0.030));
     backdrop-filter: blur(10px);
     border-radius: 20px;
-    box-shadow: 0 4px 6px black;
+    /* box-shadow: 0 4px 6px black; */
     padding: 10px;
     border: 2px outset rgb(126, 8, 180);
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
@@ -143,7 +99,7 @@ p{
     text-align: left;
     margin-bottom: 30px;
     height: auto;
-    background: rgba(255, 255, 255, 0.2);
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.201), rgba(255, 255, 255, 0.030));
     backdrop-filter: blur(10px);
     border-radius: 20px;
     box-shadow: 0 4px 6px black;
@@ -172,7 +128,6 @@ a{
 }
 
 #icon_mirror_horizontal{
-    /* transform: scaleX(-1); */
     transform: rotate(180deg)
 }
 
@@ -180,7 +135,7 @@ a{
     margin-bottom: 30px;
     
     height: auto;
-    background: rgba(255, 255, 255, 0.2);
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.201), rgba(255, 255, 255, 0.030));
     backdrop-filter: blur(10px);
     border-radius: 20px;
     box-shadow: 0 4px 6px black;
