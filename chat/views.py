@@ -23,4 +23,5 @@ def chat_detail(request, chat_id):
             Message.objects.create(chat=chat, sender=request.user, message=message)
     
     messages = chat.messages.all()
-    return render(request, 'chat/chat_detail.html', {'chat': chat, 'messages': messages})
+    other_user = chat.user1 if chat.user2 == request.user else chat.user2
+    return render(request, 'chat/chat_detail.html', {'chat': chat, 'messages': messages, 'other_user': other_user})

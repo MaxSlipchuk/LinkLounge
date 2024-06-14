@@ -27,6 +27,7 @@ from django.views.generic import RedirectView
 from .settings import MEDIA_ROOT, MEDIA_URL, DEBUG
 from django.conf.urls.static import static
 from my_messages.views import *
+from groups.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -38,7 +39,8 @@ urlpatterns = [
     path('all_users/', all_users, name='all_users'),
     path('chat_with_user/<int:user_id>/', chat_with_user, name='chat_with_user'),
     path('chat/<int:chat_id>/', chat_detail, name='chat_detail'),
-    path('my_messages', my_messages, name='my_messages')
+    path('my_messages', my_messages, name='my_messages'),
+    path('groups', groups, name='groups')
 ]
 
 if DEBUG:

@@ -7,6 +7,7 @@
 
 
 body, html {
+    color: white;
     margin: 0;
     padding: 0;
     width: 100%;
@@ -22,7 +23,7 @@ body, html {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    z-index: -1; /* Ensures video is behind other content */
+    z-index: -1; 
 }
 
 .video-background video {
@@ -39,24 +40,13 @@ body, html {
 aside {
     position: fixed;
     left: 0;
-    width: 25%;
+    width: auto;
     height: 100%;
-    color: white;
-    padding: 20px;
+    /* padding: 20px; */
     box-sizing: border-box;
-    padding-right: 0;
 }
 
-main {
-    margin-left: 25%;
-    padding: 20px;
-    color: white;
-    box-sizing: border-box;
-    position: relative;
-    z-index: 1; /* Ensures content is above video */
-}
 
-/* Media query for screens smaller than 768px (e.g., phones) */
 @media (max-width: 768px) {
     aside {
         position: static;
@@ -64,94 +54,94 @@ main {
         height: auto;
         padding: 10px;
     }
-
     main {
         margin-left: 0;
         padding: 10px;
-        
-
     }
 }
 
-
-.main_container {
-    padding-top: 10px;
+.container-wrapper{
+    padding: 10px;
 }
 
-.container {
-    margin-bottom: 10px;
-    height: auto;
-    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.201), rgba(255, 255, 255, 0.030));
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    /* box-shadow: 0 4px 6px black; */
+.main_container {
+    width: auto;
+    height: 100%;
+    padding-left: 29%;
+}
+
+.aside_container {
+    position: fixed;
     padding: 10px;
-    border: 2px outset rgb(126, 8, 180);
+    width: auto;
+    height: 100%;
+    box-sizing: border-box;
+    
+}
+
+#container{
+    font-weight: 600;
+    text-align: left;
+    justify-content: left;
+    margin-bottom: 10px;
+    width: 100%;
+    height: auto;
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.150), rgba(255, 255, 255, 0.030));
+    backdrop-filter: blur(10px);
+    border-radius: 40px;
+    box-shadow: 0 4px 6px black;
+    padding: 35px;
+    border: 1px outset rgb(212, 127, 252);
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    font-weight: 300;
+    color: white;
+    font-size: 18px;
 }
 
 .container h1 {
-    margin-bottom: 10px;
-    font-size: 2em;
+    margin-top: 10px;
+    font-size: 30px;
+    color: white;
+    font-weight: 600;
 }
 
-.container-second {
-    text-align: left;
-    margin-bottom: 30px;
-    height: auto;
-    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.201), rgba(255, 255, 255, 0.030));
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    box-shadow: 0 4px 6px black;
-    padding: 10px;
-    border: 2px outset rgb(126, 8, 180);
-    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
-}
-.container-second ul, .container-third ul {
-    list-style: none;
-    padding: 0;
-}
-.container-second li, .container-third li {
-    margin-bottom: 15px;
-}
 .container-second svg, .container-third svg {
     margin-right: 10px;
 }
-.container-second p, .container-third p{
-    font-size: 1.1em;
+
+#container p{
     margin: 0;
 }
 
+.a{
+    margin: 5px;
+}
+
 a{
-  text-decoration:none;
-  color: rgb(255, 255, 255);
+    text-decoration:none;
+    color: rgb(255, 255, 255);
 }
 
 #icon_mirror_horizontal{
     transform: rotate(180deg)
 }
 
-.container-third{
-    margin-bottom: 30px;
-    
-    height: auto;
-    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.201), rgba(255, 255, 255, 0.030));
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    box-shadow: 0 4px 6px black;
-    padding: 10px;
-    border: 2px outset rgb(126, 8, 180);
-    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
-
+.flex-container .user{
+    text-decoration:none;
+    display: inline-flex;
+    flex-direction: row;
+    color: #999;
+    padding: 2%;
 }
 
 .flex-container .a{
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
-    padding-top: 3%;
-    padding-bottom: 3%;
+    padding: 2%;
 }
 
 .active {
-    border-bottom: 2px solid rgb(255, 255, 255);
+    border-bottom: 1px solid rgb(255, 255, 255);
+    padding: 0%;
+    margin-bottom: 10px;
 }

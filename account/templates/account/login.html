@@ -6,7 +6,7 @@
 {% block content %}
 <div class="container">
     <div class="text-head">
-        <h2>З поверненням</h2>
+        <h1 id="zpovernenyam">З поверненням</h1>
     </div>
     <form method="post">
         {% csrf_token %}
@@ -27,7 +27,7 @@
         </div>
         <button type="submit">Увійти</button>
     </form>
-    <p>Немає аккаунту?<a href="/signup/">Зареєструватися</a></p>
+    <p>Немає аккаунту? <a href="/signup/">Зареєструватися</a></p>
     {% if error %}
         <p>{{ error }}</p>
     {% endif %}
