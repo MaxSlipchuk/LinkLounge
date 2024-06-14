@@ -3,11 +3,36 @@
     width: 0;
     height: 0;
 }
-h5{
-    font-weight: 1;
-    
+
+.content_groups{
+    display: flex;
 }
-.container-a{
+
+form{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.svg{
+    border-radius: 90px;
+    border: 1px outset white;
+}
+
+#chat-form{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.content_search{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    gap: 5px;
+}
+
+.group-container{
     display: flex;
     top: 10px;
     height: 570px;
@@ -23,48 +48,70 @@ h5{
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
     background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.150), rgba(255, 255, 255, 0.030));
     backdrop-filter: blur(10px);
+    color: white;
     
 }
 
-.card-user{
+.groups{
+    width: 50%;
+    height: 100%;
+    text-align: center;
     display: flex;
     flex-direction: column;
-    border: rebeccapurple solid 2px;
+    /* border: rebeccapurple solid 2px; */
+    align-items: center;
+    border-radius: 8px;
+    padding-bottom: 10px;
+    padding-top: -5px;
+    /* border: 2px outset rgb(126, 8, 180); */
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+}
+
+.group{
+    display: flex;
+    flex-direction: column;
+    /* border: rebeccapurple solid 2px; */
     align-items: center;
     border-radius: 8px;
     padding-bottom: 10px;
     padding-top: -5px;
     width: 180px;
-    border: 2px outset rgb(126, 8, 180);
+    /* border: 2px outset rgb(126, 8, 180); */
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     border-radius: 20px;
-      
-    
 }
+
 h2{
     font-size: 40px;
     position: relative;
     bottom: 5%;
 }
-input{
-    width: 40%;
-    border-radius: 8px;
+.input{
+    border-radius:15px;
+    color: white;
+    /* background-color: #ffe;  */
+    color: white;
+    width: 90%;
+    padding: 8px;
+    text-align: left;
+    border: 1px outset rgb(255, 255, 255);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
     
 }
-.cards{
+.groups{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    /* justify-content: space-between; */
     gap:10px;
 }
-.search button{
-    border-radius: 8px;
-    
 
-}
 .search{
     position: relative;
     bottom: 5%;
@@ -80,10 +127,10 @@ h3, h4, h5{
     
 }
 .image{
-    
-    width: 98%;
+    position: relative;
+    width: 90%;
     height: 90px;
-    
+    margin-bottom: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -93,18 +140,19 @@ h3, h4, h5{
     backdrop-filter: blur(10px);
     border-radius: 15px;
 }
-.card-user a button{
+
+.button{
     border-radius:15px;
-    width: 90%;
-    border: 2px outset rgb(126, 8, 180);
-    
+    width: auto;
+    color: white;
+    padding: 8px;
+    border: 1px outset rgb(255, 255, 255);
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
-    
-
 }
-.card-user a{
+
+.group a{
     height: 40px;
     
     width: 100%;
@@ -114,11 +162,4 @@ h3, h4, h5{
 h3{
     font-size: 25px;
     
-}
-
-img{
-    width: 100%;
-    height: 100%;
-    border-radius: 15px;
-    object-fit: cover;
 }

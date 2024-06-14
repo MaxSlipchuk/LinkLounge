@@ -4,13 +4,24 @@ document.addEventListener('DOMContentLoaded', (event) => {
         'ws://' + window.location.host + '/ws/chat/' + chatId + '/'
     );
 
+    const messagesContainer = document.querySelector('.messages');
+
     chatSocket.onmessage = function(e) {
         const data = JSON.parse(e.data);
-        const messages = document.querySelector('.messages');
         const messageElement = document.createElement('div');
-        messageElement.className = 'message';
-        messageElement.innerHTML = `<strong>${data.username}:</strong> ${data.message}`;
-        messages.appendChild(messageElement);
+        messageElement.classList.add('message');
+        if (data.username === user) {
+            messageElement.classList.add('me');
+        } else {
+            messageElement.classList.add('other');
+        }
+        messageElement.innerHTML = `
+            <div class="message-content">
+                <strong class="message-username"><span>@</span>${data.username}</strong>
+                <span class="message-text">${data.message}</span>
+            </div>`;
+        messagesContainer.appendChild(messageElement);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
     };
 
     chatSocket.onclose = function(e) {
@@ -23,8 +34,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const message = messageInputDom.value;
         chatSocket.send(JSON.stringify({
             'message': message,
-            'username': user // передаємо username як параметр
+            'username': user 
         }));
         messageInputDom.value = '';
     };
+
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
 });
