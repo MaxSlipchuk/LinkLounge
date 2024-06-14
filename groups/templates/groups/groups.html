@@ -1,0 +1,34 @@
+{% extends "app_base/base.html" %}
+{% load static %}
+{% block links %}
+    <!-- <script src="{% static 'groups/js/groups.js' %}" defer></script> -->
+    <link rel="stylesheet" href="{% static 'groups/css/style.css' %}">
+{% endblock %}
+{% block content %}
+<div class="group-container">
+    <h1>Групові чати</h1>
+    <div class="content_groups">
+        <input class="input" type="text" name="group" id="group-input" placeholder="Введіть назву групового чату">
+        <svg class="svg" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m776.31-159.27-247.82-248q-29.68 25.54-68.57 39.17-38.88 13.64-77.11 13.64-94.77 0-159.92-65.27-65.16-65.27-65.16-159.5t65.06-159.65q65.06-65.43 159.5-65.43t159.86 65.34q65.43 65.35 65.43 159.68 0 40.98-14.66 79.92-14.65 38.95-38.15 66.3l248 247.34-26.46 26.46ZM382.65-391.38q79.12 0 133.56-54.3t54.44-133.75q0-79.45-54.44-133.7-54.44-54.25-133.75-54.25T248.9-713.09q-54.25 54.3-54.25 133.75 0 79.46 54.29 133.71 54.28 54.25 133.71 54.25Z"/></svg>
+        <button class="button"  type="submit">створити групу</button>
+        <!-- <form id="chat-form" method="post">
+            {% csrf_token %}
+        </form> -->
+    </div>
+    <div class="content_search">
+        <div class="groups">
+            <!-- <p>Усі групи</p>
+            <div class="group">
+        
+                <p class="m-3">W_IT</p>
+                <p class="m-3">hello world</p>
+                <svg class="svg" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M306.46-166.15q-25.58 0-43.56-17.98-17.98-17.99-17.98-43.56v-490.46h-39.38v-36.8h155.69v-29.67h238.15v29.54h155.7v36.93h-39.39v490.64q0 25.76-17.8 43.56t-43.74 17.8H306.46Zm372.31-552H281.85v490.46q0 10.77 6.92 17.69 6.92 6.92 17.69 6.92h347.69q9.23 0 16.93-7.69 7.69-7.69 7.69-16.92v-490.46Zm-283.39 435.8h36.93v-356.92h-36.93v356.92Zm132.93 0h36.92v-356.92h-36.92v356.92Zm-246.46-435.8V-203.08-718.15Z"/></svg>
+            </div> -->
+        </div>
+        <div class="groups">
+            <!-- <p>Мої групи</p> -->
+        </div>
+
+    </div>
+</div>
+{% endblock %}
