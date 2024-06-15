@@ -1,0 +1,11 @@
+{% extends "app_base/base.html" %}
+{% block content %}
+<div class="group-form-container">
+    <h1>Створити групу</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">створити групу</button>
+    </form>
+</div>
+{% endblock %}
