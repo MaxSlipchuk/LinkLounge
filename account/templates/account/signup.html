@@ -20,8 +20,6 @@
         </div>
     </div>
     <div class="container-2">
-
-    
         <form method="post">
             {% csrf_token %}
             <div class="form-names">
@@ -74,7 +72,7 @@
                 {{ form.remember_me.label_tag }}
                 {{ form.remember_me }}
             </div> -->
-            <button type="submit" class="btn btn-primary">Створити аккаунт</button>
+            <button type="submit" class="button">Створити аккаунт</button>
             {% if finish %}
                 <h1>{{ finish }}</h1>
             {% endif %}
