@@ -5,7 +5,7 @@
 {% endblock %}
 {% block content %}
 <div class="container-my-msg">
-    <h1>Мои повiдомлення</h1>
+    <h1 class="msg-title">Мої повiдомлення</h1>
     <div class="chat-list">
         {% for chat in all_messages %}
         <div class="chat-item">
@@ -20,7 +20,7 @@
                     {% else %}
                         <img src="{% static 'main/img/default_profile.png' %}" alt="Default Profile Picture">
                     {% endif %}
-                </div>
+                </div> 
                 <a href="{% url 'chat_detail' chat.id %}">
                     
                     <h3>
