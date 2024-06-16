@@ -9,33 +9,40 @@
     <div class="chat-list">
         {% for chat in all_messages %}
         <div class="chat-item">
-            <div class="chat-item-item">
-                <div class="image">
-                    {% if request.user %}
-                        {% if user.userprofile.image %}
-                            <img src="{{ user.userprofile.image.url }}" alt="Profile Picture">
-                        {% else %}
-                            <img src="{% static 'main/img/default_profile.png' %}" alt="Default Profile Picture">
-                        {% endif %}
-                    {% else %}
-                        <img src="{% static 'main/img/default_profile.png' %}" alt="Default Profile Picture">
-                    {% endif %}
-                </div> 
-                <a href="{% url 'chat_detail' chat.id %}">
-                    
-                    <h3>
+            <a class="chat-item-item" href="{% url 'chat_detail' chat.id %}">
+                <!-- <div class="chat-item-item"> -->
+                    <div class="image">
                         {% if chat.user1 == request.user %}
-                            {{ chat.user2.username }}
-                        {% else %}
-                            {{ chat.user1.username }}
+                            {% if chat.user2.userprofile.image %}
+                                <img src="{{ chat.user2.userprofile.image.url }}" alt="Profile Picture">
+                            {% else %}
+                                <img src="{% static 'main/img/default_profile.png' %}" alt="Default Profile Picture">
+                            {% endif %}
+                        {% elif chat.user2 == request.user %}
+                            {% if chat.user1.userprofile.image %}   
+                                <img src="{{ chat.user1.userprofile.image.url }}" alt="Profile Picture">
+                            {% else %}
+                                <img src="{% static 'main/img/default_profile.png' %}" alt="Default Profile Picture">
+                            {% endif %}
                         {% endif %}
-                    </h3>
-                    <p class="last-msg">
-                        helloworld
-                    </p>
-                </a>
-                
-            </div>
+                    </div> 
+                    
+                    <div style="display: flex; flex-direction: column;">
+                        <h3>
+                            {% if chat.user1 == request.user %}
+                                {{ chat.user2.username }}
+                            {% else %}
+                                {{ chat.user1.username }}
+                            {% endif %}
+                        </h3>
+                        <p class="last-msg">
+                            helloworld
+                        </p>
+                    </div>
+                    
+
+                <!-- </div> -->
+            </a>
             <div class="delete">
                 <svg id='delete' xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M306.46-166.15q-25.58 0-43.56-17.98-17.98-17.99-17.98-43.56v-490.46h-39.38v-36.8h155.69v-29.67h238.15v29.54h155.7v36.93h-39.39v490.64q0 25.76-17.8 43.56t-43.74 17.8H306.46Zm372.31-552H281.85v490.46q0 10.77 6.92 17.69 6.92 6.92 17.69 6.92h347.69q9.23 0 16.93-7.69 7.69-7.69 7.69-16.92v-490.46Zm-283.39 435.8h36.93v-356.92h-36.93v356.92Zm132.93 0h36.92v-356.92h-36.92v356.92Zm-246.46-435.8V-203.08-718.15Z"/></svg>
             </div>

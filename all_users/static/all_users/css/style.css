@@ -95,6 +95,7 @@ h5{
     justify-content: start;
     /* justify-content: space-between; */
     gap:10px;
+    padding-bottom: 20px;
 }
 
 .search{
