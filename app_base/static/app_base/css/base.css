@@ -38,11 +38,7 @@ body, html {
 }
 
 aside {
-    position: fixed;
-    left: 0;
-    width: auto;
     height: 100%;
-    /* padding: 20px; */
     box-sizing: border-box;
 }
 
@@ -61,60 +57,73 @@ aside {
 }
 
 .container-wrapper{
-    padding: 10px;
+    display: flex;
+    margin: 10px;
+    justify-content: center;
+    gap: 20px;
+
 }
 
 .main_container {
-    width: auto;
-    height: 100%;
-    padding-left: 29%;
+    width: 1000px;
+    flex-direction: row;
 }
 
 .aside_container {
-    position: fixed;
-    padding: 10px;
-    width: auto;
+    width: 400px;
     height: 100%;
     box-sizing: border-box;
-    
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 #container{
     font-weight: 600;
     text-align: left;
     justify-content: left;
-    margin-bottom: 10px;
     width: 100%;
     height: auto;
     background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.150), rgba(255, 255, 255, 0.030));
     backdrop-filter: blur(10px);
     border-radius: 40px;
     box-shadow: 0 4px 6px black;
-    padding: 35px;
-    border: 1px outset rgb(212, 127, 252);
+    border: 1px outset rgb(255, 255, 255);
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
     font-weight: 300;
     color: white;
     font-size: 18px;
+    padding: 40px 0;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.container-second{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .container h1 {
-    margin-top: 10px;
     font-size: 30px;
     color: white;
     font-weight: 600;
-}
-
-.container-second svg, .container-third svg {
-    margin-right: 10px;
+    position: relative;
+    left: 40px;
+    margin: 0%;
 }
 
 #container p{
-    margin: 0;
+    margin: 0%
 }
 
 .a{
-    margin: 5px;
+    position: relative;
+    left: 40px;
 }
 
 a{
@@ -128,20 +137,34 @@ a{
 
 .flex-container .user{
     text-decoration:none;
-    display: inline-flex;
-    flex-direction: row;
+    display: flex;
     color: #999;
-    padding: 2%;
+    position: relative;
+    left: 40px;
+    gap: 10px;
 }
 
 .flex-container .a{
-    display: inline-flex;
-    flex-direction: row;
-    padding: 2%;
+    display: flex;
+    gap: 10px;
 }
 
 .active {
     border-bottom: 1px solid rgb(255, 255, 255);
     padding: 0%;
-    margin-bottom: 10px;
+}
+
+.a-side-bar-3-text{
+    position: relative;
+    left: 0;
+}
+
+.container-third{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.main_container{
+    height: 650px;
 }

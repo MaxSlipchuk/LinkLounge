@@ -31,7 +31,7 @@ from groups.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('main/', main, name='main'),
+    path('', main, name='main'),
     path('login/', auth_views.LoginView.as_view(template_name='account/login.html', authentication_form=CustomAuthenticationForm), name='login'),
     path('logout/', user_logout, name='logout'),  # Замінено auth_views.LogoutView на user_logout
     path('signup/', signup, name='signup'),

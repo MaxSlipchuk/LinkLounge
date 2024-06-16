@@ -8,10 +8,8 @@
 <p>Ласкаво просимо, {{ request.user.first_name }} {{ request.user.last_name }}!</p> -->
 <div class="div-container">
     <div class="div-username">
-        <div class="name2">
-            <h1 class="f_name">{{request.user.first_name}}</h1>
-            <h1 class="l_name">{{request.user.last_name}}</h1>
-        </div>
+        <h1>{{request.user.first_name}}</h1>
+        <h1>{{request.user.last_name}}</h1>
     </div>
     <div class="div-image">
         {% if request.user %}

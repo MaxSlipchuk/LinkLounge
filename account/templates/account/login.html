@@ -14,23 +14,20 @@
             <div class="username-div">
                 <label for="username">Логін:</label>
                 <input type="text" class="input" id="username" name="username" class="form-control" placeholder="Введіть логін">
+                {% for error in form.username.errors %}
+                    <div class="error">{{ error }}</div>
+                {% endfor %}
             </div>
             <div class="password-div">
                 <label for="password">Пароль:</label>
                 <input type="password" class="input" id="password" name="password" class="form-control" placeholder="Введіть пароль">
+                {% for error in form.password.errors %}
+                    <div class="error">{{ error }}</div>
+                {% endfor %}
             </div>
-            <!-- <div class="remember_me-div">
-                <label for="remember_me">
-                    <input type="checkbox" id="remember_me" name="remember_me" class="form-check-input"> Запам'ятати мене
-                </label>
-            </div> -->
-            <label class="pass" for="password">pass</label>
             <button class="button" type="submit">Увійти</button>
         </div>
     </form>
-    <p>Немає аккаунту? <a href="/signup/">Зареєструватися</a></p>
-    {% if error %}
-        <p>{{ error }}</p>
-    {% endif %}
+    <p class="new_account">Немає аккаунту? <a href="/signup/">Зареєструватися</a></p>
 </div>
 {% endblock %}
