@@ -122,6 +122,8 @@ aside {
 }
 
 .a{
+    display: inline-flex;
+    width: max-content;
     position: relative;
     left: 40px;
 }
@@ -151,11 +153,14 @@ a{
 
 .active {
     border-bottom: 1px solid rgb(255, 255, 255);
+    display: inline-flex;
+    width: max-content;
     padding: 0%;
+    /* margin-bottom: 10px; */
 }
 
 .a-side-bar-3-text{
-    position: relative;
+    display: flex;
     left: 0;
 }
 
