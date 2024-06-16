@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 import re
+from django.contrib.auth import authenticate
+
 
 class RegistrationForm(UserCreationForm):
     first_name = forms.CharField(label="Ім'я")
@@ -44,20 +46,33 @@ class RegistrationForm(UserCreationForm):
         if password1 and password2 and password1 != password2:
             self.add_error('password2', "Паролі не співпадають.")
         return cleaned_data
-    
+
 class CustomAuthenticationForm(AuthenticationForm):
-    class Meta:
-        model = User
-        fields = ('username', 'password',)
-        widgets = {
-            'username': forms.TextInput(attrs={'class': 'form-control'}),
-            'password': forms.PasswordInput(attrs={'class': 'form-control'}),
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        error_messages={
+            'required': 'Будь ласка, введіть логін'
         }
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+        error_messages={
+            'required': 'Будь ласка, введіть ваш пароль'
+        }
+    )
 
     def clean_username(self):
-        cleaned_data = super().clean()
         username = self.cleaned_data.get('username')
-        if  not User.objects.filter(username=username).exists():
-            raise forms.ValidationError("такого користувача немає")
-        return cleaned_data
+        if not User.objects.filter(username=username).exists():
+            raise forms.ValidationError("Такого користувача немає")
+        return username
+    
+    def clean_password(self):
+        username = self.cleaned_data.get('username')
+        password = self.cleaned_data.get('password')
+        if username and password:
+            user = authenticate(self.request, username=username, password=password)
+            if user is None:
+                raise forms.ValidationError("Неправильний пароль")
+        return password
         
