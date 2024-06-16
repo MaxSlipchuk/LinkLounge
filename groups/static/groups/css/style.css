@@ -64,8 +64,7 @@ form{
     padding-top: -5px;
     /* border: 2px outset rgb(126, 8, 180); */
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 20px;
 }
 
@@ -83,6 +82,74 @@ form{
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     border-radius: 20px;
+}
+
+.all-groups{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.group-item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    padding: 0 10px;
+}
+
+.in-group{
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px outset rgb(255, 255, 255);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.150), rgba(255, 255, 255, 0.030));
+    backdrop-filter: blur(10px);
+    border-radius: 40px;
+    padding-left: 10px;
+    width: 100%;
+    height: 40px;
+}
+
+.delete{
+    /* padding: 10px; */
+    border: 1px outset rgb(255, 255, 255);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 80px;
+    height: 40px;
+    width: 40px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+#delete{
+    height: 20px;
+}
+
+.exit{
+    border: 1px outset rgb(255, 255, 255);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 80px;
+    height: 40px;
+    width: 40px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+}
+
+#exit{
+    height: 20px;
+    transform: rotate(180deg);
+
 }
 
 .input{
