@@ -111,10 +111,10 @@ input::placeholder{
 label{
     font-size: 25px;
 }
-p{
+/* p{
     position: relative;
     top:80px
-}
+} */
 .remember_me-div label{
     display: flex;
     flex-direction: row;
@@ -132,4 +132,13 @@ p{
 #zpovernenyam{
     font-size: 46px;
     margin-top: 0%;
+}
+
+.new_account{
+    position: absolute;
+    bottom: 0;
+}
+
+.error{
+    color: rgb(220, 58, 58);
 }
