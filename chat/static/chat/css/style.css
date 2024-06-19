@@ -43,7 +43,7 @@
 .message {
     padding: 10px;
     margin: 5px;
-    max-width: 70%;
+    max-width: 90%;
     display: flex;
     flex-direction: column;
 }
@@ -74,8 +74,12 @@
 }
 
 .message-text {
-    font-size: 14px;
+    font-size: 16px;
+    word-wrap: break-word; /* Дозволяє переносити текст на новий рядок */
+    word-break: break-word; /* Забезпечує перенесення довгих слів, щоб вони помістилися в контейнер */
+    white-space: pre-wrap;  /* Зберігає пробіли і дозволяє перенесення */
 }
+
 
 #chat-form{
     display: flex;
