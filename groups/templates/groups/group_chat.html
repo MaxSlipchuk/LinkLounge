@@ -27,7 +27,9 @@
         <input type="text" name="message" id="message-input" placeholder="Type a message">
         <button type="submit">Send</button>
     </form>
+    {% if request.user == group.admin %}
     <a href="#" id="add_users">Додати користувачів</a>
+    {% endif %}
     <!-- Модальні вікна -->
     <div id='popup-bg'></div>
     
