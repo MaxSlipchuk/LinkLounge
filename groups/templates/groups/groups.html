@@ -3,33 +3,36 @@
 {% block links %}
     <link rel="stylesheet" href="{% static 'groups/css/style.css' %}">
     <!-- для модальних вікон -->
-    <link rel="stylesheet" href="{% static 'groups/css/modal_1.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'groups/css/modal_1.css' %}">
     <link rel="stylesheet" href="{% static 'groups/css/modal_2.css' %}">
-    <link rel="stylesheet" href="{% static 'groups/js/script.js' %}">
+    <link rel="stylesheet" href="{% static 'groups/css/modal_delete_group.css' %}"> -->
+    <!-- <link rel="stylesheet" href="{% static 'groups/css/modal_create_group.css' %}"> -->
+    <!-- <script defer src="{% static 'groups/js/modal_create_group.js' %}"></script>
+    <script defer src="{% static 'groups/js/modal_delete.js' %}"></script> -->
+    <script defer src="{% static 'groups/js/modal_create_delete.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'groups/css/modal_create_delete.css' %}">
+
+    
 {% endblock %}
 {% block content %}
 <div class="group-container">
     <h1 class="group-title">Групові чати</h1>
     <div class="content_groups">
-        <form method="post" action="{% url 'create_group' %}">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn-create">створити групу</button>
-        </form>
+        <button type="submit" class="btn-create">створити групу</button>
     </div>
     <div class="content_search">
         <div class="groups">
             <h2>Мої групи</h2>
-            <div class = 'all-groups'>
+            <div class='all-groups'>
                 {% for group in owned_groups %}
-                <div class = 'group-item'>
-
-                    <div class="in-group">
-                        <a href="{% url 'group_chat' group.name %}">{{ group.name }}</a>
-                    </div>
-                    <div class="delete">
+                <div class='group-item'>
+                    <a class="in-group" href="{% url 'group_chat' group.name %}">
+                        <div>{{ group.name }}</div>
+                    </a>
+                    <button class="delete" data-group-id="{{ group.id }}" data-group-name='{{ group.name }}'>
+                        <input type="hidden" name="group.id" value="{{ group.id }}">
                         <svg id='delete' xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M306.46-166.15q-25.58 0-43.56-17.98-17.98-17.99-17.98-43.56v-490.46h-39.38v-36.8h155.69v-29.67h238.15v29.54h155.7v36.93h-39.39v490.64q0 25.76-17.8 43.56t-43.74 17.8H306.46Zm372.31-552H281.85v490.46q0 10.77 6.92 17.69 6.92 6.92 17.69 6.92h347.69q9.23 0 16.93-7.69 7.69-7.69 7.69-16.92v-490.46Zm-283.39 435.8h36.93v-356.92h-36.93v356.92Zm132.93 0h36.92v-356.92h-36.92v356.92Zm-246.46-435.8V-203.08-718.15Z"/></svg>
-                    </div>
+                    </button>
                 </div>
                 {% endfor %}
             </div>
@@ -37,7 +40,6 @@
         <div class="groups">
             <h2>Інші групи</h2>
             <div class="all-groups">
-                
                 {% for group in member_groups %}
                 <div class="group-item">
                     <div class="in-group">
@@ -49,9 +51,33 @@
                 </div>
                 {% endfor %}
             </div>
-            
         </div>
     </div>
 </div>
 
+<div id='popup-bg'></div>
+
+<div id="modal-create-group">
+    <a href="#" id="close-modal-create-group">✖</a>
+    <div class="card-user">
+        <h2>Створення групи</h2>
+        <form method="post" class="form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary button">створити</button>
+        </form>
+    </div>
+</div>
+
+<div id="modal-delete-group">
+    <a href="#" id="close-modal-delete-group">✖</a>
+    <div class="card-user">
+        <h2>Ви дійсно бажаєте <br> видалити групу?</h2>
+        <form method="post" class="form">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary button" id="btn-yes">так</button>
+            <button type="button" class="btn btn-secondary button" id="btn-no">ні</button>
+        </form>
+    </div>
+</div>
 {% endblock %}

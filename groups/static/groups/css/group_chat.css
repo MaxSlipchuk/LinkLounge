@@ -4,11 +4,11 @@
     height: 0;
 }
 
-.chat-container{
+
+.group-chat-container{
     height: 650px;
     filter:drop-shadow(0px 4px 24px rgba(0,0,0,0.20000000298023224));
     border-radius:40px;
-    overflow-y: auto;
     padding:0px 40px;
     display:flex;
     flex-direction:column;
@@ -21,14 +21,31 @@
     backdrop-filter: blur(10px);
 }
 
-.name_user{
+.name-and-add{
     display: flex;
+    justify-content: space-between;
     align-items: center;
     padding-top: 40px;
+}
+
+.name-group{
+    display: flex;
+    align-items: center;
     gap: 20px;
 }
 
-.name_user p{
+.btn-add-user{
+    border-radius:15px;
+    width: auto;
+    color: white;
+    padding: 8px;
+    border: 1px outset rgb(255, 255, 255);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    background: transparent;
+    cursor: pointer;
+}
+
+.name-group h1{
     margin: 0;
     color: white;
     font-weight: 600;
@@ -69,10 +86,6 @@
     flex-direction: column;
 }
 
-.message-content{
-    margin: 0;
-}
-
 .message-username {
     font-weight: bold;
     margin-bottom: 5px;
@@ -84,7 +97,6 @@
     word-break: break-word; /* Забезпечує перенесення довгих слів, щоб вони помістилися в контейнер */
     white-space: pre-wrap;  /* Зберігає пробіли і дозволяє перенесення */
 }
-
 
 #chat-form{
     display: flex;

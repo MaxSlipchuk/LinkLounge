@@ -1,5 +1,7 @@
-#modal_1{
+#modal-create-group, #modal-delete-group {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     visibility: hidden;
     width: 40%;
@@ -14,20 +16,19 @@
     transition: opacity 0.5s;
     color: rgb(255, 255, 255);
     overflow: auto;
-    padding: 40px 0 ;
-    z-index: 1001; /* Додано для забезпечення найвищого рівня видимості */
+    padding: 40px 0;
+    z-index: 1001; /* Високий пріоритет */
 }
 
-#modal_1 h2{
+#modal-create-group h2, #modal-delete-group h2 {
     margin: 0;
 }
 
-#modal_1.show{
-    /* opacity: 1; */
+#modal-create-group.show, #modal-delete-group.show {
     visibility: visible;
 }
 
-#close-modal_1{
+#close-modal-create-group, #close-modal-delete-group {
     color: rgb(255, 255, 255);
     text-decoration: none;
     font-size: 20px;
@@ -38,17 +39,17 @@
     border-radius: 5px;
 }
 
-#btn-yes:hover,  #close-modal_1:hover{
+#btn-yes:hover, #close-modal-delete-group:hover, #close-modal-create-group:hover {
     background-color: rgb(218, 119, 119);
-    color: white;   
+    color: white;
 }
 
-#btn-no:hover{
+#btn-no:hover {
     background-color: #2BBEF2;
     color: white;
 }
 
-#popup-bg{
+#popup-bg {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -58,23 +59,28 @@
     left: 0;
     visibility: hidden;
     transition: all 0.5s;
-    z-index: 1000; /* Додано для забезпечення найвищого рівня видимості */
+    z-index: 1000; /* Високий пріоритет */
 }
 
-#popup-bg.show{
+#popup-bg.show {
     visibility: visible;
     opacity: 60%;
 }
 
-form{
+form {
     display: flex;
     flex-direction: column;
     gap: 30px;
 }
 
-form button{
+form p{
+    position: relative;
+    left: 0;
+}
+
+form button {
     font-size: 14px;
-    width: 50px;
+    width: 100%;
     height: 40px;
     font-weight: 600;
     border-radius: 10px;
