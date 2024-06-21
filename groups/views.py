@@ -9,15 +9,6 @@ from .forms import GroupForm
 def groups(request):
     owned_groups = Group.objects.filter(admin=request.user)
     member_groups = Group.objects.filter(members=request.user).exclude(admin=request.user)
-
-    context = {
-        'owned_groups': owned_groups,
-        'member_groups': member_groups,
-    }
-    return render(request, 'groups/groups.html', context)
-
-@login_required
-def create_group(request):
     if request.method == 'POST':
         form = GroupForm(request.POST)
         if form.is_valid():
@@ -28,7 +19,14 @@ def create_group(request):
             return redirect('groups')
     else:
         form = GroupForm()
-    return render(request, 'groups/create_group.html', {'form': form})
+
+    context = {
+        'owned_groups': owned_groups,
+        'member_groups': member_groups,
+        'form': form
+    }
+    return render(request, 'groups/groups.html', context)
+
 
 @login_required
 def group_chat(request, group_name):

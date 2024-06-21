@@ -4,6 +4,8 @@
     height: 0;
 }
 
+
+
 .content_groups{
     display: flex;
 }
@@ -30,14 +32,13 @@ form{
     flex-direction: row;
     height: 100%;
     gap: 5px;
+    padding-bottom: 40px;
 }
 
 .group-container{
     display: flex;
     height: 650px;
-    /* filter:drop-shadow(0px 4px 24px rgba(0,0,0,0.20000000298023224)); */
     border-radius:40px;
-    overflow-y: auto;
     padding: 0 40px;
     display:flex;
     flex-direction:column;
@@ -59,10 +60,8 @@ form{
 .groups{
     width: 50%;
     text-align: center;
-    /* border: rebeccapurple solid 2px; */
     padding-bottom: 10px;
     padding-top: -5px;
-    /* border: 2px outset rgb(126, 8, 180); */
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
     background: rgba(255, 255, 255, 0.1);
     border-radius: 20px;
@@ -71,13 +70,11 @@ form{
 .group{
     display: flex;
     flex-direction: column;
-    /* border: rebeccapurple solid 2px; */
     align-items: center;
     border-radius: 8px;
     padding-bottom: 10px;
     padding-top: -5px;
     width: 180px;
-    /* border: 2px outset rgb(126, 8, 180); */
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
@@ -88,6 +85,10 @@ form{
     display: flex;
     flex-direction: column;
     gap: 5px;
+    overflow-y: scroll; /* Додає вертикальну прокрутку */
+    max-height: 400px; /* Задайте потрібну максимальну висоту для контейнера */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
 }
 
 .group-item{
@@ -114,8 +115,12 @@ form{
     height: 40px;
 }
 
+.in-group:hover{
+    background-color: #2BBEF2;
+    transition: all ease-in-out 0.3s;
+}
+
 .delete{
-    /* padding: 10px; */
     border: 1px outset rgb(255, 255, 255);
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
     background: rgba(255, 255, 255, 0.2);
@@ -126,10 +131,20 @@ form{
     align-items: center;
     justify-content: center;
     display: flex;
+    cursor: pointer;
 }
 
 #delete{
     height: 20px;
+}
+
+.delete:hover{
+    border: 1px outset rgb(241, 72, 72);
+    transition: ease-in-out 0.3s;
+    svg{
+        fill: rgb(241, 72, 72);
+        transition: ease-in-out 0.3s;
+    }
 }
 
 .exit{

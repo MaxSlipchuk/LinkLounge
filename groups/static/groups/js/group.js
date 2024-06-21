@@ -23,10 +23,11 @@ document.addEventListener('DOMContentLoaded', function() {
         newMessage.innerHTML = `
             <div class="message-content">
                 <strong>${data.username}</strong>
-                <p>${data.message}</p>
+                <span class="message-text">${data.message}</span>
             </div>
         `;
         messageContainer.appendChild(newMessage);
+        messageContainer.scrollTop = messageContainer.scrollHeight;
     };
 
     chatSocket.onclose = function(e) {
@@ -48,5 +49,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }));
         messageInput.value = '';
     };
-    console.log('hello');
+
+    const messageContainer = document.querySelector('.messages');
+    messageContainer.scrollTop = messageContainer.scrollHeight;
+    
 });

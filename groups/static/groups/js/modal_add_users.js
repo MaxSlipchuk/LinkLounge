@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const modal_1 = document.querySelector('#modal_1');
     const popupBg = document.querySelector('#popup-bg');
     const close_modal_1 = document.querySelector('#close-modal_1');
-    const btn_next_modal = document.querySelector('#next_modal');
+    // const btn_next_modal = document.querySelector('#next_modal');
     const groupId = document.getElementById('group-id').textContent;
 
     addUsersButton.addEventListener('click', function() {
@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
         popupBg.classList.add('show');
     });
 
-    btn_next_modal.addEventListener('click', function() {
-        modal_1.classList.remove('show');
-    });
+    // btn_next_modal.addEventListener('click', function() {
+    //     modal_1.classList.remove('show');
+    // });
 
     const closeModalElements = [popupBg, close_modal_1];
     closeModalElements.forEach(function(element) {
