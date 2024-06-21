@@ -41,7 +41,6 @@ urlpatterns = [
     path('chat/<int:chat_id>/', chat_detail, name='chat_detail'),
     path('my_messages', my_messages, name='my_messages'),
     path('groups/', groups, name='groups'),
-    path('create/', create_group, name='create_group'),
     path('group/<str:group_name>/', group_chat, name='group_chat'),
     path('add_user_to_group/<int:group_id>/<int:user_id>/', add_user_to_group, name='add_user_to_group'),
 ]
