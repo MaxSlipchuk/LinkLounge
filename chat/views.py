@@ -20,10 +20,6 @@ def chat_detail(request, chat_id):
     if request.user.id not in [chat.user1_id, chat.user2_id]:
         return HttpResponseForbidden("Ви не є учасником цього чату")
 
-    # print(f'rquest.user {request.user.id}')
-    # print(chat.user1_id, chat.user2_id)
-    # print()
-    
     if request.method == 'POST':
         message = request.POST.get('message')
         if message:

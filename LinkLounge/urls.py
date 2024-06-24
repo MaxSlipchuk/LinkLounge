@@ -33,9 +33,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('main/', main, name='main'),
     path('login/', auth_views.LoginView.as_view(template_name='account/login.html', authentication_form=CustomAuthenticationForm), name='login'),
-    path('logout/', user_logout, name='logout'),  # Замінено auth_views.LogoutView на user_logout
+    path('logout/', user_logout, name='logout'),
     path('signup/', signup, name='signup'),
-    path('accounts/profile/', RedirectView.as_view(url='/main/')),  # Додайте це перенаправлення
+    path('accounts/profile/', RedirectView.as_view(url='/main/')),
     path('all_users/', all_users, name='all_users'),
     path('chat_with_user/<int:user_id>/', chat_with_user, name='chat_with_user'),
     path('chat/<int:chat_id>/', chat_detail, name='chat_detail'),
@@ -43,6 +43,7 @@ urlpatterns = [
     path('groups/', groups, name='groups'),
     path('group/<str:group_name>/', group_chat, name='group_chat'),
     path('add_user_to_group/<int:group_id>/<int:user_id>/', add_user_to_group, name='add_user_to_group'),
+    path('', RedirectView.as_view(url='/main/', permanent=True)), 
 ]
 
 if DEBUG:

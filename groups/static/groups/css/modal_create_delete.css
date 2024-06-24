@@ -1,4 +1,4 @@
-#modal-create-group, #modal-delete-group {
+#modal-create-group, #modal-delete-group, #modal-exit-group {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,15 +20,15 @@
     z-index: 1001; /* Високий пріоритет */
 }
 
-#modal-create-group h2, #modal-delete-group h2 {
+#modal-create-group h2, #modal-delete-group h2, #modal-exit-group h2 {
     margin: 0;
 }
 
-#modal-create-group.show, #modal-delete-group.show {
+#modal-create-group.show, #modal-delete-group.show, #modal-exit-group.show {
     visibility: visible;
 }
 
-#close-modal-create-group, #close-modal-delete-group {
+#close-modal-create-group, #close-modal-delete-group, #close-modal-exit-group{
     color: rgb(255, 255, 255);
     text-decoration: none;
     font-size: 20px;
@@ -39,7 +39,7 @@
     border-radius: 5px;
 }
 
-#btn-yes:hover, #close-modal-delete-group:hover, #close-modal-create-group:hover {
+#btn-yes:hover, #close-modal-delete-group:hover, #close-modal-create-group:hover, #close-modal-exit-group:hover {
     background-color: rgb(218, 119, 119);
     color: white;
 }
