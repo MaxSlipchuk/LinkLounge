@@ -9,17 +9,39 @@ from .forms import GroupForm
 def groups(request):
     owned_groups = Group.objects.filter(admin=request.user)
     member_groups = Group.objects.filter(members=request.user).exclude(admin=request.user)
+    
     if request.method == 'POST':
-        form = GroupForm(request.POST)
-        if form.is_valid():
-            group = form.save(commit=False)
-            group.admin = request.user
-            group.save()
-            group.members.add(request.user)
+        if 'delete' in request.POST:
+            group_id = request.POST.get('delete')
+            group = get_object_or_404(Group, id=group_id)
+            if group.admin == request.user:
+                group.delete()
             return redirect('groups')
+        elif 'exit' in request.POST:
+            group_id = request.POST.get('exit')
+            group = get_object_or_404(Group, id=group_id)
+            group.members.remove(request.user)
+            return redirect('groups')
+        else:
+            form = GroupForm(request.POST)
+            if form.is_valid():
+                group = form.save(commit=False)
+                group.admin = request.user
+                group.save()
+                group.members.add(request.user)
+                return redirect('groups')
     else:
         form = GroupForm()
 
+    if 'search' in request.GET:
+        search = request.GET['search']
+        owned_groups = Group.objects.filter(name__icontains=search).filter(admin=request.user)
+        member_groups = Group.objects.filter(members=request.user).exclude(admin=request.user).filter(name__icontains=search)
+        
+    else:
+        member_groups = Group.objects.filter(members=request.user).exclude(admin=request.user)
+        owned_groups = Group.objects.filter(admin=request.user)
+    
     context = {
         'owned_groups': owned_groups,
         'member_groups': member_groups,
@@ -65,12 +87,4 @@ def add_user_to_group(request, group_id, user_id):
 
     group.members.add(user)
     return JsonResponse({'status': 'ok'})
-# Create your views here.
 
-# @login_required
-# def groups(request):
-    # Отримати всіх користувачів, крім поточного та адміністратора
-    # users = User.objects.exclude(id=request.user.id).exclude(is_superuser=True)
-    
-    # context = {'users': users}
-    # return render(request, 'groups/groups.html', context)

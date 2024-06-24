@@ -222,3 +222,58 @@ h3, h4, h5{
     cursor: pointer;
 }
 
+#search{
+    width: 150%;
+
+}
+/* .search{
+    display: flex;
+    flex-direction: row;
+}
+.search button{
+    width: 5%;
+} */
+.search{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    bottom: 5%;
+    
+    justify-content: start;
+    width: 100%;
+    
+}
+
+#search-btn{
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 30%;
+    
+
+}
+.input-con{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.input{
+    border-radius:15px;
+    color: white;
+    /* background-color: #ffe;  */
+    color: white;
+    width: 40%;
+    padding: 8px;
+    text-align: left;
+    border: 1px outset rgb(255, 255, 255);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    background: none;
+    /* background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px); */
+    
+}
