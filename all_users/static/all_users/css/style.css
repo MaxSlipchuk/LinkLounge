@@ -30,11 +30,8 @@ h5{
     border: 1px outset white;
 }
 
-/* .card-user a button{
-} */
 
 .button{
-
     border-radius:20px;
     color: white;
     text-align: left;
@@ -55,17 +52,12 @@ h5{
 .input{
     border-radius:15px;
     color: white;
-    /* background-color: #ffe;  */
     color: white;
-    width: 40%;
     padding: 8px;
     text-align: left;
     border: 1px outset rgb(255, 255, 255);
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
     background: none;
-    /* background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px); */
-    
 }
 
 .card-user{
@@ -106,6 +98,7 @@ h5{
     bottom: 5%;
     margin-bottom: 20px;
     justify-content: start;
+    width: 500px;
 }
 
 #search-btn{
