@@ -27,14 +27,22 @@ https://www.figma.com/design/L8WzDSrsrcwEBMmRg1b7lc/LinkLounge?node-id=6-3&t=BQT
    git clone https://github.com/MaxSlipchuk/LinkLounge
    ```
 2. Перейдіть у директорію проекту:
-  ```
-  cd LinkLounge
-  ```
+   ```
+   cd LinkLounge
+   ```
 3. Встановіть залежності:
-  - django: фреймворк для роботи з веб-додатком
+   - django: фреймворк для роботи з веб-додатком (https://www.djangoproject.com/).
     ```
-      pip instal django
+    pip install django
     ```
+   - channels: бібліотека для Django, яка надає підтримку асинхронних запитів, веб-сокетів у реального часі (https://github.com/django/channels).
+   ```
+   pip install channels
+   ```
+   - daphne: основна функція - це обробка HTTP і WebSocket-запитів в асинхронному режимі для Django додатків, які використовують Channels(https://docs.djangoproject.com/en/5.0/howto/deployment/asgi/daphne/).
+   ```
+   pip install daphne
+   ```
 
 ## Команда проекта
 - Max Slipchuk
