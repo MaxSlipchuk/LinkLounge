@@ -199,6 +199,7 @@ main{
     outline:none;
 }
 
+
 .form-names{
     padding:0px;
     display:flex;
@@ -233,17 +234,6 @@ main{
     top:56px;
     left:37px;
 }
-/* #date-of-birth{
-    
-    padding:0px;
-    display:flex;
-    flex-direction:row;
-    flex-wrap:nowrap;
-    justify-content:flex-start;
-    align-items:flex-start;
-    gap:20px;
-    position:relative;
-} */
 
 form{
     width: 100%;

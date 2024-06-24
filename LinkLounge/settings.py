@@ -29,11 +29,10 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 # Включення сесій
-SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # або 'django.contrib.sessions.backends.cache'
+# SESSION_ENGINE = 'django.contrib.sessions.backends.db'  
 
-# Налаштування сховища сесій
-SESSION_COOKIE_AGE = 1209600  # 2 тижні
-SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Не заканчивать сессию при закрытии браузера
+# SESSION_COOKIE_AGE = 1209600
+# SESSION_EXPIRE_AT_BROWSER_CLOSE = False  
 
 
 # Application definition

@@ -4,11 +4,10 @@ from django.contrib.auth.models import User
 import re
 from django.contrib.auth import authenticate
 
-
 class RegistrationForm(UserCreationForm):
     first_name = forms.CharField(label="Ім'я")
     last_name = forms.CharField(label="Прізвище")
-    username = forms.CharField(label="Ім'я користувача")
+    username = forms.CharField(label="Логін")
     password1 = forms.CharField(label="Пароль", widget=forms.PasswordInput)
     password2 = forms.CharField(label="Підтвердження паролю", widget=forms.PasswordInput)
     age = forms.IntegerField(label="Вік", widget=forms.NumberInput(attrs={'placeholder': 'Вік'}))
@@ -25,27 +24,41 @@ class RegistrationForm(UserCreationForm):
                 'placeholder': self.fields[field_name].label
             })
 
+    def clean_first_name(self):
+        first_name = self.cleaned_data.get('first_name')
+        invalid_chars = re.findall(r'[^A-Za-zА-Яа-яЇїІіЄєҐґ]', first_name)
+        if invalid_chars:
+            raise forms.ValidationError(f"Ім'я може містити лише літери")
+        return first_name
+
+    def clean_last_name(self):
+        last_name = self.cleaned_data.get('last_name')
+        invalid_chars = re.findall(r'[^A-Za-zА-Яа-яЇїІіЄєҐґ]', last_name)
+        if invalid_chars:
+            raise forms.ValidationError(f"Прізвище може містити лише літери")
+        return last_name
+
     def clean_username(self):
         username = self.cleaned_data.get('username')
-        if not re.match(r'^[A-Za-zА-Яа-яЇїІіЄєҐґ]+$', username):
-            raise forms.ValidationError("Ім'я користувача може містити лише літери.")
+        invalid_chars = re.findall(r'[^A-Za-zА-Яа-яЇїІіЄєҐґ0-9]', username)
+        if invalid_chars:
+            raise forms.ValidationError(f"Тут є неприпустимий символ: {invalid_chars[0]}")
         if User.objects.filter(username=username).exists():
-            raise forms.ValidationError("Користувач з таким логіном вже існує.")
+            raise forms.ValidationError("Користувач з таким логіном вже існує")
         return username
 
     def clean_password1(self):
         password1 = self.cleaned_data.get('password1')
         if len(password1) < 8:
-            raise forms.ValidationError("Пароль повинен містити щонайменше 8 символів.")
+            raise forms.ValidationError("Пароль повинен містити щонайменше 8 символів")
         return password1
 
-    def clean(self):
-        cleaned_data = super().clean()
-        password1 = cleaned_data.get("password1")
-        password2 = cleaned_data.get("password2")
+    def clean_password2(self):
+        password1 = self.cleaned_data.get('password1')
+        password2 = self.cleaned_data.get('password2')
         if password1 and password2 and password1 != password2:
-            self.add_error('password2', "Паролі не співпадають.")
-        return cleaned_data
+            raise forms.ValidationError("Паролі не співпадають")
+        return password2
 
 class CustomAuthenticationForm(AuthenticationForm):
     username = forms.CharField(
