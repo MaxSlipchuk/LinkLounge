@@ -71,7 +71,7 @@ https://github.com/Rodion096
 ## Налаштування WebSocket
 Для налаштування WebSocket в проекті, необхідно виконати кілька кроків:
 1. Додайте 'channels' і 'daphne' до встановлених додатків в settings.py, а потім вкажіть ASGI_APPLICATION
-```
+```{python}
 INSTALLED_APPS = [
     'daphne',
     'channels',
@@ -82,7 +82,7 @@ INSTALLED_APPS = [
 ASGI_APPLICATION = 'LinkLounge.asgi.application'
 ```
 2. Налаштуйте канал передачі в settings.py:
-```
+```{python}
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels.layers.InMemoryChannelLayer"
@@ -90,7 +90,7 @@ CHANNEL_LAYERS = {
 }
 ```
 3. Створюємо та налаштовуємо asgi.py в settings.py
-```
+```{python}
 import os
 from django.core.asgi import get_asgi_application # створює ASGI-додаток для обробки HTTP-запитів у Django.
 from channels.auth import AuthMiddlewareStack # забезпечує обробку аутентифікації для WebSocket-з'єднань.
@@ -112,7 +112,7 @@ application = ProtocolTypeRouter({
 })
 ```
 4. Налаштуйте маршрутизацію для WebSocket у chat/routing.py:
-```
+```{python}
 from django.urls import path
 from . import consumers
 
@@ -121,7 +121,7 @@ websocket_urlpatterns = [
 ]
 ```
 7. Створіть ChatConsumer у chat/consumers.py:
-```
+```{python}
 from channels.generic.websocket import AsyncWebsocketConsumer
 # базовий клас AsyncWebsocketConsumer для створення асинхронного WebSocket-споживача.
 import json
