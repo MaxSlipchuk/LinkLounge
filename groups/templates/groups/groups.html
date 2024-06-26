@@ -3,6 +3,7 @@
 {% block links %}
 <link rel="stylesheet" href="{% static 'groups/css/style.css' %}">
 <script defer src="{% static 'groups/js/modal_create_delete.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <link rel="stylesheet" href="{% static 'groups/css/modal_create_delete.css' %}">
 {% endblock %}
 {% block content %}
@@ -75,6 +76,21 @@
     </div>
 </div>
 
+<div id="modal-create-group">
+    <a href="#" id="close-modal-create-group">✖</a>
+    <div class="card-user">
+        <h2>Створення групи</h2>
+        <form method="post" class="form">
+            <div style="display: flex; gap: 10px; flex-direction: column; text-align: left;">
+                {% csrf_token %}
+                {{ form.name.label_tag }}
+                {{ form.name }}
+            </div>
+            <button type="submit" class="btn btn-primary button">Створити</button>
+        </form>
+    </div>
+</div>
+
 <div id="modal-delete-group">
     <a href="#" id="close-modal-delete-group">✖</a>
     <div class="card-user">
@@ -82,7 +98,7 @@
         <form method="post" class="form">
             {% csrf_token %}
             <input type="hidden" name="delete" id="delete-group-id">
-            <button type="submit" class="btn btn-primary button" id="btn-yes">Так</button>
+            <button type="button" class="btn btn-primary button" id="btn-yes">Так</button>
             <button type="button" class="btn btn-secondary button" id="btn-no">Ні</button>
         </form>
     </div>
@@ -95,7 +111,7 @@
         <form method="post" class="form">
             {% csrf_token %}
             <input type="hidden" name="exit" id="exit-group-id">
-            <button type="submit" class="btn btn-primary button" id="btn-exit-yes">Так</button>
+            <button type="button" class="btn btn-primary button" id="btn-exit-yes">Так</button>
             <button type="button" class="btn btn-secondary button" id="btn-exit-no">Ні</button>
         </form>
     </div>
