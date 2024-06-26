@@ -7,13 +7,24 @@ Social network
 # Figma 
 https://www.figma.com/design/L8WzDSrsrcwEBMmRg1b7lc/LinkLounge?node-id=6-3&t=BQT9GOW0w3f3Ti8M-1
 
+# Команда проекта
+- Max Slipchuk (Teamlead)
+https://github.com/MaxSlipchuk 
+- Maksym Hryhorenko (Full stack developer)
+https://github.com/Max02039 
+- Drahnieva Mariia (Full stack developer)
+https://github.com/DragnevaMaria
+- Tymchenko Rodion (Full stack developer)
+https://github.com/Rodion096
+
+# Контакти
+Якщо у вас є питання щодо проекту, будь ласка, зв'яжіться зі мною за адресою електронної пошти nice.slipchukmax@gmail.com або через мою сторінку в GitHub: https://github.com/MaxSlipchuk
+
 ## Зміст
 - [Технології](#технологии)
 - [Початок роботи](#початок-роботи)
+- [Моделі](#моделі)
 - [Налаштування WebSocket](#налаштування-WebSocket)
-- [Команда проекта](#команда-проекта)
-- [Контакти](#контакти)
-
 
 ## Технолології
 - **HTML/CSS**: для створення інтерфейсів користувача.
@@ -195,16 +206,5 @@ class ChatConsumer(AsyncWebsocketConsumer):
         }))
         # Відправляє повідомлення та ім'я користувача назад клієнту.
 ```
-## Команда проекта
-- Max Slipchuk (Teamlead)
-https://github.com/MaxSlipchuk 
-- Maksym Hryhorenko (Full stack developer)
-https://github.com/Max02039 
-- Drahnieva Mariia (Full stack developer)
-https://github.com/DragnevaMaria
-- Tymchenko Rodion (Full stack developer)
-https://github.com/Rodion096
-
-## Контакти
-Якщо у вас є питання щодо проекту, будь ласка, зв'яжіться зі мною за адресою електронної пошти nice.slipchukmax@gmail.com або через мою сторінку в GitHub: https://github.com/MaxSlipchuk
+## Моделі
 
