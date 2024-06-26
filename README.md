@@ -262,4 +262,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 ```
 ## Моделі
+Модель користува
+```python
+from django.db import models
+from django.contrib.auth.models import User
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    age = models.IntegerField(blank=True, null=True)
+    image = models.ImageField(blank=True, null=True)
+```
+Створюємо власну модель, для того щоб можна було вносити додаткові зміни до користувача, і використовуємо зв'зок OneToOneField з вбудованою моделю User
