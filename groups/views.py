@@ -1,9 +1,30 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 from django.http import JsonResponse, HttpResponseForbidden
 from django.contrib.auth.models import User
 from .models import Group, Message
 from .forms import GroupForm
+
+@login_required
+@require_POST
+def delete_group_ajax(request):
+    group_id = request.POST.get('group_id')
+    group = get_object_or_404(Group, id=group_id)
+    if group.admin == request.user:
+        group.delete()
+        return JsonResponse({'status': 'success', 'group_id': group_id})
+    return JsonResponse({'status': 'error', 'message': 'Unauthorized'}, status=403)
+
+@login_required
+@require_POST
+def exit_group_ajax(request):
+    group_id = request.POST.get('group_id')
+    group = get_object_or_404(Group, id=group_id)
+    if request.user in group.members.all():
+        group.members.remove(request.user)
+        return JsonResponse({'status': 'success', 'group_id': group_id})
+    return JsonResponse({'status': 'error', 'message': 'Unauthorized'}, status=403)
 
 @login_required
 def groups(request):
@@ -11,25 +32,24 @@ def groups(request):
     member_groups = Group.objects.filter(members=request.user).exclude(admin=request.user)
     
     if request.method == 'POST':
-        if 'delete' in request.POST:
-            group_id = request.POST.get('delete')
-            group = get_object_or_404(Group, id=group_id)
-            if group.admin == request.user:
-                group.delete()
+        # if 'delete' in request.POST:
+        #     group_id = request.POST.get('delete')
+        #     group = get_object_or_404(Group, id=group_id)
+        #     if group.admin == request.user:
+        #         group.delete()
+        #     return redirect('groups')
+        # if 'exit' in request.POST:
+        #     group_id = request.POST.get('exit')
+        #     group = get_object_or_404(Group, id=group_id)
+        #     group.members.remove(request.user)
+        #     return redirect('groups')
+        form = GroupForm(request.POST)
+        if form.is_valid():
+            group = form.save(commit=False)
+            group.admin = request.user
+            group.save()
+            group.members.add(request.user)
             return redirect('groups')
-        elif 'exit' in request.POST:
-            group_id = request.POST.get('exit')
-            group = get_object_or_404(Group, id=group_id)
-            group.members.remove(request.user)
-            return redirect('groups')
-        else:
-            form = GroupForm(request.POST)
-            if form.is_valid():
-                group = form.save(commit=False)
-                group.admin = request.user
-                group.save()
-                group.members.add(request.user)
-                return redirect('groups')
     else:
         form = GroupForm()
 

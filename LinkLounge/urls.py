@@ -44,6 +44,9 @@ urlpatterns = [
     path('group/<str:group_name>/', group_chat, name='group_chat'),
     path('add_user_to_group/<int:group_id>/<int:user_id>/', add_user_to_group, name='add_user_to_group'),
     path('', RedirectView.as_view(url='/main/', permanent=True)), 
+    # видалення через ajax
+    path('delete_group_ajax/', delete_group_ajax, name='delete_group_ajax'),
+    path('exit_group_ajax/', exit_group_ajax, name='exit_group_ajax'),
 ]
 
 if DEBUG:
