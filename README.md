@@ -20,10 +20,6 @@ https://github.com/Rodion096
 # Контакти
 Якщо у вас є питання щодо проекту, будь ласка, зв'яжіться зі мною за адресою електронної пошти nice.slipchukmax@gmail.com або через мою сторінку в GitHub: https://github.com/MaxSlipchuk
 
-Також ви можете підтримати його, зробивши пожертву через PayPal.
-
-[![Підтримати через PayPal](https://www.paypalobjects.com/webstatic/en_US/i/btn/png/blue-rect-paypal-34px.png)](https://www.paypal.me/maxymslipchuk)
-
 ## Зміст
 - [Технології](#технологии)
 - [Початок роботи](#початок-роботи)
