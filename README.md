@@ -71,7 +71,7 @@ https://github.com/Rodion096
 ## Налаштування WebSocket
 Для налаштування WebSocket в проекті, необхідно виконати кілька кроків:
 1. Додайте 'channels' і 'daphne' до встановлених додатків в settings.py, а потім вкажіть ASGI_APPLICATION
-```{python}
+```python
 INSTALLED_APPS = [
     'daphne',
     'channels',
