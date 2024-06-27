@@ -47,6 +47,8 @@ urlpatterns = [
     # видалення через ajax
     path('delete_group_ajax/', delete_group_ajax, name='delete_group_ajax'),
     path('exit_group_ajax/', exit_group_ajax, name='exit_group_ajax'),
+    # пошук через ajax
+    path('search/', search_ajax, name='search_ajax'),
 ]
 
 if DEBUG:
