@@ -68,6 +68,42 @@ https://github.com/Rodion096
    ```
    python manage.py runserver
    ```
+## Моделі
+- Модель користува
+```python
+from django.db import models
+from django.contrib.auth.models import User
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    age = models.IntegerField(blank=True, null=True)
+    image = models.ImageField(blank=True, null=True)
+```
+Створюємо власну модель, для того щоб можна було вносити додаткові зміни до користувача, і використовуємо зв'зок OneToOneField з вбудованою моделю User
+- Модель чата між двома користувачами і повідомлення
+```python
+class Chat(models.Model):
+    user1 = models.ForeignKey(User, related_name='user1_chats', on_delete=models.SET_NULL, blank=True, null=True)
+    user2 = models.ForeignKey(User, related_name='user2_chats', on_delete=models.SET_NULL, blank=True, null=True)
+
+    def __str__(self):
+        return f"Чат між {self.user1} і {self.user2}"
+
+class Message(models.Model):
+    chat = models.ForeignKey(Chat, related_name='messages', on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    # Дата та час, коли було створено це повідомлення. auto_now_add=True автоматично встановлює цей час при створенні запису.
+    message = models.TextField(blank=True, null=True)
+    sender = models.ForeignKey(User, related_name='sent_messages', on_delete=models.CASCADE, blank=True, null=True)
+    # використовується для зв'язку з об'єктами користувачів, які відправили повідомлення.
+
+    def __str__(self):
+        return f'{self.sender}: {self.message} ({self.timestamp})'
+```
+- Модель групи і повідомлення
+```python
+
+```
 ## Налаштування WebSocket
 Для налаштування WebSocket в проекті, необхідно виконати кілька кроків:
 1. Додайте 'channels' і 'daphne' до встановлених додатків в settings.py, а потім вкажіть ASGI_APPLICATION
@@ -261,15 +297,4 @@ document.addEventListener('DOMContentLoaded', (event) => {
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 });
 ```
-## Моделі
-Модель користува
-```python
-from django.db import models
-from django.contrib.auth.models import User
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    age = models.IntegerField(blank=True, null=True)
-    image = models.ImageField(blank=True, null=True)
-```
-Створюємо власну модель, для того щоб можна було вносити додаткові зміни до користувача, і використовуємо зв'зок OneToOneField з вбудованою моделю User
