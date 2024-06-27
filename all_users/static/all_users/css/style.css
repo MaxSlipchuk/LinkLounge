@@ -24,6 +24,12 @@ h5{
     
 }
 
+.form-search{
+    display: flex;
+    gap: 5px;
+    width: 50%;
+}
+
 .svg{
     border-radius: 90px;
     padding: 3px;
@@ -58,6 +64,7 @@ h5{
     border: 1px outset rgb(255, 255, 255);
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
     background: none;
+    width: 100%
 }
 
 .card-user{
@@ -93,12 +100,10 @@ h5{
 .search{
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 5px;
-    bottom: 5%;
     margin-bottom: 20px;
     justify-content: start;
-    width: 500px;
+    width: 100%;
 }
 
 #search-btn{
