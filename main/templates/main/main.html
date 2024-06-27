@@ -20,12 +20,24 @@
             {% else %}
                 <img src="{% static 'main/img/default_profile.png' %}" alt="Default Profile Picture">
             {% endif %}
+            <div class="about-me">
+                <p>Whats up?</p>
+            </div>
         </div>
-        <div class="div-profile">
-            <p class="username">@{{request.user.username}}</p>
-            <p class="age">Age:{{request.user.age}} 11</p>
+        <div class="description">
+            <div class="div-profile">
+                <p class="username">@{{request.user.username}}</p>
+            </div>
+            <div class="div-profile">
+                <p class="age">Age:  {{request.user.userprofile.age}}</p>
+            </div>
+            <div class="div-profile">
+                <p class="age">Тут буде ігстаграм</p>
+            </div>
+            <div class="div-profile">
+                <p class="age">А тут буде фейсбук</p>
+            </div>
         </div>
     </div>
 </div>
-
 {% endblock %}
