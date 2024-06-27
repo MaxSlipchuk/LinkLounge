@@ -1,61 +1,113 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const btnCreate = document.querySelector('.btn-create');
-    const deleteButtons = document.querySelectorAll('.delete');
-    const exitButtons = document.querySelectorAll('.exit');
-    const modalCreate = document.querySelector('#modal-create-group');
-    const modalDelete = document.querySelector('#modal-delete-group');
-    const modalExit = document.querySelector('#modal-exit-group');
-    const popupBg = document.querySelector('#popup-bg');
-    const closeModalCreate = document.querySelector('#close-modal-create-group');
-    const closeModalDelete = document.querySelector('#close-modal-delete-group');
-    const closeModalExit = document.querySelector('#close-modal-exit-group');
-    const btnYes = document.querySelector('#btn-yes');
-    const btnNo = document.querySelector('#btn-no');
-    const btnExitYes = document.querySelector('#btn-exit-yes');
-    const btnExitNo = document.querySelector('#btn-exit-no');
-    const modalGroupname = document.querySelector('#modal-groupname');
-    const modalExitGroupname = document.querySelector('#modal-exit-groupname');
-    const deleteGroupIdInput = document.querySelector('#delete-group-id');
-    const exitGroupIdInput = document.querySelector('#exit-group-id');
+$(document).ready(function() {
+    const btnCreate = $('.btn-create');
+    const deleteButtons = $('.delete');
+    const exitButtons = $('.exit');
+    const modalCreate = $('#modal-create-group');
+    const modalDelete = $('#modal-delete-group');
+    const modalExit = $('#modal-exit-group');
+    const popupBg = $('#popup-bg');
+    const closeModalCreate = $('#close-modal-create-group');
+    const closeModalDelete = $('#close-modal-delete-group');
+    const closeModalExit = $('#close-modal-exit-group');
+    const btnYes = $('#btn-yes');
+    const btnNo = $('#btn-no');
+    const btnExitYes = $('#btn-exit-yes');
+    const btnExitNo = $('#btn-exit-no');
+    const modalGroupname = $('#modal-groupname');
+    const modalExitGroupname = $('#modal-exit-groupname');
+    const deleteGroupIdInput = $('#delete-group-id');
+    const exitGroupIdInput = $('#exit-group-id');
 
-    btnCreate.addEventListener('click', function() {
-        modalCreate.classList.add('show');
-        popupBg.classList.add('show');
+    btnCreate.on('click', function() {
+        modalCreate.addClass('show');
+        popupBg.addClass('show');
     });
 
-    deleteButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const groupId = this.getAttribute('data-group-id');
-            const groupName = this.getAttribute('data-group-name');
+    deleteButtons.each(function() {
+        $(this).on('click', function() {
+            const groupId = $(this).data('group-id');
+            const groupName = $(this).data('group-name');
 
-            deleteGroupIdInput.value = groupId;
-            modalGroupname.textContent = groupName;
+            deleteGroupIdInput.val(groupId);
+            modalGroupname.text(groupName);
 
-            modalDelete.classList.add('show');
-            popupBg.classList.add('show');
+            modalDelete.addClass('show');
+            popupBg.addClass('show');
         });
     });
 
-    exitButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const groupId = this.getAttribute('data-group-id');
-            const groupName = this.getAttribute('data-group-name');
+    exitButtons.each(function() {
+        $(this).on('click', function() {
+            const groupId = $(this).data('group-id');
+            const groupName = $(this).data('group-name');
 
-            exitGroupIdInput.value = groupId;
-            modalExitGroupname.textContent = groupName;
+            exitGroupIdInput.val(groupId);
+            modalExitGroupname.text(groupName);
 
-            modalExit.classList.add('show');
-            popupBg.classList.add('show');
+            modalExit.addClass('show');
+            popupBg.addClass('show');
         });
     });
 
     const closeModalElements = [popupBg, closeModalCreate, closeModalDelete, closeModalExit, btnNo, btnYes, btnExitNo, btnExitYes];
-    closeModalElements.forEach(function(element) {
-        element.addEventListener('click', function() {
-            modalCreate.classList.remove('show');
-            modalDelete.classList.remove('show');
-            modalExit.classList.remove('show');
-            popupBg.classList.remove('show');
+    $.each(closeModalElements, function(index, element) {
+        $(element).on('click', function() {
+            modalCreate.removeClass('show');
+            modalDelete.removeClass('show');
+            modalExit.removeClass('show');
+            popupBg.removeClass('show');
+        });
+    });
+
+    btnYes.on('click', function(event) {
+        event.preventDefault();
+        const groupId = deleteGroupIdInput.val();
+
+        $.ajax({
+            url: '/delete_group_ajax/',
+            type: 'POST',
+            data: {
+                group_id: groupId,
+                csrfmiddlewaretoken: $('[name=csrfmiddlewaretoken]').val()
+            },
+            success: function(response) {
+                if (response.status === 'success') {
+                    $(`[data-group-id="${groupId}"]`).closest('.group-item').remove();
+                    modalDelete.removeClass('show');
+                    popupBg.removeClass('show');
+                } else {
+                    console.error(response.message);
+                }
+            },
+            // error: function(xhr, status, error) {
+            //     console.error('Error:', error);
+            // }
+        });
+    });
+
+    btnExitYes.on('click', function(event) {
+        event.preventDefault();
+        const groupId = exitGroupIdInput.val();
+
+        $.ajax({
+            url: '/exit_group_ajax/',
+            type: 'POST',
+            data: {
+                group_id: groupId,
+                csrfmiddlewaretoken: $('[name=csrfmiddlewaretoken]').val()
+            },
+            success: function(response) {
+                if (response.status === 'success') {
+                    $(`[data-group-id="${groupId}"]`).closest('.group-item').remove();
+                    modalExit.removeClass('show');
+                    popupBg.removeClass('show');
+                } else {
+                    console.error(response.message);
+                }
+            },
+            // error: function(xhr, status, error) {
+            //     console.error('Error:', error);
+            // }
         });
     });
 });

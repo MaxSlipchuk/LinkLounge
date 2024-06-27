@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Group(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=25)
     admin = models.ForeignKey(User, related_name='owned_groups', on_delete=models.CASCADE)
     members = models.ManyToManyField(User, related_name='group_memberships')
 
