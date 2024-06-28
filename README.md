@@ -22,10 +22,6 @@ https://github.com/Rodion096
 # Контакти
 Якщо у вас є питання щодо проекту, будь ласка, зв'яжіться зі мною за адресою електронної пошти nice.slipchukmax@gmail.com або через мою сторінку в GitHub: https://github.com/MaxSlipchuk
 
-Також ви можете підтримати його, зробивши пожертву через PayPal.
-
-[![Підтримати через PayPal](https://www.paypalobjects.com/webstatic/en_US/i/btn/png/blue-rect-paypal-34px.png)](https://www.paypal.me/maxymslipchuk)
-
 ## Зміст
 - [Технології](#технологии)
 - [Початок роботи](#початок-роботи)
@@ -91,11 +87,23 @@ class UserProfile(models.Model):
 - Модель чата і повідомлення
 ```python
 from django.db import models
+=======
+- Модель користува
+```python
+from django.db import models
 from django.contrib.auth.models import User
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    age = models.IntegerField(blank=True, null=True)
+    image = models.ImageField(blank=True, null=True)
+```
+Створюємо власну модель, для того щоб можна було вносити додаткові зміни до користувача, і використовуємо зв'зок OneToOneField з вбудованою моделю User
+- Модель чата між двома користувачами і повідомлення
+```python
 class Chat(models.Model):
-    user1 = models.ForeignKey(User, related_name='user1_chats', on_delete=models.CASCADE, blank=True, null=True)
-    user2 = models.ForeignKey(User, related_name='user2_chats', on_delete=models.CASCADE, blank=True, null=True)
+    user1 = models.ForeignKey(User, related_name='user1_chats', on_delete=models.SET_NULL, blank=True, null=True)
+    user2 = models.ForeignKey(User, related_name='user2_chats', on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
         return f"Чат між {self.user1} і {self.user2}"
@@ -111,7 +119,6 @@ class Message(models.Model):
     def __str__(self):
         return f'{self.sender}: {self.message} ({self.timestamp})'
 ```
-
 - Модель групи і повідомлення в ній
 ```python
 from django.db import models
@@ -136,7 +143,6 @@ class Message(models.Model):
 
     def __str__(self):
         return f'{self.sender.username}: {self.message}'
-```
 ## Налаштування WebSocket
 Для налаштування WebSocket в проекті, необхідно виконати кілька кроків:
 1. Додайте 'channels' і 'daphne' до встановлених додатків в settings.py, а потім вкажіть ASGI_APPLICATION
@@ -189,93 +195,33 @@ websocket_urlpatterns = [
     path('ws/chat/<int:chat_id>/', consumers.ChatConsumer.as_asgi()),
 ]
 ```
-7. Створіть ChatConsumer у chat/consumers.py:
+5. Створіть ChatConsumer у chat/consumers.py:
 ```python
 from channels.generic.websocket import AsyncWebsocketConsumer
 # базовий клас AsyncWebsocketConsumer для створення асинхронного WebSocket-споживача.
 import json
 from .models import Message, Chat
 from django.contrib.auth.models import User
-from asgiref.sync import sync_to_async
-# для перетворення синхронних функцій у асинхронні.
 
-class ChatConsumer(AsyncWebsocketConsumer):
-#Клас, який обробляє WebSocket-з'єднання.
-    async def connect(self):
-    # Метод для обробки підключення WebSocket.
-        self.chat_id = self.scope['url_route']['kwargs']['chat_id']
-        #Отримує chat_id з URL WebSocket-з'єднання.
-        self.room_group_name = f'chat_{self.chat_id}'
-        # Створює ім'я групи для чату.
+class Chat(models.Model):
+    user1 = models.ForeignKey(User, related_name='user1_chats', on_delete=models.CASCADE, blank=True, null=True)
+    user2 = models.ForeignKey(User, related_name='user2_chats', on_delete=models.CASCADE, blank=True, null=True)
 
-        await self.channel_layer.group_add(
-        # Додає поточне WebSocket-з'єднання до групи чату.
-            self.room_group_name,
-            self.channel_name
-        )
-        await self.accept()
-        # Приймає WebSocket-з'єднання.
+    def __str__(self):
+        return f"Чат між {self.user1} і {self.user2}"
 
-    async def disconnect(self, close_code):
-    # Видаляє поточне WebSocket-з'єднання з групи чату.
-        await self.channel_layer.group_discard(
-            self.room_group_name,
-            self.channel_name
-        )
+class Message(models.Model):
+    chat = models.ForeignKey(Chat, related_name='messages', on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    # Дата та час, коли було створено це повідомлення. auto_now_add=True автоматично встановлює цей час при створенні запису.
+    message = models.TextField(blank=True, null=True)
+    sender = models.ForeignKey(User, related_name='sent_messages', on_delete=models.CASCADE, blank=True, null=True)
+    # використовується для зв'язку з об'єктами користувачів, які відправили повідомлення.
 
-    async def receive(self, text_data):
-    # Метод для обробки отриманих повідомлень.
-        text_data_json = json.loads(text_data)
-        # Парсить отримані JSON-дані.
-        message = text_data_json['message']
-        # Отримує повідомлення з JSON.
-        username = text_data_json['username']
-        # Отримує ім'я користувача з JSON.
-
-        try:
-            user = await sync_to_async(User.objects.get)(username=username)
-            # Отримує користувача з бази даних асинхронно.
-        except User.DoesNotExist:
-        # Перевіряє, чи існує користувач.
-            await self.send(text_data=json.dumps({
-                'error': 'User does not exist'
-            }))
-            return
-
-        chat = await sync_to_async(Chat.objects.get)(id=self.chat_id)
-        # Отримує чат з бази даних асинхронно.
-
-        await sync_to_async(Message.objects.create)(
-            chat=chat,
-            sender=user,
-            message=message
-        )
-        # Створює нове повідомлення в базі даних асинхронно.
-
-        await self.channel_layer.group_send(
-            self.room_group_name,
-            {
-                'type': 'chat_message',
-                'message': message,
-                'username': username
-            }
-        )
-        # Відправляє повідомлення всім клієнтам у групі.
-
-    async def chat_message(self, event):
-    # Метод для відправлення повідомлень назад клієнту.
-        message = event['message']
-        # Отримує повідомлення з події.
-        username = event['username']
-        # Отримує ім'я користувача з події.
-
-        await self.send(text_data=json.dumps({
-            'message': message,
-            'username': username
-        }))
-        # Відправляє повідомлення та ім'я користувача назад клієнту.
+    def __str__(self):
+        return f'{self.sender}: {self.message} ({self.timestamp})'
 ```
-8. Відображення повідомлень за допомогою JS
+6. Налаштуйте frontend для роботи з WebSocket
 ```javascript
 document.addEventListener('DOMContentLoaded', (event) => {
     const chatId = window.location.pathname.split('/').slice(-2, -1)[0];
