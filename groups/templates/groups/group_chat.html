@@ -53,16 +53,18 @@
 <div id="modal_1">
     <a href="#" id="close-modal_1">✖</a>
     <h2>Додати користувачів</h2>
-    {% for user in users %}
+    <div class="container-cards">
+        {% for user in users %}
         <div class="card-user">
             <div class="info1">
-                <h3>{{ user.first_name }}</h3>
-                <h3>{{ user.last_name }}</h3>
-                <h5>@{{ user.username }}</h5>
-            </div>
-            <button class="add-user-button" data-user-id="{{ user.id }}">додати</button>
+                <h3>{{ user.first_name }} <br>{{ user.last_name }}</h3>
+                <p>@{{ user.username }}</p>
+                <button class="add-user-button" data-user-id="{{ user.id }}">додати</button>
+            </div>      
         </div>
     {% endfor %}
+    </div>
+    
     <!-- <button style="width: 100%;" id="next_modal">далі</button> -->
 </div>
 {% endblock %}
