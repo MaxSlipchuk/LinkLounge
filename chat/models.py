@@ -2,8 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Chat(models.Model):
-    user1 = models.ForeignKey(User, related_name='user1_chats', on_delete=models.SET_NULL, blank=True, null=True)
-    user2 = models.ForeignKey(User, related_name='user2_chats', on_delete=models.SET_NULL, blank=True, null=True)
+    user1 = models.ForeignKey(User, related_name='user1_chats', on_delete=models.CASCADE, blank=True, null=True)
+    user2 = models.ForeignKey(User, related_name='user2_chats', on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return f"Чат між {self.user1} і {self.user2}"
