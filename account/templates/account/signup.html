@@ -6,18 +6,21 @@
 {% block content %}
 <div class="main-container">
     <div class="container-1">
-        <div class="content-confirst-first">
-            <h1 class="con-c1-1-t1">LinkLounge</h1>
-            <p class="con-c1-1-t2">'Мiсце, де розмови оживають'</p>
+        <div class="content-1-2">
+            <div class="content-confirst-first">
+                <h1 class="con-c1-1-t1">LinkLounge</h1>
+                <p class="con-c1-1-t2">'Мiсце, де розмови оживають'</p>
+            </div>
+            <div class="content-confirst-second">
+                <p class="text222">LinkLounge - це ваш новий улюблений спосіб залишатися на зв'язку. 
+                    Приєднуйтесь до нашої спільноти та відкрийте для себе зручний і безпечний спосіб спілкування, що  
+                    ваші розмови ще приємнішими та значущими.</p>
+            </div>
         </div>
-        <div class="content-confirst-second">
-            <p class="text222">LinkLounge - це ваш новий улюблений спосіб залишатися на зв'язку. 
-                Приєднуйтесь до нашої спільноти та відкрийте для себе зручний і безпечний спосіб спілкування, що  
-                 ваші розмови ще приємнішими та значущими.</p>
-        </div>
-        <div class="content-confirst-third">
-            <p class="text333">Ви вже зареєстровані? <a href="{% url 'login' %}">Увiйти</a></p>
-        </div>
+            <div class="content-confirst-third">
+                <p class="text333">Ви вже зареєстровані? <a href="{% url 'login' %}">Увiйти</a></p>
+            </div>
+        
     </div>
     <div class="container-2">
         <form method="post">
@@ -81,6 +84,9 @@
                 {% endif %}
             </div>
         </form>
+    </div>
+    <div class="content-confirst-third-2">
+        <p class="text333">Ви вже зареєстровані? <a href="{% url 'login' %}">Увiйти</a></p>
     </div>
 </div>
 {% endblock %}

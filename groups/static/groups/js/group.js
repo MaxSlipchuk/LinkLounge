@@ -17,12 +17,14 @@ document.addEventListener('DOMContentLoaded', function() {
         newMessage.classList.add('message');
         if (data.username === user) {
             newMessage.classList.add('me');
+            newMessage.classList.add('message-username');
         } else {
             newMessage.classList.add('other');
+            newMessage.classList.add('message-username');
         }
         newMessage.innerHTML = `
             <div class="message-content">
-                <strong>${data.username}</strong>
+                <strong class="message-username"><span>@</span>${data.username}</strong>
                 <span class="message-text">${data.message}</span>
             </div>
         `;

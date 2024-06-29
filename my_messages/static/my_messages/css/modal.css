@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     visibility: hidden;
-    width: 40%;
+    width: 30%;
     text-align: center;
     border: rgb(255, 255, 255) solid 1px;
     border-radius: 20px;
@@ -74,10 +74,17 @@ form{
 
 form button{
     font-size: 14px;
-    width: 50px;
+    width: 60px;
     height: 40px;
     font-weight: 600;
     border-radius: 10px;
     border: 1px solid white;
     cursor: pointer;
+}
+
+@media (max-width: 767px) {
+    #modal_1{
+        
+        min-width: 80%;
+    }
 }
