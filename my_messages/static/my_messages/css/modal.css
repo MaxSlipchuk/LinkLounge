@@ -81,3 +81,10 @@ form button{
     border: 1px solid white;
     cursor: pointer;
 }
+
+@media (max-width: 767px) {
+    #modal_1{
+        
+        min-width: 80%;
+    }
+}
