@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="{% static 'groups/css/style.css' %}">
 <script defer src="{% static 'groups/js/modal_create_delete.js' %}"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script defer src="{% static 'groups/js/search_ajax.js' %}"></script>
 <link rel="stylesheet" href="{% static 'groups/css/modal_create_delete.css' %}">
 {% endblock %}
 {% block content %}
@@ -11,7 +12,7 @@
     <h1 class="group-title">Групові чати</h1>
     <div class="input-con">
         <div class="search">
-            <form action="" class="form-search">
+            <form id="search-form" class="form-search">
                 {% csrf_token %}
                 <input class="input" type="search" name="search" id="search" placeholder="Введіть назву групи">
                 <button id="search-btn" type="submit">
@@ -26,7 +27,7 @@
     <div class="content_search">
         <div class="groups">
             <h2>Мої групи</h2>
-            <div class='all-groups'>
+            <div class='all-groups' id="owned_groups">
                 {% for group in owned_groups %}
                 <div class='group-item'>
                     <a class="in-group" href="{% url 'group_chat' group.name %}">
@@ -41,7 +42,7 @@
         </div>
         <div class="groups">
             <h2>Мене добавили</h2>
-            <div class="all-groups">
+            <div class="all-groups" id="member_groups">
                 {% for group in member_groups %}
                 <div class="group-item">
                     <a class = 'in-group' href="{% url 'group_chat' group.name %}">

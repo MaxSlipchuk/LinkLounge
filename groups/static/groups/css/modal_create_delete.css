@@ -130,3 +130,16 @@ form {
     padding: 8px 10px; 
     box-sizing: border-box;
 }
+
+
+@media (max-width: 767px) {
+    #modal-create-group{
+        min-width: 80%;
+    }
+    #modal-exit-group{
+        min-width: 80%;
+    }
+    #modal-delete-group{
+        min-width: 80%;
+    }
+}

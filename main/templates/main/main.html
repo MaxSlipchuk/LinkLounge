@@ -25,18 +25,24 @@
             </div>
         </div>
         <div class="description">
-            <div class="div-profile">
-                <p class="username">@{{request.user.username}}</p>
+            <div class="about-me-2">
+                <p>Whats up?</p>
+            </div>
+            <div class="username-age">
+                <div class="div-profile">
+                    <p class="username">@{{request.user.username}}</p>
+                </div>
+                <div class="div-profile">
+                    <p class="age">Age:  {{request.user.userprofile.age}}</p>
+                </div>
             </div>
             <div class="div-profile">
-                <p class="age">Age:  {{request.user.userprofile.age}}</p>
-            </div>
-            <div class="div-profile">
-                <p class="age">Тут буде ігстаграм</p>
+                <p class="age">Тут буде інстаграм</p>
             </div>
             <div class="div-profile">
                 <p class="age">А тут буде фейсбук</p>
             </div>
+            
         </div>
     </div>
 </div>

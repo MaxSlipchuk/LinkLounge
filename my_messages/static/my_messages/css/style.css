@@ -121,3 +121,9 @@ h3{
 form{
     height: 100%;
 }
+
+@media (max-width: 767px) {
+    .container-my-msg{
+        padding: 10px;
+    }
+}

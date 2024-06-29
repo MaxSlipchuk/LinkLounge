@@ -31,9 +31,6 @@ $(document).ready(function() {
                     });
                 }
             },
-            error: function(xhr, errmsg, err) {
-                console.error(`${xhr.status}: ${xhr.responseText}`);
-            }
         });
     });
 });
