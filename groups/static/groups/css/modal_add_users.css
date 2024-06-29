@@ -19,10 +19,11 @@
 #modal_1 {
     display: flex;
     flex-direction: column;
+    gap: 20px;
     align-items: center;
     visibility: hidden;
     height: 500px;
-    width: 40%;
+    width: 30%;
     text-align: center;
     border: rgb(255, 255, 255) solid 1px;
     border-radius: 20px;
@@ -38,6 +39,10 @@
     overflow: scroll;
 }
 
+#modal_1 h2{
+    margin: 0;
+}
+
 #modal_1.show {
     visibility: visible;
 }
@@ -47,9 +52,10 @@
     text-decoration: none;
     font-size: 20px;
     position: absolute;
-    top: 10px;
-    right: 20px;
-    cursor: pointer;
+    top: 5px;
+    right: 10px;
+    padding: 0 5px;
+    border-radius: 5px;
 }
 
 #close-modal_1:hover {
@@ -57,17 +63,20 @@
     color: white;
 }
 
-#modal_1 h2 {
-    margin: 20px 0;
+.container-cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    overflow-y: auto;
 }
 
 .card-user {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    flex-wrap: wrap;
     align-items: center;
-    width: 100%;
     padding: 15px;
-    margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 10px;
     background-color: #2E3366;
@@ -77,39 +86,35 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    width: 150px;
+    gap: 10px;
 }
 
-.card-user h3, .card-user h5 {
-    margin: 5px 0;
+.card-user h3, .card-user h5, .card-user p{
+    margin: 0;
+    text-align: left;
 }
 
 .add-user-button {
     font-size: 14px;
-    padding: 10px 20px;
+    padding: 10px 0px;
     font-weight: 600;
     border-radius: 10px;
     border: 1px solid white;
     cursor: pointer;
-    background-color: #4CAF50;
-    color: white;
+    background-color: #ffffff;
+    width: 100%;
 }
 
 .add-user-button:hover {
-    background-color: #45a049;
-}
-
-/* #next_modal {
-    font-size: 16px;
-    padding: 15px;
-    font-weight: 600;
-    border-radius: 10px;
-    border: 1px solid white;
-    cursor: pointer;
-    background-color: #008CBA;
+    background-color: #2BBEF2;
     color: white;
-    margin-top: 20px;
+    transition: ease-in-out 0.1s;
 }
 
-#next_modal:hover {
-    background-color: #007bb5;
-} */
+@media (max-width: 767px) {
+    #modal_1{
+        width: 60%;
+    }
+
+}

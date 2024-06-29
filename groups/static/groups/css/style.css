@@ -10,15 +10,15 @@
     display: flex;
 }
 
-form{
-    display: flex;
-    flex-direction: row;
-
-}
-
 .svg{
     border-radius: 90px;
+    padding: 3px;
     border: 1px outset white;
+}
+.svg:hover{
+    transition: all ease-in-out 0.3s;
+    background-color: rgb(63, 63, 63);
+    fill: rgb(255, 255, 255);
 }
 
 #chat-form{
@@ -42,7 +42,7 @@ form{
     padding: 0 40px;
     display:flex;
     flex-direction:column;
-    gap: 20px;
+    gap: 30px;
     position: relative;
     border: 1px outset rgb(255, 255, 255);
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
@@ -176,7 +176,7 @@ form{
     cursor: pointer;
 }
 
-.input{
+/* .input{
     border-radius:15px;
     color: white;
     padding: 8px;
@@ -185,7 +185,7 @@ form{
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
-}
+} */
 
 .info1{
     display: flex;
@@ -215,14 +215,15 @@ h3, h4, h5{
 .btn-create{
     position: relative;
     border-radius:15px;
-    width: auto;
+    width: 140px;
+    height: 100%;
     color: white;
-    padding: 8px;
     border: 1px outset rgb(255, 255, 255);
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
     background: transparent;
     cursor: pointer;
     overflow: hidden;
+    white-space: nowrap;
 }
 
 .btn-create:before {
@@ -250,7 +251,15 @@ h3, h4, h5{
     display: flex;
     align-items: center;
     gap: 5px;
-    justify-content: space-between;
+    justify-content: start;
+    width: 100%;
+}
+
+.form-search{
+    display: flex;
+    gap: 5px;
+    width: 50%;
+    flex-direction: row;
 }
 
 #search-btn{
@@ -258,25 +267,34 @@ h3, h4, h5{
     border: none;
     padding: 0;
     display: flex;
-    justify-content: start;
     align-items: center;
     width: auto;
+    cursor: pointer;
 }
+
 .input-con{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    justify-content: start;
+    width: 100%;
 }
 
 .search .input{
     border-radius:15px;
-    color: white;
     color: white;
     padding: 8px;
     text-align: left;
     border: 1px outset rgb(255, 255, 255);
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
     background: transparent;
-    width: 100%;
-    box-sizing: border-box;
+    width: 100%
+}
+
+@media (max-width: 767px) {
+    .group-container{
+        padding: 10px;
+        
+    }
+
 }

@@ -5,6 +5,7 @@ from django.http import JsonResponse, HttpResponseForbidden
 from django.contrib.auth.models import User
 from .models import Group, Message
 from .forms import GroupForm
+from django.urls import reverse
 
 @login_required
 @require_POST
@@ -25,6 +26,32 @@ def exit_group_ajax(request):
         group.members.remove(request.user)
         return JsonResponse({'status': 'success', 'group_id': group_id})
     return JsonResponse({'status': 'error', 'message': 'Unauthorized'}, status=403)
+
+@login_required
+@require_POST
+def search_group_ajax(request):
+    search = request.POST.get('search', '')
+    owned_groups = Group.objects.filter(name__icontains=search).filter(admin=request.user)
+    member_groups = Group.objects.filter(members=request.user).exclude(admin=request.user).filter(name__icontains=search)
+    owned_data = []
+    member_data = []
+    for group in owned_groups:
+        owned_group_data = {
+            'id': group.id,
+            'name': group.name,
+            'url': reverse('group_chat', args=[group.name]),
+        }
+        owned_data.append(owned_group_data)
+    for group in member_groups:
+        member_group_data = {
+            'id': group.id,
+            'name': group.name,
+            'url': reverse('group_chat', args=[group.name]),
+        }
+        member_data.append(member_group_data)
+    return JsonResponse({'status': 'success', 
+                         'owned_groups': owned_data,
+                         'member_groups': member_data})
 
 @login_required
 def groups(request):
@@ -53,14 +80,14 @@ def groups(request):
     else:
         form = GroupForm()
 
-    if 'search' in request.GET:
-        search = request.GET['search']
-        owned_groups = Group.objects.filter(name__icontains=search).filter(admin=request.user)
-        member_groups = Group.objects.filter(members=request.user).exclude(admin=request.user).filter(name__icontains=search)
+    # if 'search' in request.GET:
+    #     search = request.GET['search']
+    #     owned_groups = Group.objects.filter(name__icontains=search).filter(admin=request.user)
+    #     member_groups = Group.objects.filter(members=request.user).exclude(admin=request.user).filter(name__icontains=search)
         
-    else:
-        member_groups = Group.objects.filter(members=request.user).exclude(admin=request.user)
-        owned_groups = Group.objects.filter(admin=request.user)
+    # else:
+    #     member_groups = Group.objects.filter(members=request.user).exclude(admin=request.user)
+    #     owned_groups = Group.objects.filter(admin=request.user)
     
     context = {
         'owned_groups': owned_groups,

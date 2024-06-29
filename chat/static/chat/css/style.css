@@ -74,7 +74,6 @@
 }
 
 .message-username {
-    font-weight: bold;
     margin-bottom: 5px;
 }
 
@@ -116,4 +115,11 @@
     background-color: #2BBEF2;
     transition: all ease-in-out 0.3s;
     border: 1px solid white;
+}
+
+@media (max-width: 767px) {
+    .chat-container{
+        padding: 10px;
+    }
+
 }
