@@ -294,7 +294,11 @@ h3, h4, h5{
 @media (max-width: 767px) {
     .group-container{
         padding: 10px;
+        height: 100%;
         
+    }
+    .form-search{
+        width: 100%;
     }
 
 }

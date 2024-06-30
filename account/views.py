@@ -9,8 +9,8 @@ def signup(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            age = form.cleaned_data.get('age')  # Отримати значення age з форми
-            UserProfile.objects.create(user=user, age=age)  # Створити UserProfile для користувача
+            age = form.cleaned_data.get('age') 
+            UserProfile.objects.create(user=user, age=age)  
             login(request, user)
             return redirect('main')
     else:
