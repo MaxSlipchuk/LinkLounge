@@ -28,15 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-# Включення сесій
-# SESSION_ENGINE = 'django.contrib.sessions.backends.db'  
-
-# SESSION_COOKIE_AGE = 1209600
-# SESSION_EXPIRE_AT_BROWSER_CLOSE = False  
-
-
-# Application definition
-
 INSTALLED_APPS = [
     'daphne',
     'django.contrib.admin',
@@ -74,6 +65,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'LinkLounge.urls'
+
+LOGIN_URL = '/login/'
 
 TEMPLATES = [
     {

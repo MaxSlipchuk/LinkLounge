@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{% static 'groups/css/style.css' %}">
 <script defer src="{% static 'groups/js/modal_create_delete.js' %}"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script defer src="{% static 'groups/js/search_ajax.js' %}"></script>
+<script defer src="{% static 'groups/js/group_ajax.js' %}"></script>
 <link rel="stylesheet" href="{% static 'groups/css/modal_create_delete.css' %}">
 {% endblock %}
 {% block content %}
@@ -71,6 +71,7 @@
                 {% csrf_token %}
                 {{ form.name.label_tag }}
                 {{ form.name }}
+                <div class="error">{{ error }}</div>
             </div>
             <button type="submit" class="create">cтворити</button>
         </form>

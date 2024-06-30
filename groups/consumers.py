@@ -8,7 +8,6 @@ class GroupChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         self.group_name = self.scope['url_route']['kwargs']['group_name']
         self.room_group_name = f'group_{self.group_name}'
-        print(f"Connecting to group: {self.group_name}")
 
         await self.channel_layer.group_add(
             self.room_group_name,
@@ -18,7 +17,6 @@ class GroupChatConsumer(AsyncWebsocketConsumer):
         await self.accept()
 
     async def disconnect(self, close_code):
-        print(f"Disconnecting from group: {self.group_name}")
         await self.channel_layer.group_discard(
             self.room_group_name,
             self.channel_name
@@ -28,7 +26,6 @@ class GroupChatConsumer(AsyncWebsocketConsumer):
         text_data_json = json.loads(text_data)
         message = text_data_json['message']
         username = text_data_json['username']
-        print(f"Received message: {message} from {username}")
 
         await self.save_message(username, message)
 
@@ -44,7 +41,6 @@ class GroupChatConsumer(AsyncWebsocketConsumer):
     async def group_message(self, event):
         message = event['message']
         username = event['username']
-        print(f"Sending message: {message} from {username}")
 
         await self.send(text_data=json.dumps({
             'message': message,
