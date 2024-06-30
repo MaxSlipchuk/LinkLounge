@@ -23,6 +23,13 @@
     <div class="cards" id="user-cards">
         {% for user in users %}
         <div class="card-user">
+            <div class="image-phone">
+                {% if user.userprofile.image %}
+                    <img src="{{ user.userprofile.image.url }}" alt="Profile Picture">
+                {% else %}
+                    <img src="{% static 'main/img/default_profile.png' %}" alt="Default Profile Picture">
+                {% endif %}
+            </div>
             <div class="info1">
                 <h3>{{ user.first_name }}</h3>
                 <h3>{{ user.last_name }}</h3>
@@ -34,8 +41,9 @@
                         <img src="{% static 'main/img/default_profile.png' %}" alt="Default Profile Picture">
                     {% endif %}
                 </div>
+                <a href="{% url 'chat_with_user' user.id %}" class="a-phone"><button class="button-phone">написати</button></a>
             </div>
-            <a href="{% url 'chat_with_user' user.id %}"><button class="button">написати</button></a>
+            <a href="{% url 'chat_with_user' user.id %}" class="a-pc"><button class="button">написати</button></a>
         </div>
         {% endfor %}
     </div>

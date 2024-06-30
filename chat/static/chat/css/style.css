@@ -120,6 +120,10 @@
 @media (max-width: 767px) {
     .chat-container{
         padding: 10px;
+        height: 100%;
     }
 
+    .name_user p{
+        font-size: 28px;
+    }
 }

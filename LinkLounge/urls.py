@@ -21,8 +21,8 @@ from account.views import *
 from app_base.views import *
 from all_users.views import *
 from chat.views import *
-from account.forms import CustomAuthenticationForm
-from django.contrib.auth import views as auth_views
+# from account.forms import CustomAuthenticationForm
+# from django.contrib.auth import views as auth_views
 from django.views.generic import RedirectView
 from .settings import MEDIA_ROOT, MEDIA_URL, DEBUG
 from django.conf.urls.static import static
@@ -32,7 +32,7 @@ from groups.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('main/', main, name='main'),
-    path('login/', auth_views.LoginView.as_view(template_name='account/login.html', authentication_form=CustomAuthenticationForm), name='login'),
+    path('login/', user_login, name='login'),
     path('logout/', user_logout, name='logout'),
     path('signup/', signup, name='signup'),
     path('accounts/profile/', RedirectView.as_view(url='/main/')),

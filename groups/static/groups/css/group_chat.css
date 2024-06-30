@@ -132,6 +132,13 @@
 @media (max-width: 767px) {
     .group-chat-container{
         padding: 10px;
-        
+        height: 100%;
+    }
+    .btn-add-user{
+        display: flex;
+        width: auto;
+    }
+    .name-and-add{
+        gap: 10px;
     }
 }

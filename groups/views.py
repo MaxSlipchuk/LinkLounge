@@ -59,17 +59,6 @@ def groups(request):
     member_groups = Group.objects.filter(members=request.user).exclude(admin=request.user)
     
     if request.method == 'POST':
-        # if 'delete' in request.POST:
-        #     group_id = request.POST.get('delete')
-        #     group = get_object_or_404(Group, id=group_id)
-        #     if group.admin == request.user:
-        #         group.delete()
-        #     return redirect('groups')
-        # if 'exit' in request.POST:
-        #     group_id = request.POST.get('exit')
-        #     group = get_object_or_404(Group, id=group_id)
-        #     group.members.remove(request.user)
-        #     return redirect('groups')
         form = GroupForm(request.POST)
         if form.is_valid():
             group = form.save(commit=False)
@@ -78,17 +67,8 @@ def groups(request):
             group.members.add(request.user)
             return redirect('groups')
     else:
-        form = GroupForm()
-
-    # if 'search' in request.GET:
-    #     search = request.GET['search']
-    #     owned_groups = Group.objects.filter(name__icontains=search).filter(admin=request.user)
-    #     member_groups = Group.objects.filter(members=request.user).exclude(admin=request.user).filter(name__icontains=search)
+        form = GroupForm()    
         
-    # else:
-    #     member_groups = Group.objects.filter(members=request.user).exclude(admin=request.user)
-    #     owned_groups = Group.objects.filter(admin=request.user)
-    
     context = {
         'owned_groups': owned_groups,
         'member_groups': member_groups,

@@ -99,7 +99,7 @@
 }
 .username-age{
     display: flex;
-    
+    flex-wrap: wrap;
     gap: 10px;
 }
 .div-username .f_name {
@@ -165,47 +165,53 @@
     max-width: 100%;
     display: none;
 }
+.socialmedia{
+    display: flex;
+    flex-wrap: wrap;
+    gap:10px;
+}
 
 
 @media (max-width: 767px) {
-    
-
     .description{
         display: flex;
         width: 90%;
-        align-items: center;
-        
+        align-items: left;
     }
-    .div-profile{
-        width:100%;
 
+    .div-profile{
+        width: fit-content;
 }
+
     .username-age{
         flex-direction: row;
-        width: 96%;
+        width: fit-content;
         justify-content: space-between;
     }
+
     .div-container{
         display: flex;
         align-items: center;
         padding: 0;
         padding-bottom: 20px;
         overflow-y: hidden;
-        
-        
     }
+
     .about-me{
         display: none;
     }
+
     .about-me-2{
         display: flex;
-        max-width: 96%;
+        max-width: fit-content;
+        width: fit-content;
     }
+
     .div-username{
         display: flex;
-        justify-content: center;
-        /* flex-wrap: wrap; */
+        flex-wrap: wrap;
     }
+
     .image-profile{
         display: flex;
         flex-direction: column;
@@ -213,26 +219,32 @@
         height: 100%;
         align-items: center;
         overflow-y: auto;
-        
     }
+
     .div-image{
         display: flex;
         width: 100%;
         justify-content: center;
         align-items: center;
         border-radius: 0px;
-        
     }
+
     .div-image img{
         border-radius: 0px;
     }
+
     .div-profile{
-        width: 90%;
         border-radius: 20px;
         flex-direction: row;
     }
     
     h1{
-        font-size: 1.8em;
+        font-size: 1.4em;
+    }
+
+    .socialmedia{
+        display: flex;
+        flex-wrap: wrap;
+        gap:10px;
     }
 }

@@ -12,3 +12,10 @@ class GroupForm(forms.ModelForm):
         super(GroupForm, self).__init__(*args, **kwargs)
         self.fields['name'].widget.attrs.update({'class': 'input'})
         self.fields['name'].widget.attrs.update({'placeholder': 'Введіть назву групи'})
+
+    def clean_name(self):
+        name = self.cleaned_data.get('name')
+        if Group.objects.filter(name=name).exists():
+            raise forms.ValidationError("Така група вже існує")
+        return name
+    

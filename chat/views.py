@@ -7,7 +7,6 @@ def chat_with_user(request, user_id):
     user1 = request.user
     user2 = get_object_or_404(User, id=user_id)
     
-    # перевірка, чи існує чат
     chat = Chat.objects.filter(user1=user1, user2=user2).first() or Chat.objects.filter(user1=user2, user2=user1).first()
     
     if not chat:
