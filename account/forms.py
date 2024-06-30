@@ -5,9 +5,9 @@ import re
 from django.contrib.auth import authenticate
 
 class RegistrationForm(UserCreationForm):
-    first_name = forms.CharField(label="Ім'я")
-    last_name = forms.CharField(label="Прізвище")
-    username = forms.CharField(label="Логін")
+    first_name = forms.CharField(label="Ім'я", max_length=13)
+    last_name = forms.CharField(label="Прізвище", max_length=13)
+    username = forms.CharField(label="Логін", max_length=15)
     password1 = forms.CharField(label="Пароль", widget=forms.PasswordInput)
     password2 = forms.CharField(label="Підтвердження паролю", widget=forms.PasswordInput)
     age = forms.IntegerField(label="Вік", widget=forms.NumberInput(attrs={'placeholder': 'Вік'}))
