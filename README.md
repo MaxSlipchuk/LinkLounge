@@ -143,6 +143,7 @@ class Message(models.Model):
 
     def __str__(self):
         return f'{self.sender.username}: {self.message}'
+```
 ## Налаштування WebSocket
 Для налаштування WebSocket в проекті, необхідно виконати кілька кроків:
 1. Додайте 'channels' і 'daphne' до встановлених додатків в settings.py, а потім вкажіть ASGI_APPLICATION
