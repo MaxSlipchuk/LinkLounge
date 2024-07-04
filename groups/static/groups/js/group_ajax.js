@@ -81,7 +81,6 @@ function initializeEventHandlers() {
         $('#popup-bg').addClass('show');
     });
 
-    // Закриття модальних вікон
     $('#popup-bg, #close-modal-create-group, #close-modal-delete-group, #close-modal-exit-group, #btn-no, #btn-yes, #btn-exit-no, #btn-exit-yes').on('click', function() {
         $('#modal-create-group').removeClass('show');
         $('#modal-delete-group').removeClass('show');
