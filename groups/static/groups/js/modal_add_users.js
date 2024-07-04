@@ -18,22 +18,24 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Отримуємо всі кнопки додавання користувача
     const addUserButtons = document.querySelectorAll('.add-user-button');
     addUserButtons.forEach(button => {
+        // Додаємо обробник події для кожної кнопки додавання користувача
         button.addEventListener('click', function() {
-            const userId = this.dataset.userId;
+            const userId = this.dataset.userId; // Отримуємо ідентифікатор користувача з атрибуту data-user-id
             fetch(`/add_user_to_group/${groupId}/${userId}/`, {
-                method: 'GET',
+                method: 'GET', // Виконуємо GET-запит на сервер для додавання користувача до групи
                 headers: {
-                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-Requested-With': 'XMLHttpRequest', // Вказуємо, що це асинхронний запит
                 },
             })
-            .then(response => response.json())
+            .then(response => response.json()) // Парсимо відповідь сервера як JSON
             .then(data => {
                 if (data.status === 'ok') {
-                    alert('Користувач доданий до групи');
+                    alert('Користувач доданий до групи'); 
                 } else {
-                    alert('Сталася помилка');
+                    alert('Сталася помилка'); 
                 }
             });
         });

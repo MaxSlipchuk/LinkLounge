@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from chat.models import Chat
 from django.db.models import Q
+# використовується для створення складних запитів з логічними операторами (AND, OR, NOT).
 from django.contrib.auth.decorators import login_required
 
 @login_required
