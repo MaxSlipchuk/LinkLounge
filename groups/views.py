@@ -57,7 +57,7 @@ def search_group_ajax(request):
 def groups(request):
     owned_groups = Group.objects.filter(admin=request.user)
     member_groups = Group.objects.filter(members=request.user).exclude(admin=request.user)
-    
+
     if request.method == 'POST':
         form = GroupForm(request.POST)
         if form.is_valid():
@@ -67,8 +67,8 @@ def groups(request):
             group.members.add(request.user)
             return redirect('groups')
     else:
-        form = GroupForm()    
-        
+        form = GroupForm()
+
     context = {
         'owned_groups': owned_groups,
         'member_groups': member_groups,
@@ -76,17 +76,14 @@ def groups(request):
     }
     return render(request, 'groups/groups.html', context)
 
-
 @login_required
 def group_chat(request, group_name):
     group = get_object_or_404(Group, name=group_name)
     if request.user not in group.members.all():
         return HttpResponseForbidden("Ви не є учасником цієї групи")
-
     messages = Message.objects.filter(group=group).order_by('timestamp')
     # Отримати всіх користувачів, крім поточного та адміністратора
     users = User.objects.exclude(id=request.user.id).exclude(is_superuser=True)
-
     context = {
         'group': group,
         'messages': messages,
@@ -111,7 +108,5 @@ def add_user_to_group(request, group_id, user_id):
     
     if request.user != group.admin:
         return HttpResponseForbidden("Ви не маєте прав додавати користувачів до цієї групи")
-
     group.members.add(user)
     return JsonResponse({'status': 'ok'})
-
