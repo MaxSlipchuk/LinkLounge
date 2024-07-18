@@ -54,7 +54,8 @@ main{
     color: white;
     width: 100%;
     height: 50px;
-    text-align: left; /* Ensure text alignment is left */
+    text-align: left; 
+    font-size: 17px;
     border: 1px outset rgb(255, 255, 255);
     background: none;
     box-shadow: inset 0 -1em 1em rgba(0, 0, 0, 0.205);
@@ -63,25 +64,29 @@ main{
     flex-wrap: nowrap;
     justify-content: center;
     align-items: flex-start;
-    padding-left: 5%; /* This padding is for the inner content */
-    padding-right: 20px; /* Add padding to the right to shift content left */
-    box-sizing: border-box; /* Ensure padding is included in width */
+    padding-left: 5%; 
+    padding-right: 20px; 
+    box-sizing: border-box; 
 }
 
 input::placeholder{
-    font-size: 15px;
+    font-size: 17px;
+}
+
+.input:focus{
+    background-color: rgb(63, 63, 63);
+    transition: all ease-in-out 0.3s;
 }
 
 .button{
     border-radius:20px;
-    color: white;
+    color: black;
     width: 100%;
     height: 50px;
     text-align: left;
-    border: 1px outset rgb(255, 255, 255);
-    background: none;
-    box-shadow: inset 0 -1em 1em rgba(0, 0, 0, 0.205);
-
+    border: 2px solid rgb(63, 63, 63);
+    background: whitesmoke;
+    /* box-shadow: inset 0 -1em 1em rgba(0, 0, 0, 0.205); */
     display:flex;
     flex-direction:row;
     flex-wrap:nowrap;
@@ -90,6 +95,21 @@ input::placeholder{
     font-size: 20px;
     cursor: pointer;
     padding: 0;
+}
+
+.button:hover{
+    background-color: #2BBEF2;
+    color: whitesmoke;
+    transition: all ease-in-out 0.3s;
+    border-color: whitesmoke;
+}
+
+.button:not(:hover){
+    transition: all ease-in-out 0.3s;
+}
+
+.button:focus{
+    transform: scale(0.9);
 }
 
 .username-div{
@@ -149,14 +169,38 @@ label{
     color: rgb(220, 58, 58);
 }
 
+.error-field{
+    border-radius: 20px;
+    color: white;
+    width: 100%;
+    height: 50px;
+    text-align: left; /* Ensure text alignment is left */
+    border: 1px outset rgb(220, 58, 58);;
+    background: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 5%; /* This padding is for the inner content */
+    padding-right: 20px; /* Add padding to the right to shift content left */
+    box-sizing: border-box; /* Ensure padding is included in width */
+    font-size: 17px;
+}
+
+.error-field:focus{
+    background-color: rgb(63, 63, 63);
+    transition: all ease-in-out 0.3s;
+}
+
 @media (max-width: 767px) {
     .container{
         width: 80%;
-        height: 80%;
+        height: 500px;
         padding: 20px;
     }
     #zpovernenyam{
-        font-size: 30px;
+        font-size: 2.2rem;
     }
     
     main{
