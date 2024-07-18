@@ -28,28 +28,44 @@ class RegistrationForm(UserCreationForm):
         first_name = self.cleaned_data.get('first_name')
         invalid_chars = re.findall(r'[^A-Za-zА-Яа-яЇїІіЄєҐґ]', first_name)
         if invalid_chars:
-            raise forms.ValidationError(f"Ім'я може містити лише літери")
+            self.fields['first_name'].widget.attrs.update({
+            'class': 'error-field'
+        })
+            raise forms.ValidationError("Тут можуть бути лише літери")
         return first_name
 
     def clean_last_name(self):
         last_name = self.cleaned_data.get('last_name')
         invalid_chars = re.findall(r'[^A-Za-zА-Яа-яЇїІіЄєҐґ]', last_name)
         if invalid_chars:
-            raise forms.ValidationError(f"Прізвище може містити лише літери")
+            self.fields['last_name'].widget.attrs.update({
+            'class': 'error-field'
+        })
+            raise forms.ValidationError("Тут можуть бути лише літери")
         return last_name
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
         invalid_chars = re.findall(r'[^A-Za-zА-Яа-яЇїІіЄєҐґ0-9]', username)
         if invalid_chars:
+            self.fields['username'].widget.attrs.update({
+            'class': 'error-field'
+        })
             raise forms.ValidationError(f"Тут є неприпустимий символ: {invalid_chars[0]}")
         if User.objects.filter(username=username).exists():
+            self.fields['username'].widget.attrs.update({
+            'class': 'error-field'
+        })
             raise forms.ValidationError("Користувач з таким логіном вже існує")
+            
         return username
 
     def clean_password1(self):
         password1 = self.cleaned_data.get('password1')
         if len(password1) < 8:
+            self.fields['password1'].widget.attrs.update({
+            'class': 'error-field'
+        })
             raise forms.ValidationError("Пароль повинен містити щонайменше 8 символів")
         return password1
 
@@ -86,6 +102,9 @@ class CustomAuthenticationForm(AuthenticationForm):
         if username and password:
             user = authenticate(self.request, username=username, password=password)
             if user is None:
+                self.fields['password'].widget.attrs.update({
+            'class': 'error-field'
+        })
                 raise forms.ValidationError("Неправильний пароль")
         return password
         
