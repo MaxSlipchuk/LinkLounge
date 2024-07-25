@@ -1,0 +1,250 @@
+
+::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+.div-container {
+    height: 650px;
+    filter: drop-shadow(0px 4px 24px rgba(0, 0, 0, 0.2));
+    border-radius: 40px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 0 40px;
+    border: 1px outset rgb(255, 255, 255);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.150), rgba(255, 255, 255, 0.030));
+    backdrop-filter: blur(10px);
+}
+
+.div-username {
+    background-color: rgba(62, 60, 60, 0);
+    width: 90%;
+    display: flex;
+    gap: 20px;
+    font-size: 30px;
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+
+.div-username h1 {
+    margin: 0;
+}
+
+.div-image {
+    background-color: rgba(117, 117, 117, 0);
+    width: 50%;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 20px;
+    align-items: flex-start;
+}
+
+.about-me {
+    border: 1px outset rgb(255, 255, 255);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.150), rgba(255, 255, 255, 0.030));
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    display: inline-block;
+    width: auto;
+    max-width: 100%;
+}
+
+.div-profile {
+    border: 1px outset rgb(255, 255, 255);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.150), rgba(255, 255, 255, 0.030));
+    backdrop-filter: blur(10px);
+    filter: drop-shadow(0px 4px 24px rgba(0, 0, 0, 0.2));
+    border-radius: 15px;
+    display: inline-block;
+    height: auto;
+    padding: 10px;
+    width: fit-content; /* Adjusted to fit content */
+    height: fit-content;
+    max-width: 100%;
+}
+
+.description {
+    display: flex;
+    gap: 10px;
+    width: 50%;
+    flex-direction: column;
+    
+    
+}
+.username {
+    color: #ffffff;
+    font-size: 20px;
+    font-family: Montserrat;
+    border-style: hidden;
+    outline: none;
+    margin: 0;
+    padding: 0;
+}
+
+.age {
+    color: #ffffff;
+    margin: 0;
+    font-size: 20px;
+    font-family: Montserrat;
+    padding: 0;
+}
+.username-age{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.div-username .f_name {
+    color: #ffffff;
+    filter: drop-shadow(0px 2px 2px rgba(1, 1, 1, 0.4));
+    font-size: 54px;
+    font-family: Montserrat;
+    display: flex;
+}
+
+.div-username .l_name {
+    color: #ffffff;
+    font-size: 54px;
+    font-family: Montserrat;
+    display: flex;
+}
+
+.name2 {
+    height: 90px;
+    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+    top: 10px;
+    left: 0;
+}
+
+.div-image img {
+    border-radius: 20px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border: 1px outset rgb(255, 255, 255);
+    max-height: 400px;
+}
+
+.div-profile .username {
+    color: #ffffff;
+    font-size: 20px;
+    font-family: Montserrat;
+}
+
+.image-profile {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.about-me-2{
+    border: 1px outset rgb(255, 255, 255);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.150), rgba(255, 255, 255, 0.030));
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    display: inline-block;
+    width: auto;
+    max-width: 100%;
+    display: none;
+}
+.socialmedia{
+    display: flex;
+    flex-wrap: wrap;
+    gap:10px;
+}
+
+
+@media (max-width: 767px) {
+    .description{
+        display: flex;
+        width: 90%;
+        align-items: left;
+    }
+
+    .div-profile{
+        width: fit-content;
+}
+
+    .username-age{
+        flex-direction: row;
+        width: fit-content;
+        justify-content: space-between;
+    }
+
+    .div-container{
+        display: flex;
+        align-items: center;
+        padding: 0;
+        padding-bottom: 20px;
+        overflow-y: hidden;
+    }
+
+    .about-me{
+        display: none;
+    }
+
+    .about-me-2{
+        display: flex;
+        max-width: fit-content;
+        width: fit-content;
+    }
+
+    .div-username{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .image-profile{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        overflow-y: auto;
+    }
+
+    .div-image{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0px;
+    }
+
+    .div-image img{
+        border-radius: 0px;
+    }
+
+    .div-profile{
+        border-radius: 20px;
+        flex-direction: row;
+    }
+    
+    h1{
+        font-size: 1.4em;
+    }
+
+    .socialmedia{
+        display: flex;
+        flex-wrap: wrap;
+        gap:10px;
+    }
+}
