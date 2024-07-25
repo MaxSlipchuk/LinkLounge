@@ -1,1 +1,1 @@
-web: gunicorn LinkLounge.asgi:application
+web: uvicorn LinkLounge.asgi:application --host 0.0.0.0 --port ${PORT}
