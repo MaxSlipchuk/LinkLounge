@@ -28,6 +28,7 @@ from .settings import MEDIA_ROOT, MEDIA_URL, DEBUG
 from django.conf.urls.static import static
 from my_messages.views import *
 from groups.views import *
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -50,7 +51,7 @@ urlpatterns = [
     # пошук через ajax
     path('search/', search_ajax, name='search_ajax'),
     path('search_group/', search_group_ajax, name='search_group_ajax')
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if DEBUG:
     urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)

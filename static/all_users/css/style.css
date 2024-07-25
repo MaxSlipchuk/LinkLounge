@@ -1,0 +1,263 @@
+
+::-webkit-scrollbar{
+    display: none;
+    width: 0;
+    height: 0;
+}
+h5{
+    font-weight: 1;
+    
+}
+.container-a{
+    display: flex;
+    height: 650px;
+    border-radius:40px;
+    overflow-y: auto;
+    padding:0px 40px;
+    display:flex;
+    flex-direction:column;
+    gap: 30px;
+    position: relative;
+    border: 1px outset rgb(255, 255, 255);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.150), rgba(255, 255, 255, 0.030));
+    backdrop-filter: blur(10px);
+    
+}
+
+.form-search{
+    display: flex;
+    gap: 5px;
+    width: 50%;
+}
+
+.svg{
+    border-radius: 90px;
+    padding: 3px;
+    border: 1px outset white;
+}
+
+
+.button{
+    border-radius:20px;
+    color: white;
+    text-align: left;
+    border: 1px outset rgb(255, 255, 255);
+    background: none;
+    width: 90%;
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    justify-content:center;
+    align-items:center;
+    cursor: pointer;
+    padding: 0;
+    height: 40px;
+    font-size: 16px;
+}
+
+.input{
+    border-radius:15px;
+    color: white;
+    padding: 8px;
+    text-align: left;
+    border: 1px outset rgb(255, 255, 255);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    background: none;
+    width: 100%
+}
+
+.card-user{
+    display: flex;
+    flex-direction: column;
+    border: rgb(255, 255, 255) solid 2px;
+    align-items: center;
+    padding-bottom: 10px;
+    /* width: 180px; */
+    width: 24%;
+    border: 1px outset rgb(255, 255, 255);
+    background: none;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    border-radius: 30px;
+    color: white;
+    min-width: 140px;
+}
+.all_title{
+    font-size: 30px;
+    padding-top: 40px;
+    margin: 0;
+}
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: start;
+    /* justify-content: space-between; */
+    gap:10px;
+    padding-bottom: 20px;
+
+}
+
+.search{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: start;
+    width: 75%;
+}
+
+#search-btn{
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.svg:hover{
+    transition: all ease-in-out 0.3s;
+    background-color: rgb(63, 63, 63);
+    fill: rgb(255, 255, 255);
+}
+
+
+.info1{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 5%;
+    /* padding: 10px; */
+} 
+.info1 h3, h4, h5{
+    margin: 5px;
+    h3{
+        font-size: 20px;
+    }
+}
+.image{
+    width: 98%;
+    height: 150px;
+    /* height: 40%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px outset rgb(248, 248, 248);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+}
+.card-user a{
+    height: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+h3{
+    font-size: 25px;
+    
+}
+
+img{
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.image-phone{
+    display: none !important;
+    width: 60%;
+    height: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px outset rgb(248, 248, 248);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+}
+.a-phone{
+    display: none !important;
+}
+.button-phone{
+    display: none;
+    border-radius:20px;
+    color: white;
+    text-align: left;
+    border: 1px outset rgb(255, 255, 255);
+    background: none;
+    width: 100%;
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    justify-content:center;
+    align-items:center;
+    cursor: pointer;
+    padding: 0;
+    height: 40px;
+    font-size: 16px;
+
+}
+
+
+@media (max-width: 767px) {
+    .container-a{
+        padding: 10px;
+        overflow-y: hidden;
+        height: 100%;
+        gap: 15px;
+        
+    }
+    .image-phone{
+        display: flex !important;
+
+}
+    .form-search{
+        width: 100%;
+    }
+    .search{
+        width: 100%;
+    }
+    .a-phone{
+        display: flex !important;
+    }
+    .button-phone{
+        display: flex;
+    }
+
+    .button{
+        display: none;
+    }
+    .card-user a{
+        display: none;
+    }
+    .info1{
+        padding: 0;
+    }
+
+    .info1 a{
+        display: flex;
+    }
+    .image{
+        display: none;
+    }
+    .cards{
+        display: flex;
+        justify-content: center;
+        overflow-y: auto;
+    }
+    .card-user{
+        width: 100%;
+        flex-direction: row;
+        padding: 10px;
+        gap: 5px;
+    }
+    img{
+        border-radius: 20px;
+    }
+}
