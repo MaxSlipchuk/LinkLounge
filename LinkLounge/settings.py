@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['linklounge.herokuapp.com', 'linklounge-0488d39446ec.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['linklounge.herokuapp.com', 'linklounge-0488d39446ec.herokuapp.com', 'localhost', '127.0.0.1']
 
 INSTALLED_APPS = [
     'daphne',
@@ -53,8 +53,11 @@ ASGI_APPLICATION = 'LinkLounge.asgi.application'
 
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer"
-    }
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [os.getenv('REDIS_URL')],
+        },
+    },
 }
 
 MIDDLEWARE = [
