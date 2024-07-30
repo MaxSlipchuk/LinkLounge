@@ -1,1 +1,1 @@
-web: uvicorn LinkLounge.asgi:application --host 0.0.0.0 --port ${PORT}
+web: daphne -b 0.0.0.0 -p $PORT LinkLounge.asgi:application
