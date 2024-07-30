@@ -31,6 +31,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['linklounge.herokuapp.com', 'linklounge-0488d39446ec.herokuapp.com', 'localhost', '127.0.0.1']
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://linklounge.herokuapp.com',
+    'https://linklounge-0488d39446ec.herokuapp.com',
+    'http://linklounge.herokuapp.com',
+    'http://linklounge-0488d39446ec.herokuapp.com',
+]
+
 INSTALLED_APPS = [
     'daphne',
     'django.contrib.admin',
