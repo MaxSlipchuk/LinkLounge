@@ -48,5 +48,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
         // Очищає поле введення повідомлень.
     };
 
+    chatSocket.onerror = function(error) {
+        console.error('WebSocket error:', error);
+    };
+
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 });
