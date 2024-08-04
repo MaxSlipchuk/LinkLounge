@@ -16,6 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls import re_path
+import os
+from django.http import HttpResponse
 from main.views import *
 from account.views import *
 from app_base.views import *
@@ -29,6 +32,13 @@ from django.conf.urls.static import static
 from my_messages.views import *
 from groups.views import *
 from django.conf import settings
+
+
+def acme_challenge(request, filename):
+    path = os.path.join('.well-known/pki-validation', filename)
+    with open(path, 'r') as file:
+        response = HttpResponse(file.read(), content_type='text/plain')
+    return response
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -50,7 +60,9 @@ urlpatterns = [
     path('exit_group_ajax/', exit_group_ajax, name='exit_group_ajax'),
     # пошук через ajax
     path('search/', search_ajax, name='search_ajax'),
-    path('search_group/', search_group_ajax, name='search_group_ajax')
+    path('search_group/', search_group_ajax, name='search_group_ajax'),
+
+    re_path(r'^\.well-known/pki-validation/(?P<filename>[\w\-\_\.]+)$', acme_challenge)
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if DEBUG:
