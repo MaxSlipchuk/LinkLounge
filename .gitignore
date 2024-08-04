@@ -2,3 +2,6 @@ __pycache__/
 *.pyc
 .env
 staticfiles/
+ca_bundle.crt
+certificate.crt
+private.key
