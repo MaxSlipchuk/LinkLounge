@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // Отримує chatId з URL-адреси.
     const chatSocket = new WebSocket(
         'wss://' + window.location.host + '/ws/chat/' + chatId + '/'
-    );    
+    );   
     // Створює новий WebSocket-з'єднання з сервером за адресою /ws/chat/<chatId>/.
 
     const messagesContainer = document.querySelector('.messages');
