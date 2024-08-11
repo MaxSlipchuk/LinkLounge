@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     const chatId = window.location.pathname.split('/').slice(-2, -1)[0];
     // Отримує chatId з URL-адреси.
+    const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
     const chatSocket = new WebSocket(
-        'wss://' + window.location.host + '/ws/chat/' + chatId + '/'
-    );   
+    `${protocol}://${window.location.host}/ws/chat/${chatId}/`
+); 
     // Створює новий WebSocket-з'єднання з сервером за адресою /ws/chat/<chatId>/.
 
     const messagesContainer = document.querySelector('.messages');
