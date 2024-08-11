@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const chatId = window.location.pathname.split('/').slice(-2, -1)[0];
     // Отримує chatId з URL-адреси.
     const chatSocket = new WebSocket(
-        'ws://' + window.location.host + '/ws/chat/' + chatId + '/'
+        'wss://' + window.location.host + '/ws/chat/' + chatId + '/'
     );
     // Створює новий WebSocket-з'єднання з сервером за адресою /ws/chat/<chatId>/.
 
