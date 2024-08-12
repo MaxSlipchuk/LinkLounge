@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Встановлюємо з'єднання WebSocket з сервером
     const chatSocket = new WebSocket(
-        'ws://' + window.location.host + '/ws/groups/' + groupName + '/'
+        'wss://' + window.location.host + '/ws/groups/' + groupName + '/'
     );
 
     // Обробник події відкриття WebSocket з'єднання
