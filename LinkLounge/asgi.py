@@ -13,13 +13,14 @@ print("Django setup completed")
 # Імпорт маршрутів URL для WebSocket для додатку чату після ініціалізації Django
 import chat.routing
 import groups.routing
+import app_base.routing
 
 # Створюємо ProtocolTypeRouter для маршрутизації різних протоколів (http, websocket) до відповідних додатків
 application = ProtocolTypeRouter({
     "http": get_asgi_application(),  # HTTP-протокол обробляється за допомогою ASGI-додатку Django
     "websocket": AuthMiddlewareStack(  # Middleware-стек для обробки аутентифікації WebSocket
         URLRouter(
-            chat.routing.websocket_urlpatterns + groups.routing.websocket_urlpatterns
+            chat.routing.websocket_urlpatterns + groups.routing.websocket_urlpatterns + app_base.routing.websocket_urlpatterns
         )  # Маршрутизація URL WebSocket до відповідних споживачів
     ),
 })

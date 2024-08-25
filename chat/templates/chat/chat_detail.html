@@ -1,15 +1,22 @@
-<!-- chat_detail.html -->
 {% extends "app_base/base.html" %}
 {% load static %}
 {% block links %}
+    <script>
+        // Переносимо оголошення змінних сюди, щоб вони були доступні для всіх скриптів
+        let user = "{{ request.user.username }}";
+        let otherUserId = '{{ other_user.id }}';
+        console.log(` ${otherUserId} користувача, з яким ведемо переписку`);
+    </script>
     <script src="{% static 'chat/js/chat.js' %}" defer></script>
     <link rel="stylesheet" href="{% static 'chat/css/style.css' %}">
 {% endblock %}
 {% block content %}
 <div class="chat-container">
     <div class="name_user">
-        <a href="{% url 'my_messages' %}">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M260-260v-440h40v440h-40Zm420-7.69L467.69-480 680-692.31 708.31-664l-184 184 184 184L680-267.69Z"/></svg>
+        <a href="{% url 'all_users' %}">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                <path d="M260-260v-440h40v440h-40Zm420-7.69L467.69-480 680-692.31 708.31-664l-184 184 184 184L680-267.69Z"/>
+            </svg>
         </a>
         <p>{{ other_user.first_name }} {{ other_user.last_name }}</p>
     </div>
@@ -19,7 +26,6 @@
                 <div class="message-content">
                     <strong class="message-username"><span>@</span>{{ message.sender.username }}</strong>
                     <span class="message-text">{{ message.message }}</span>
-                    <!-- <span class="message-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium architecto incidunt magnam repellendus vitae fugiat dolorum blanditiis, assumenda, quae expedita quas. Distinctio laborum, iure sunt quis nemo aliquid a tenetur.</span> -->
                 </div>
             </div>
         {% endfor %}
@@ -27,13 +33,12 @@
     <form id="chat-form" method="post">
         {% csrf_token %}
         <input type="text" name="message" id="message-input" placeholder="Введіть повідомлення...">
-        <button class="btn-send" type="submit" >
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" style="background-color: transparent;" fill="#e8eaed"><path d="m297.85-259.08-26.47-26.46L480-494.15l208.62 208.61-26.47 26.46L480-441.5 297.85-259.08Zm0-230.77-26.47-26.46L480-724.92l208.62 208.61-26.47 26.46L480-672.27 297.85-489.85Z"/></svg>
+        <button class="btn-send" type="submit">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" style="background-color: transparent;" fill="#e8eaed">
+                <path d="m297.85-259.08-26.47-26.46L480-494.15l208.62 208.61-26.47 26.46L480-441.5 297.85-259.08Zm0-230.77-26.47-26.46L480-724.92l208.62 208.61-26.47 26.46L480-672.27 297.85-489.85Z"/>
+            </svg>
         </button>
     </form>
 </div>
-<script>
-    var user = "{{ request.user.username }}";
-</script>
-
+<input type="hidden" id = 'otherUserId' value="{{ other_user.id }}"'>
 {% endblock %}

@@ -1,56 +1,53 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     const chatId = window.location.pathname.split('/').slice(-2, -1)[0];
-    // Отримує chatId з URL-адреси.
-    const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
     const chatSocket = new WebSocket(
-    `${protocol}://${window.location.host}/ws/chat/${chatId}/`
-); 
-    // Створює новий WebSocket-з'єднання з сервером за адресою /ws/chat/<chatId>/.
+        'ws://' + window.location.host + '/ws/chat/' + chatId + '/'
+    );
 
     const messagesContainer = document.querySelector('.messages');
-    // Знаходить контейнер для повідомлень у DOM, де будуть відображатися отримані повідомлення.
 
     chatSocket.onmessage = function(e) {
-    // Ця функція викликається щоразу, коли WebSocket отримує нове повідомлення.
         const data = JSON.parse(e.data);
-        const messageElement = document.createElement('div');
-        messageElement.classList.add('message');
-        if (data.username === user) {
-            messageElement.classList.add('me');
+
+        if (data.message && data.username) {
+            // Якщо дані містять повідомлення та ім'я користувача
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            if (data.username === user) {
+                messageElement.classList.add('me');
+            } else {
+                messageElement.classList.add('other');
+            }
+            messageElement.innerHTML = `
+                <div class="message-content">
+                    <strong class="message-username"><span>@</span>${data.username}</strong>
+                    <span class="message-text">${data.message}</span>
+                </div>`;
+            messagesContainer.appendChild(messageElement);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            console.log(`має з'явитись блок з іменем ${data.username} і повідомленням ${data.message}`);
+        } else if (data.notification && data.from_user) {
+            // Якщо дані містять сповіщення
+            console.log(`Отримано сповіщення: ${data.notification} від користувача ${data.from_user}`);
+            // Тут можна додати обробку сповіщення, наприклад, показати його на сторінці
         } else {
-            messageElement.classList.add('other');
+            console.error("Отримано некоректні дані:", data);
         }
-        messageElement.innerHTML = `
-            <div class="message-content">
-                <strong class="message-username"><span>@</span>${data.username}</strong>
-                <span class="message-text">${data.message}</span>
-            </div>`;
-        messagesContainer.appendChild(messageElement);
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
     };
 
     chatSocket.onclose = function(e) {
-    // Ця функція викликається, коли WebSocket-з'єднання несподівано закривається.
         console.error('Chat socket closed unexpectedly');
     };
 
     document.querySelector('#chat-form').onsubmit = function(e) {
-    // Ця функція викликається при відправленні форми повідомлень.
         e.preventDefault();
         const messageInputDom = document.querySelector('#message-input');
         const message = messageInputDom.value;
-        // Отримує значення введеного повідомлення.
         chatSocket.send(JSON.stringify({
             'message': message,
-            'username': user 
+            'username': user
         }));
-        // Відправляє повідомлення на WebSocket-сервер у форматі JSON.
         messageInputDom.value = '';
-        // Очищає поле введення повідомлень.
-    };
-
-    chatSocket.onerror = function(error) {
-        console.error('WebSocket error:', error);
     };
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
