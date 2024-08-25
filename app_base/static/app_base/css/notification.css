@@ -1,0 +1,26 @@
+.count-notif{
+    width: auto;
+    min-width: 17px;
+    height: 17px;
+    border-radius: 100%;
+    border: 1px solid #2BBEF2;
+    position: absolute;
+    right: 20%;
+    display: none;
+    font-size: 10px;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#notif-message{
+    display: flex;
+}
+
+.show{
+    display: flex;
+}
+
+.hide{
+    display: none;
+}

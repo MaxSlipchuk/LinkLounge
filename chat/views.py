@@ -11,6 +11,7 @@ def chat_with_user(request, user_id):
     
     if not chat:
         chat = Chat.objects.create(user1=user1, user2=user2)
+        print(f'створений чат між {user1} і {user2}')
     return redirect('chat_detail', chat_id=chat.id)
 
 def chat_detail(request, chat_id):
