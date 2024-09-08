@@ -11,7 +11,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
     let otherUser = parseInt(`{{ other_user.id|default:"null" }}`);
     let hiddenValueElement = document.getElementById('otherUserId');
     let hiddenValue = hiddenValueElement ? Number(hiddenValueElement.value) : null;
-    
+
+
+    let hiddenValueSenderid = document.getElementById('senderId');
+    let senderId = hiddenValueSenderid ? Number(hiddenValueSenderid.value) : null;
+
+    // для телефону
+    let notifMob = document.querySelector('.count-notif-mob')
+
     // Handle NaN if it occurs
     if (isNaN(otherUser)) {
         otherUser = null;
@@ -30,6 +37,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             localStorage.setItem('allMessageUsers', JSON.stringify(arrayUsers))
             storedNotifCount -= 1
             notif.textContent = storedNotifCount
+            notifMob.textContent = storedNotifCount
             localStorage.setItem('notifCount', notif.textContent)
         }
         
@@ -39,10 +47,30 @@ document.addEventListener('DOMContentLoaded', (event) => {
         // Ваш код для сторінок, де цього елемента немає
     }
     console.log(otherUser)
+
+    // для сповіщень на сторінці my_messages
+    if (senderId !== null) {
+        console.log('zazaza', senderId);
+        
+        // Ваш код для сторінки, де є цей елемент
+    } else {
+        console.log('Ця сторінка не має елемента SenderUserId');
+        // Ваш код для сторінок, де цього елемента немає
+    }
+
+
     
     if (storedNotifCount >= 1) {
         notif.textContent = storedNotifCount;
+        notifMob.textContent = storedNotifCount
         notif.classList.add('show');
+        notifMob.classList.add('show')
+        console.log(` перевіряємо вмикання класів ${notif.classList}`)
+
+    } else {
+        notif.classList.remove('show');
+        notifMob.classList.remove('show')
+        console.log(` перевіряємо вмикання класів ${notif.classList}`)
     }
 
     notificationSocket.onopen = function(e) {
@@ -55,14 +83,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
             console.log(`прийшло  повідомлення від ` + data.from_user);
 
             if (!arrayUsers.includes(data.from_user) && data.from_user !== otherUser) {
-                // console.log(data.from_user, otherUser)
                 arrayUsers.push(data.from_user)
-                // console.log(arrayUsers)
                 localStorage.setItem('allMessageUsers', JSON.stringify(arrayUsers))
 
                 let currentCount = parseInt(notif.textContent) || 0;
                 notif.textContent = currentCount + 1;
-
+                notifMob.textContent = currentCount + 1
+                console.log(`${notif.textContent} перевірка чи спрацює з телефоном`)
                 localStorage.setItem('notifCount', notif.textContent)
 
             }
@@ -71,6 +98,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
         let storedNotifCount = Number(localStorage.getItem('notifCount'));
         if (storedNotifCount >= 1) {
             notif.classList.add('show');
+            notifMob.classList.add('show')
+
+        } else {
+            // notif.classList.add('hide');
+            // notifMob.classList.add('hide')
         }
         
         
