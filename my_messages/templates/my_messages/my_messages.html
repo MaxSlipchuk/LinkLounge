@@ -17,7 +17,12 @@
         <div class="chat-list">
             {% for chat in all_messages %}
             <div class="chat-item">
-                <a class="chat-item-item" href="{% url 'chat_detail' chat.id %}">
+                <a class="chat-item-item" href="{% url 'chat_detail' chat.id %}" data-sender-id="{% if chat.user1 == request.user %}{{ chat.user2.id }}{% else %}{{ chat.user1.id }}{% endif %}">
+                    {% if chat.user1 == request.user %}
+                        <input type="hidden" id = 'senderId' value="{{ chat.user2.id }}">
+                    {% else %}
+                        <input type="hidden" id = 'senderId' value="{{ chat.user1.id }}">
+                    {% endif %}
                     <div class="image">
                         {% if chat.user1 == request.user %}
                             {% if chat.user2.userprofile.image %}
@@ -37,10 +42,8 @@
                         <h3>
                             {% if chat.user1 == request.user %}
                                 {{ chat.user2.username }}
-                                <input type="hidden" id = 'senderId' value="{{ chat.user2.id }}">
                             {% else %}
                                 {{ chat.user1.username }}
-                                <input type="hidden" id = 'senderId' value="{{ chat.user1.id }}">
                             {% endif %}
                         </h3>
                         <p class="last-msg">

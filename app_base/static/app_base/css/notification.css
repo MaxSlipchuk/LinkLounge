@@ -11,6 +11,7 @@
     align-items: center;
     justify-content: center;
 
+
 }
 
 #notif-message{
@@ -39,3 +40,7 @@
 .hide{
     display: none;
 }
+
+/* .chat-item-item.new-message{
+    background-color: '#B2BBFC';
+} */
