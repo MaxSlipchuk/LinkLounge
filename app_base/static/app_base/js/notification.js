@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     let hiddenValueSenderid = document.getElementById('senderId');
     let senderId = hiddenValueSenderid ? Number(hiddenValueSenderid.value) : null;
+    
 
     // для телефону
     let notifMob = document.querySelector('.count-notif-mob')
@@ -48,9 +49,25 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
     console.log(otherUser)
 
+    // функція для фарбування блоків коли прийшло сповіщення
+    function style(){
+        let blocks = document.querySelectorAll('.chat-item-item')
+        blocks.forEach(el => {
+            let senderId = el.getAttribute('data-sender-id');
+            if (arrayUsers.includes(Number(senderId))){
+                console.log(`Sender ID - ${senderId}`);
+                // el.style.background = '#B2BBFC'
+                // el.style.transition = 'background-color 0.3s ease';
+                el.classList.add('notif-style')
+            }
+            
+        })
+    }
+
     // для сповіщень на сторінці my_messages
     if (senderId !== null) {
         console.log('zazaza', senderId);
+        style()
         
         // Ваш код для сторінки, де є цей елемент
     } else {
@@ -93,8 +110,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 localStorage.setItem('notifCount', notif.textContent)
 
             }
-
+            // 
+            style()
         }
+
         let storedNotifCount = Number(localStorage.getItem('notifCount'));
         if (storedNotifCount >= 1) {
             notif.classList.add('show');
@@ -104,9 +123,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             // notif.classList.add('hide');
             // notifMob.classList.add('hide')
         }
-        
-        
-    };
+    };    
 
     notificationSocket.onclose = function(e) {
         console.error('вебсокет сповіщень закритий');
