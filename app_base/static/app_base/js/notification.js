@@ -15,12 +15,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     let hiddenValueSenderid = document.getElementById('senderId');
     let senderId = hiddenValueSenderid ? Number(hiddenValueSenderid.value) : null;
+
+    // кнопка перезавантаэення сторынки коли приходить повідоилення
+    
     
 
     // для телефону
     let notifMob = document.querySelector('.count-notif-mob')
 
-    // Handle NaN if it occurs
+
     if (isNaN(otherUser)) {
         otherUser = null;
     }
@@ -51,17 +54,47 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // функція для фарбування блоків коли прийшло сповіщення
     function style(){
+        let arrayBloks = []
         let blocks = document.querySelectorAll('.chat-item-item')
         blocks.forEach(el => {
             let senderId = el.getAttribute('data-sender-id');
+            console.log(senderId)
+            arrayBloks.push(Number(senderId))
             if (arrayUsers.includes(Number(senderId))){
                 console.log(`Sender ID - ${senderId}`);
-                // el.style.background = '#B2BBFC'
-                // el.style.transition = 'background-color 0.3s ease';
                 el.classList.add('notif-style')
             }
             
+            
         })
+
+        // if (arrayUsers.length ){
+        //     reboot.classList.toggle('show-reboot')
+        //     console.log('reboot')
+        //     console.log(arrayUsers.length)
+        //     location.reload()
+
+
+        // }
+        arrayUsers.forEach(function(entry) {
+            console.log(entry)
+            console.log(arrayBloks)
+            if (arrayBloks.includes(entry)){
+                console.log(`Cторінка блоків має сповіщення - ${entry}`);
+                
+            }
+            else{
+                console.log(`Cторінка блоків немає сповіщення - ${entry}`);
+                let reboot = document.querySelector('.reboot')
+                reboot.classList.add('show-reboot')
+                
+                reboot.onclick = function () {
+                    location.reload();
+                };
+            }
+
+        })
+        // console.log(`список блоків id на сторінці ${arrayBloks}`)
     }
 
     // для сповіщень на сторінці my_messages
