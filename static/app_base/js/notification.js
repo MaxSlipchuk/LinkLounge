@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     // Використовуємо глобальні змінні userId і username
     const notificationSocket = new WebSocket(
-        'ws://' + window.location.host + '/ws/notify/' + userId + '/'
+        'wss://' + window.location.host + '/ws/notify/' + userId + '/'
     );
     let notif = document.querySelector('.count-notif')
     let users = localStorage.getItem('allMessageUsers');
