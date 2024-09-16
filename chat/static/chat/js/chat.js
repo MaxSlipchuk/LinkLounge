@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     const chatId = window.location.pathname.split('/').slice(-2, -1)[0];
     const chatSocket = new WebSocket(
-        'ws://' + window.location.host + '/ws/chat/' + chatId + '/'
+        'wss://' + window.location.host + '/ws/chat/' + chatId + '/'
     );
 
     const messagesContainer = document.querySelector('.messages');

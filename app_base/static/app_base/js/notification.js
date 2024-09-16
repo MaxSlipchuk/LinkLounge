@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     // Використовуємо глобальні змінні userId і username
     const notificationSocket = new WebSocket(
-        'ws://' + window.location.host + '/ws/notify/' + userId + '/'
+        'wss://' + window.location.host + '/ws/notify/' + userId + '/'
     );
     let notif = document.querySelector('.count-notif')
     let users = localStorage.getItem('allMessageUsers');
@@ -16,10 +16,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     let hiddenValueSenderid = document.getElementById('senderId');
     let senderId = hiddenValueSenderid ? Number(hiddenValueSenderid.value) : null;
 
-    // кнопка перезавантаэення сторынки коли приходить повідоилення
-    
-    
-
     // для телефону
     let notifMob = document.querySelector('.count-notif-mob')
 
@@ -29,28 +25,21 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     if (hiddenValue !== null) {
-        console.log('Hidden value:', hiddenValue);
         otherUser = hiddenValue
         if (arrayUsers.includes(otherUser)){
-            console.log(arrayUsers.includes(otherUser))
-            console.log(`всього сповіщень ${storedNotifCount}`)
             let indexEl = arrayUsers.indexOf(otherUser)
-            console.log(`індекс який я хочу видалити ${indexEl}`)
             arrayUsers.splice(indexEl, 1)
-            console.log(`список ${arrayUsers} має бути без ${indexEl}`)
             localStorage.setItem('allMessageUsers', JSON.stringify(arrayUsers))
             storedNotifCount -= 1
             notif.textContent = storedNotifCount
             notifMob.textContent = storedNotifCount
             localStorage.setItem('notifCount', notif.textContent)
         }
-        
-        // Ваш код для сторінки, де є цей елемент
+
     } else {
-        console.log('Ця сторінка не має елемента otherUserId');
-        // Ваш код для сторінок, де цього елемента немає
+        console.log('ця сторінка не має елемента otherUserId');
     }
-    console.log(otherUser)
+
 
     // функція для фарбування блоків коли прийшло сповіщення
     function style(){
@@ -58,24 +47,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
         let blocks = document.querySelectorAll('.chat-item-item')
         blocks.forEach(el => {
             let senderId = el.getAttribute('data-sender-id');
-            console.log(senderId)
             arrayBloks.push(Number(senderId))
             if (arrayUsers.includes(Number(senderId))){
-                console.log(`Sender ID - ${senderId}`);
                 el.classList.add('notif-style')
             }
-            
-            
         })
 
-        // if (arrayUsers.length ){
-        //     reboot.classList.toggle('show-reboot')
-        //     console.log('reboot')
-        //     console.log(arrayUsers.length)
-        //     location.reload()
-
-
-        // }
         arrayUsers.forEach(function(entry) {
             console.log(entry)
             console.log(arrayBloks)
@@ -87,40 +64,29 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 console.log(`Cторінка блоків немає сповіщення - ${entry}`);
                 let reboot = document.querySelector('.reboot')
                 reboot.classList.add('show-reboot')
-                
                 reboot.onclick = function () {
                     location.reload();
                 };
             }
-
         })
-        // console.log(`список блоків id на сторінці ${arrayBloks}`)
     }
 
     // для сповіщень на сторінці my_messages
     if (senderId !== null) {
-        console.log('zazaza', senderId);
         style()
-        
-        // Ваш код для сторінки, де є цей елемент
     } else {
-        console.log('Ця сторінка не має елемента SenderUserId');
-        // Ваш код для сторінок, де цього елемента немає
+        console.log('ця сторінка не має елемента SenderUserId');
     }
-
-
     
     if (storedNotifCount >= 1) {
         notif.textContent = storedNotifCount;
         notifMob.textContent = storedNotifCount
         notif.classList.add('show');
         notifMob.classList.add('show')
-        console.log(` перевіряємо вмикання класів ${notif.classList}`)
 
     } else {
         notif.classList.remove('show');
         notifMob.classList.remove('show')
-        console.log(` перевіряємо вмикання класів ${notif.classList}`)
     }
 
     notificationSocket.onopen = function(e) {
@@ -139,11 +105,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 let currentCount = parseInt(notif.textContent) || 0;
                 notif.textContent = currentCount + 1;
                 notifMob.textContent = currentCount + 1
-                console.log(`${notif.textContent} перевірка чи спрацює з телефоном`)
                 localStorage.setItem('notifCount', notif.textContent)
-
             }
-            // 
             style()
         }
 
@@ -166,5 +129,3 @@ document.addEventListener('DOMContentLoaded', (event) => {
         console.error('WebSocket error:', error);
     };
 });
-
-console.log('hello')
