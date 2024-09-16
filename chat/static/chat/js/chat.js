@@ -8,20 +8,27 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const messageInputDom = document.querySelector('#message-input');
     const sendButton = document.querySelector('.btn-send');
 
-    // деактивувати кнопку
+    // Деактивувати кнопку при завантаженні
     sendButton.disabled = true;
 
-    // активація або дезактивація кнопки
+    // Активація або деактивація кнопки залежно від введеного тексту
     messageInputDom.addEventListener('input', function() {
         if (messageInputDom.value.trim() === '') {
             sendButton.disabled = true;  // якщо поле порожнє або містить лише пробіли
+            console.log('неактивна');
         } else {
             sendButton.disabled = false; // активуємо, якщо є текст
+            console.log('активна');
         }
     });
 
     chatSocket.onmessage = function(e) {
         const data = JSON.parse(e.data);
+
+        if (data.error) {
+            console.error("Отримано помилку:", data.error);
+            return; // Просто повертаємо і нічого не робимо з повідомленням
+        }
 
         if (data.message && data.username) {
             // Якщо дані містять повідомлення та ім'я користувача
@@ -55,13 +62,22 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     document.querySelector('#chat-form').onsubmit = function(e) {
         e.preventDefault();
-        const messageInputDom = document.querySelector('#message-input');
-        const message = messageInputDom.value;
+        const message = messageInputDom.value.trim();
+
+        // Перевіряємо, щоб повідомлення не було порожнім
+        if (message === '') {
+            console.warn('Порожнє повідомлення не може бути відправлено.');
+            return;
+        }
+
         chatSocket.send(JSON.stringify({
             'message': message,
             'username': user
         }));
+
+        // Очищуємо поле введення і деактивуємо кнопку
         messageInputDom.value = '';
+        sendButton.disabled = true;
     };
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
