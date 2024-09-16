@@ -17,6 +17,7 @@ body, html {
 }
 
 .video-background {
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
@@ -36,6 +37,14 @@ body, html {
     left: 50%;
     transform: translate(-50%, -50%);
     object-fit: cover; /* Заповнення контейнера без викривлення */
+    display: block;
+}
+
+.background-image {
+    display: none; /* картинка прихована на десктопах за замовчуванням */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 aside {
@@ -77,14 +86,16 @@ aside {
         height: 0;
     }
 
-    .video-background video {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        transform: none; /* Забирає центрування для мобільних */
+    .background-video {
+        display: none; /* приховуємо відео на мобільних пристроях */
+    }
+
+    .video-background video{
+        display: none;
+    }
+
+    .background-image {
+        display: block; /* показуємо картинку на мобільних пристроях */
     }
     
 }
