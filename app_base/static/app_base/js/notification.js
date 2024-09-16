@@ -62,11 +62,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
             else{
                 console.log(`Cторінка блоків немає сповіщення - ${entry}`);
-                let reboot = document.querySelector('.reboot')
-                reboot.classList.add('show-reboot')
-                reboot.onclick = function () {
-                    location.reload();
-                };
+                // let reboot = document.querySelector('.reboot')
+                // reboot.classList.add('show-reboot')
+                // reboot.onclick = function () {
+                //     location.reload();
+                // };
             }
         })
     }
