@@ -9,6 +9,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     const messagesContainer = document.querySelector('.messages');
     // Знаходить контейнер для повідомлень у DOM, де будуть відображатися отримані повідомлення.
+    const messageInputDom = document.querySelector('#message-input');
+    const sendButton = document.querySelector('.btn-send');
+
+    // деактивувати кнопку
+    sendButton.disabled = true;
+
+    // активація або дезактивація кнопки
+    messageInputDom.addEventListener('input', function() {
+        if (messageInputDom.value.trim() === '') {
+            sendButton.disabled = true;  // якщо поле порожнє або містить лише пробіли
+        } else {
+            sendButton.disabled = false; // активуємо, якщо є текст
+        }
+    });
 
     chatSocket.onopen = function(e) {
         console.log('WebSocket connection opened');
