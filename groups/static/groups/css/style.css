@@ -30,9 +30,8 @@
 .content_search{
     display: flex;
     flex-direction: row;
-    height: 100%;
+    height: 90%;
     gap: 5px;
-    padding-bottom: 40px;
 }
 
 .group-container{
@@ -49,6 +48,7 @@
     background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.150), rgba(255, 255, 255, 0.030));
     backdrop-filter: blur(10px);
     color: white;
+    overflow: hidden;
     
 }
 
@@ -59,12 +59,14 @@
 
 .groups{
     width: 50%;
+    max-height: 90%;
     text-align: center;
-    padding-bottom: 10px;
+    padding-bottom: 50px;
     padding-top: -5px;
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
     background: rgba(255, 255, 255, 0.1);
     border-radius: 20px;
+    overflow: hidden;
 }
 
 .group{
@@ -85,10 +87,11 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
-    overflow-y: scroll; /* Додає вертикальну прокрутку */
+    overflow-y: auto; /* Додає вертикальну прокрутку */
     max-height: 400px; /* Задайте потрібну максимальну висоту для контейнера */
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
+    padding-bottom: 50px;
 }
 
 .group-item{
@@ -310,13 +313,52 @@ h3, h4, h5{
 }
 
 @media (max-width: 767px) {
-    .group-container{
+    .group-container {
         padding: 10px;
         height: 100%;
-        
-    }
-    .form-search{
-        width: 100%;
     }
 
+    .form-search {
+        width: 100%;
+        padding-bottom: 0;
+    }
+
+    .content_search {
+        flex-direction: column;
+        padding-bottom: 0;
+        height: 100%; /* Забезпечує, що контент займає всю доступну висоту */
+    }
+
+    .groups {
+        width: 100%;
+        max-height: 36%; /* Зменшена висота контейнера */
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        padding-bottom: 0;
+    }
+
+    .all-groups {
+        flex-grow: 1; /* Забезпечує, що список займає доступну висоту */
+        max-height: 100%;
+        overflow-y: auto; /* Додаємо вертикальну прокрутку */
+        padding: 0;
+    }
+
+
+    .group {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .input-con{
+        flex-direction: column;
+        align-items: start;
+        gap: 10px;
+    }
+
+    .btn-create{
+        height: 30px;
+    }
 }
