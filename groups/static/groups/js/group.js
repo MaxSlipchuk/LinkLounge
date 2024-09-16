@@ -7,6 +7,21 @@ document.addEventListener('DOMContentLoaded', function() {
         'wss://' + window.location.host + '/ws/groups/' + groupName + '/'
     );
 
+    const messageInputDom = document.querySelector('#message-input');
+    const sendButton = document.querySelector('.btn-send');
+
+    // деактивувати кнопку
+    sendButton.disabled = true;
+
+    // активація або дезактивація кнопки
+    messageInputDom.addEventListener('input', function() {
+        if (messageInputDom.value.trim() === '') {
+            sendButton.disabled = true;  // якщо поле порожнє або містить лише пробіли
+        } else {
+            sendButton.disabled = false; // активуємо, якщо є текст
+        }
+    });
+
     // Обробник події відкриття WebSocket з'єднання
     chatSocket.onopen = function(e) {
         console.log("WebSocket connection opened:", e);
