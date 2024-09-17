@@ -6,7 +6,7 @@
 }
 
 .div-container {
-    height: 650px;
+    height: 95vh;
     filter: drop-shadow(0px 4px 24px rgba(0, 0, 0, 0.2));
     border-radius: 40px;
     overflow-y: auto;
