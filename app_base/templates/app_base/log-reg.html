@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'app_base/css/base.css' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'app_base/css/base.css' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     {% block links %}
+        <script defer src="{% static 'app_base/js/video-mobile.js' %}"></script>
     {% endblock %}
 </head>
 <body>
@@ -17,6 +18,7 @@
         <video autoplay loop muted>
             <source src="{% static 'app_base/video/background.mp4' %}" type="video/mp4">
         </video>
+        <img class="background-image" src="{% static 'app_base/img/background-mobile.jpg' %}" alt="Background">
     </div>
     <main>
         {% block content %}
