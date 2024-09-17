@@ -1,0 +1,161 @@
+.container-my-msg{
+    display: flex;
+    height: 650px;
+    border-radius:40px;
+    overflow-y: auto;
+    padding:0px 40px;
+    display:flex;
+    flex-direction:column;
+    gap: 30px;
+    
+    border: 1px outset rgb(255, 255, 255);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.150), rgba(255, 255, 255, 0.030));
+    backdrop-filter: blur(10px);
+}
+
+.div-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.msg-title{
+    padding-top: 40px;
+    margin: 0;
+}
+
+.reboot{
+    display: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 100%;
+}
+
+.reboot:hover{
+    border: white solid 1px;
+}
+
+.show-reboot{
+    display: flex;
+}
+
+.chat-item-item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+    
+    border: 1px outset rgb(255, 255, 255);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.150), rgba(255, 255, 255, 0.030));
+    backdrop-filter: blur(10px);
+    border-radius: 40px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.last-msg{
+    font-weight: 1;
+    margin: 0;
+}
+h3{
+    margin: 0;
+}
+.image{
+    height: 40px;
+    width: 40px;
+    border: 1px outset rgb(255, 255, 255);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    border-radius: 20px;
+}
+.image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+.chat-item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    
+    
+}
+.delete{
+    /* padding: 10px; */
+    border: 1px outset rgb(255, 255, 255);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 80px;
+    height: 100%;
+    width: 55px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    cursor: pointer;
+}
+
+#delete{
+    height: 30px;
+}
+
+.chat-list{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.delete:hover{
+    border: 1px outset rgb(241, 72, 72);
+    transition: ease-in-out 0.3s;
+    svg{
+        fill: rgb(241, 72, 72);
+        transition: ease-in-out 0.3s;
+    }
+}
+.chat-item-item:hover{
+    background-color:#2BBEF2;
+    transition: ease-in-out 0.3s;
+
+}
+
+.notif-style{
+    background-color: #B2BBFC;
+    transition: ease 0.3s;
+}
+
+.clean{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+form{
+    height: 100%;
+}
+
+@media (max-width: 767px) {
+    .container-my-msg{
+        padding: 10px;
+        overflow-y: hidden;
+        height: 100%;
+    }
+    .chat-list{
+        overflow-y: auto;
+    }
+
+}

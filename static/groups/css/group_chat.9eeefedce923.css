@@ -1,0 +1,144 @@
+::-webkit-scrollbar{
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+
+.group-chat-container{
+    height: 650px;
+    filter:drop-shadow(0px 4px 24px rgba(0,0,0,0.20000000298023224));
+    border-radius:40px;
+    padding:0px 40px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    justify-content: space-between;
+    position: relative;
+    border: 1px outset rgb(255, 255, 255);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.150), rgba(255, 255, 255, 0.030));
+    backdrop-filter: blur(10px);
+}
+
+.name-and-add{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 40px;
+}
+
+.name-group{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.btn-add-user{
+    border-radius:15px;
+    width: auto;
+    color: white;
+    padding: 8px;
+    border: 1px outset rgb(255, 255, 255);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    background: transparent;
+    cursor: pointer;
+}
+
+.name-group h1{
+    margin: 0;
+    color: white;
+    font-weight: 600;
+    font-size: 40px
+}
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.message {
+    padding: 10px;
+    margin: 5px;
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+.me {
+    background-color: #2BBEF2;
+    align-self: flex-end;
+    text-align: right;
+    border-radius: 10px 10px 0 10px;
+}
+
+.other {
+    background-color: #FFFFFF;
+    align-self: flex-start;
+    text-align: left;
+    border-radius: 10px 10px 10px 0px;
+    color: black;
+}
+
+.message-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.message-username {
+    margin-bottom: 5px;
+}
+
+.message-text {
+    font-size: 16px;
+    word-wrap: break-word; /* Дозволяє переносити текст на новий рядок */
+    word-break: break-word; /* Забезпечує перенесення довгих слів, щоб вони помістилися в контейнер */
+    white-space: pre-wrap;  /* Зберігає пробіли і дозволяє перенесення */
+}
+
+#chat-form{
+    display: flex;
+    padding-bottom: 20px;
+    gap: 10px;
+
+}
+
+#message-input{
+    width: 100%;
+    height: 40px;
+    border-radius:15px;
+    color: white;
+    color: white;
+    text-align: left;
+    border: 1px outset rgb(255, 255, 255);
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.205);
+    background: none;
+    padding: 0 20px;
+}
+
+.btn-send{
+    background-color: transparent;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn-send:hover{
+    background-color: #2BBEF2;
+    transition: all ease-in-out 0.3s;
+    border: 1px solid white;
+}
+
+@media (max-width: 767px) {
+    .group-chat-container{
+        padding: 10px;
+        height: 100%;
+    }
+    .btn-add-user{
+        display: flex;
+        width: auto;
+    }
+    .name-and-add{
+        gap: 10px;
+    }
+}

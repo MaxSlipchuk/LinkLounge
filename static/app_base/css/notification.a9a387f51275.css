@@ -1,0 +1,46 @@
+.count-notif{
+    width: auto;
+    min-width: 17px;
+    height: 17px;
+    border-radius: 100%;
+    border: 1px solid #2BBEF2;
+    position: absolute;
+    right: 20%;
+    display: none;
+    font-size: 10px;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+#notif-message{
+    display: flex;
+}
+
+.count-notif-mob{
+    width: auto;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    border: 1px solid #2BBEF2;
+    position: relative;
+    right: -10%;
+    top: -20%;
+    display: none;
+    font-size: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.show{
+    display: flex;
+}
+
+.hide{
+    display: none;
+}
+
+/* .chat-item-item.new-message{
+    background-color: '#B2BBFC';
+} */

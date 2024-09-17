@@ -170,6 +170,7 @@ img{
 .image-phone{
     display: none !important;
     width: 60%;
+    min-width: 40%;
     height: 100%;
     
     display: flex;

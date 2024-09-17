@@ -1,0 +1,145 @@
+#modal-create-group, #modal-delete-group, #modal-exit-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    visibility: hidden;
+    width: 30%;
+    text-align: center;
+    border: rgb(255, 255, 255) solid 1px;
+    border-radius: 20px;
+    position: fixed;
+    background-color: #1D2357;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.5s;
+    color: rgb(255, 255, 255);
+    overflow: auto;
+    padding: 40px 0;
+    z-index: 1001; /* Високий пріоритет */
+}
+
+#modal-create-group h2, #modal-delete-group h2, #modal-exit-group h2 {
+    margin: 0;
+}
+
+#modal-create-group.show, #modal-delete-group.show, #modal-exit-group.show {
+    visibility: visible;
+}
+
+#close-modal-create-group, #close-modal-delete-group, #close-modal-exit-group{
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 20px;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    padding: 0 5px;
+    border-radius: 5px;
+}
+
+#modal-create-group .form input{
+    background-color: transparent;
+    border-radius: 10px;
+    border: 1px solid white;
+    color: white;
+}
+
+#btn-yes, #btn-no, #btn-exit-no, #btn-exit-yes{
+    font-size: 14px;
+    width: 60px;
+    height: 40px;
+    font-weight: 600;
+    border-radius: 10px;
+    border: 1px solid white;
+    cursor: pointer;
+}
+
+
+#btn-yes:hover, #close-modal-delete-group:hover, #close-modal-create-group:hover,
+#close-modal-exit-group:hover, #btn-exit-yes:hover
+ {
+    background-color: rgb(218, 119, 119);
+    color: white;
+}
+
+#btn-no:hover, #btn-exit-no:hover {
+    background-color: #2BBEF2;
+    color: white;
+}
+
+#modal-create-group .create:hover{
+    background-color: #2BBEF2;
+    transition: all ease-in-out 0.3s;
+    color: white;
+}
+
+#popup-bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    transition: all 0.5s;
+    z-index: 1000; /* Високий пріоритет */
+}
+
+#popup-bg.show {
+    visibility: visible;
+    opacity: 60%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.form p{
+    position: relative;
+    left: 0;
+}
+
+.form button {
+    font-size: 14px;
+    width: 100%;
+    height: 40px;
+    font-weight: 600;
+    border-radius: 10px;
+    border: 1px solid white;
+    cursor: pointer;
+}
+
+.card-user{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card-user .form{
+    width: 100%;
+}
+
+ .card-user .input{
+    width: 100%;
+    padding: 8px 10px; 
+    box-sizing: border-box;
+}
+
+
+@media (max-width: 767px) {
+    #modal-create-group{
+        min-width: 80%;
+    }
+    #modal-exit-group{
+        min-width: 80%;
+    }
+    #modal-delete-group{
+        min-width: 80%;
+    }
+}
