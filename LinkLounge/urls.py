@@ -24,8 +24,6 @@ from account.views import *
 from app_base.views import *
 from all_users.views import *
 from chat.views import *
-# from account.forms import CustomAuthenticationForm
-# from django.contrib.auth import views as auth_views
 from django.views.generic import RedirectView
 from .settings import MEDIA_ROOT, MEDIA_URL, DEBUG
 from django.conf.urls.static import static

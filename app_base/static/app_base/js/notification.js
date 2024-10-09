@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     // Використовуємо глобальні змінні userId і username
     const notificationSocket = new WebSocket(
-        'wss://' + window.location.host + '/ws/notify/' + userId + '/'
+        'ws://' + window.location.host + '/ws/notify/' + userId + '/'
     );
     let notif = document.querySelector('.count-notif')
     let users = localStorage.getItem('allMessageUsers');
@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         console.log('ця сторінка не має елемента otherUserId');
     }
 
-
     // функція для фарбування блоків коли прийшло сповіщення
     function style(){
         let arrayBloks = []
@@ -62,11 +61,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
             else{
                 console.log(`Cторінка блоків немає сповіщення - ${entry}`);
-                // let reboot = document.querySelector('.reboot')
-                // reboot.classList.add('show-reboot')
-                // reboot.onclick = function () {
-                //     location.reload();
-                // };
             }
         })
     }

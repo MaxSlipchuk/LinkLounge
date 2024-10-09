@@ -38,12 +38,24 @@ body, html {
     transform: translate(-50%, -50%);
     object-fit: cover; /* Заповнення контейнера без викривлення */
     display: block;
+    z-index: 3;
 }
 
 .background-image {
     display: none; /* картинка прихована на десктопах за замовчуванням */
     width: 100%;
     height: 100%;
+    object-fit: cover;
+    position: absolute;
+    z-index: 1;
+}
+
+.reload{
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
     object-fit: cover;
 }
 
@@ -54,6 +66,7 @@ aside {
 
 
 @media (max-width: 767px) {
+    
     aside {
         visibility: hidden;
         display: none !important;
@@ -96,8 +109,11 @@ aside {
 
     .background-image {
         display: block; 
+        z-index: 3;
     }
-    
+    .reload{
+        display: none;
+    }
 }
 
 .container-wrapper{

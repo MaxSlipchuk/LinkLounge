@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     const chatId = window.location.pathname.split('/').slice(-2, -1)[0];
     const chatSocket = new WebSocket(
-        'wss://' + window.location.host + '/ws/chat/' + chatId + '/'
+        'ws://' + window.location.host + '/ws/chat/' + chatId + '/'
     );
 
     const messagesContainer = document.querySelector('.messages');
@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     };
 
     document.querySelector('#chat-form').onsubmit = function(e) {
+        console.log('Form submitted'); // Додайте цей рядок для перевірки
         e.preventDefault();
         const message = messageInputDom.value.trim();
 
@@ -72,13 +73,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         chatSocket.send(JSON.stringify({
             'message': message,
-            'username': user
+            'username': window.user
         }));
 
         // Очищуємо поле введення і деактивуємо кнопку
         messageInputDom.value = '';
         sendButton.disabled = true;
     };
+    console.log('має бути скрол')
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 });

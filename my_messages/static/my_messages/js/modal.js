@@ -11,20 +11,39 @@ document.addEventListener('DOMContentLoaded', function() {
     let notif = document.querySelector('.count-notif')
     let notifMob = document.querySelector('.count-notif-mob')
 
-    deleteButtons.forEach(button => {
-        button.addEventListener('click', function() {
+    // deleteButtons.forEach(button => {
+    //     button.addEventListener('click', function() {
+    //         console.log('в модалку')
+    //         const chatId = this.getAttribute('data-chat-id');
+    //         const chatUsername = this.getAttribute('data-chat-username');
+    //         senderId = Number(this.getAttribute('data-sender-id'));
+    //         console.log(`перевірка в модальному вікні має бути ІД ${senderId} відправника`)
+
+    //         btn_yes.value = chatId;
+    //         modalUsername.textContent = chatUsername;
+
+    //         modal_1.classList.add('show');
+    //         popupBg.classList.add('show');
+    //     });
+    // });
+    
+    for (let i = 0; i < deleteButtons.length; i++) {
+        deleteButtons[i].addEventListener('click', function() {
+            console.log('в модалку');
             const chatId = this.getAttribute('data-chat-id');
             const chatUsername = this.getAttribute('data-chat-username');
             senderId = Number(this.getAttribute('data-sender-id'));
-            console.log(`перевірка в модальному вікні має бути ІД ${senderId} відправника`)
-
+            console.log(`перевірка в модальному вікні має бути ІД ${senderId} відправника`);
+    
             btn_yes.value = chatId;
             modalUsername.textContent = chatUsername;
-
+    
             modal_1.classList.add('show');
             popupBg.classList.add('show');
         });
-    });
+    }
+
+
 
     btn_yes.addEventListener('click', function(){
         console.log(`натиснули на ні і побачили id ${senderId}`)

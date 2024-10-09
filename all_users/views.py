@@ -3,11 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.http import JsonResponse
+from django.template.loader import render_to_string
 
-@login_required
-def all_users(request):
-    users = User.objects.exclude(id=request.user.id).exclude(is_superuser=True)
-    return render(request, 'all_users/all_users.html', {'users': users})
 
 @require_POST
 def search_ajax(request):
@@ -24,3 +21,13 @@ def search_ajax(request):
         }
         users_data.append(user_data)
     return JsonResponse({'status': 'success', 'users': users_data})
+
+@login_required
+def all_users(request):
+    is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
+    users = User.objects.exclude(id=request.user.id).exclude(is_superuser=True)
+    if is_ajax:
+        html = render_to_string('all_users/partial_content.html', {'users': users}, request=request)
+        return JsonResponse({'html': html}) 
+    else:
+        return render(request, 'all_users/all_users.html', {'users': users})
