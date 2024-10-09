@@ -1,0 +1,48 @@
+{% load static %}
+{% block links %}
+
+<!-- ваші стилі та скрипти -->
+<link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+{% endblock %}
+<div class="div-container">
+    <div class="div-username">
+        <h1>{{request.user.first_name}}</h1>
+        <h1>{{request.user.last_name}}</h1>
+    </div>
+    <div class="image-profile">
+        <div class="div-image">
+            {% if request.user %}
+                {% if request.user.userprofile.image %}
+                    <img src="{{ request.user.userprofile.image.url }}" alt="Profile Picture">
+                {% else %}
+                    <img src="{% static 'main/img/default_profile.png' %}" alt="Default Profile Picture">
+                {% endif %}
+            {% else %}
+                <img src="{% static 'main/img/default_profile.png' %}" alt="Default Profile Picture">
+            {% endif %}
+            <div class="about-me">
+                <p>Whats up?</p>
+            </div>
+        </div>
+        <div class="description">
+            <div class="about-me-2">
+                <p>Whats up?</p>
+            </div>
+            <div class="username-age">
+                <div class="div-profile">
+                    <p class="username">@{{request.user.username}}</p>
+                </div>
+                <div class="div-profile">
+                    <p class="age">Age:  {{request.user.userprofile.age}}</p>
+                </div>
+            </div>
+            <div class="div-profile">
+                <p class="age">Тут буде інстаграм</p>
+            </div>
+            <div class="div-profile">
+                <p class="age">А тут буде фейсбук</p>
+            </div>
+            
+        </div>
+    </div>
+</div>

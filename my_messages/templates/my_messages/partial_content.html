@@ -1,0 +1,86 @@
+{% load static %}
+{% block links %}
+    <script defer src="{% static 'my_messages/js/modal.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'my_messages/css/modal.css' %}">
+    <link rel="stylesheet" href="{% static 'my_messages/css/style.css' %}">
+{% endblock %}
+<div class="container-my-msg">
+    {% if not all_messages %}
+    <div class="clean">
+        <p>поки, що повідомлень немає</p>
+    </div>
+    {% else %}
+    <div class="div-title">
+        <h1 class="msg-title">Мої повiдомлення</h1>
+        <span class="reboot">
+            <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#e8eaed"><path d="M440-142.77q-112.54-14.62-186.27-99.15Q180-326.46 180-440q0-61 24.08-116.88 24.08-55.89 67.46-98.2l42.77 42.77q-36.85 33.62-55.58 78.04Q240-489.85 240-440q0 88 56.19 155.12 56.19 67.11 143.81 82.11v60Zm80 .77v-60q86.62-17.54 143.31-83.96Q720-352.38 720-440q0-100-70-170t-170-70h-14.15l54 54-42.16 42.15L351.54-710l126.15-126.15L519.85-794l-54 54H480q125.54 0 212.77 87.23T780-440q0 112.92-73.92 197.08Q632.15-158.77 520-142Z"/></svg>
+        </span>
+    </div>
+    
+    <div class="chat-list">
+        {% for chat in all_messages %}
+            <div class="chat-item">
+                <a class="chat-item-item" href="{% url 'chat_detail' chat.id %}" data-sender-id="{% if chat.user1 == request.user %}{{ chat.user2.id }}{% else %}{{ chat.user1.id }}{% endif %}">
+                    {% if chat.user1 == request.user %}
+                        <input type="hidden" id='senderId' value="{{ chat.user2.id }}">
+                    {% else %}
+                        <input type="hidden" id='senderId' value="{{ chat.user1.id }}">
+                    {% endif %}
+                    <div class="image">
+                        {% if chat.user1 == request.user %}
+                            {% if chat.user2.userprofile.image %}
+                                <img src="{{ chat.user2.userprofile.image.url }}" alt="Profile Picture">
+                            {% else %}
+                                <img src="{% static 'main/img/default_profile.png' %}" alt="Default Profile Picture">
+                            {% endif %}
+                        {% elif chat.user2 == request.user %}
+                            {% if chat.user1.userprofile.image %}
+                                <img src="{{ chat.user1.userprofile.image.url }}" alt="Profile Picture">
+                            {% else %}
+                                <img src="{% static 'main/img/default_profile.png' %}" alt="Default Profile Picture">
+                            {% endif %}
+                        {% endif %}
+                    </div> 
+                    <div style="display: flex; flex-direction: column;">
+                        <h3>
+                            {% if chat.user1 == request.user %}
+                                {{ chat.user2.username }}
+                            {% else %}
+                                {{ chat.user1.username }}
+                            {% endif %}
+                        </h3>
+                        <p class="last-msg">
+                            helloworld
+                        </p>
+                    </div>
+                </a>
+                <button class="delete" data-chat-id="{{ chat.id }}" data-chat-username="{% if chat.user1 == request.user %}{{ chat.user2.username }}{% else %}{{ chat.user1.username }}{% endif %}" 
+                data-sender-id = "{% if chat.user1 == request.user %}{{ chat.user2.id }}{% else %}{{ chat.user1.id }}{% endif %}">
+                    <input type="hidden" name="chat.id" value="{{ chat.id }}">
+                    <svg id="delete" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed">
+                        <path d="M306.46-166.15q-25.58 0-43.56-17.98-17.98-17.99-17.98-43.56v-490.46h-39.38v-36.8h155.69v-29.67h238.15v29.54h155.7v36.93h-39.39v490.64q0 25.76-17.8 43.56t-43.74 17.8H306.46Zm372.31-552H281.85v490.46q0 10.77 6.92 17.69 6.92 6.92 17.69 6.92h347.69q9.23 0 16.93-7.69 7.69-7.69 7.69-16.92v-490.46Zm-283.39 435.8h36.93v-356.92h-36.93v356.92Zm132.93 0h36.92v-356.92h-36.92v356.92Zm-246.46-435.8V-203.08-718.15Z"/>
+                    </svg>
+                </button>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+<!-- модальне вікно -->
+<div id='popup-bg'></div>
+
+<div id="modal_1">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <!-- <a href="#" id="close-modal_1">✖</a> -->
+        <span id="close-modal_1">✖</span>
+        <h2>Ви дійсно бажаєте <br>
+            видалити переписку з <br> <span id="modal-username"></span>
+        </h2>
+        <div style="display: flex; justify-content: center; gap: 50px;">
+            <button type="button" id="btn-no">ні</button>
+            <button type="submit" name="delete" id="btn-yes" value="">так</button>
+        </div>
+    </form>
+</div>

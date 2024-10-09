@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from .models import Group, Message
 from .forms import GroupForm
 from django.urls import reverse
+from django.template.loader import render_to_string
 
 @login_required
 @require_POST
@@ -53,31 +54,35 @@ def search_group_ajax(request):
                          'owned_groups': owned_data,
                          'member_groups': member_data})
 
-@login_required
-def groups(request):
-    owned_groups = Group.objects.filter(admin=request.user)
-    member_groups = Group.objects.filter(members=request.user).exclude(admin=request.user)
+# @login_required
+# def groups(request):
+#     owned_groups = Group.objects.filter(admin=request.user)
+#     member_groups = Group.objects.filter(members=request.user).exclude(admin=request.user)
 
-    if request.method == 'POST':
-        form = GroupForm(request.POST)
-        if form.is_valid():
-            group = form.save(commit=False)
-            group.admin = request.user
-            group.save()
-            group.members.add(request.user)
-            return redirect('groups')
-    else:
-        form = GroupForm()
+#     if request.method == 'POST':
+#         form = GroupForm(request.POST)
+#         if form.is_valid():
+#             group = form.save(commit=False)
+#             group.admin = request.user
+#             group.save()
+#             group.members.add(request.user)
+#             return redirect('groups')
+#     else:
+#         form = GroupForm()
 
-    context = {
-        'owned_groups': owned_groups,
-        'member_groups': member_groups,
-        'form': form
-    }
-    return render(request, 'groups/groups.html', context)
+#     context = {
+#         'owned_groups': owned_groups,
+#         'member_groups': member_groups,
+#         'form': form
+#     }
+#     return render(request, 'groups/groups.html', context)
 
 @login_required
 def group_chat(request, group_name):
+    print()
+    print(group_name)
+    print()
+    is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
     group = get_object_or_404(Group, name=group_name)
     if request.user not in group.members.all():
         return HttpResponseForbidden("Ви не є учасником цієї групи")
@@ -89,6 +94,13 @@ def group_chat(request, group_name):
         'messages': messages,
         'users': users
     }
+
+    # Якщо це AJAX-запит
+    if is_ajax:
+        print('зайшлив аякс')
+        html = render_to_string('groups/partial_groups_chat.html', context=context, request=request)
+        return JsonResponse({'html': html})  # Повертаємо JSON-дані з HTML-контентом
+    print('переза')
     return render(request, 'groups/group_chat.html', context)
 
 @login_required
@@ -110,3 +122,36 @@ def add_user_to_group(request, group_id, user_id):
         return HttpResponseForbidden("Ви не маєте прав додавати користувачів до цієї групи")
     group.members.add(user)
     return JsonResponse({'status': 'ok'})
+
+
+@login_required
+def groups(request):
+    is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
+    owned_groups = Group.objects.filter(admin=request.user)
+    member_groups = Group.objects.filter(members=request.user).exclude(admin=request.user)
+
+    # Ініціалізація форми
+    if request.method == 'POST':
+        form = GroupForm(request.POST)
+        if form.is_valid():
+            group = form.save(commit=False)
+            group.admin = request.user
+            group.save()
+            group.members.add(request.user)  # Додаємо адміністратора в члени групи
+            return redirect('groups')  # Після збереження перенаправляємо на ту ж сторінку
+    else:
+        form = GroupForm()
+
+    context = {
+        'owned_groups': owned_groups,
+        'member_groups': member_groups,
+        'form': form
+    }
+
+    # Якщо це AJAX-запит
+    if is_ajax:
+        html = render_to_string('groups/partial_content.html', context=context, request=request)
+        return JsonResponse({'html': html})  # Повертаємо JSON-дані з HTML-контентом
+
+    # Якщо це звичайний запит
+    return render(request, 'groups/groups.html', context)
