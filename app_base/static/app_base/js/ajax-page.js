@@ -2,6 +2,12 @@ $(document).ready(function() {
     function loadPageStyles(url) {
         if (url.includes("/main/")) {
             initializeModalSettings()
+            let allStyles = document.querySelectorAll('.page-specific')
+            console.log(allStyles)
+            allStyles.forEach(function(linkElement){
+                let id = linkElement.getAttribute('id')
+                console.log(id)
+            })
             console.log('ми на сторінці main') 
         }
     }

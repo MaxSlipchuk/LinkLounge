@@ -6,12 +6,14 @@ from django.template.loader import render_to_string
 from django.contrib.auth.models import User
 from .forms import SettingsUserProfile
 from .forms import SettingsUser
-
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 
 # Create your views here.
 # @login_required
 # def main(request):
 #     return render(request, 'main/main.html', context={'user': 'user'})
+
 @login_required
 def main(request):
     is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
@@ -47,3 +49,12 @@ def main(request):
         return JsonResponse({'html': html})  # Повертаємо JSON-дані з HTML-контентом
     else:
         return render(request, 'main/main.html', context={'form_user': form_user})
+
+def main(request):
+    is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
+    if is_ajax:
+        print("ajax")
+        html = render_to_string('main/partial_content.html', {}, request=request)
+        return JsonResponse({'html': html})  # Повертаємо JSON-дані з HTML-контентом
+    else:
+        return render(request, 'main/main.html', context={'user': 'user'})
