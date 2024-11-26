@@ -5,3 +5,5 @@ staticfiles/
 ca_bundle.crt
 certificate.crt
 private.key
+media/
+db.sqlite3

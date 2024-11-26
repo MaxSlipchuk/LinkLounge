@@ -125,8 +125,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'linklounge',
-        'USER': 'admin_ll',
-        'PASSWORD': '12345678',
+        'USER': os.getenv('ADMIN_LL'),
+        'PASSWORD': os.getenv('PASSWORD_BD'),
         'HOST': '127.0.0.1',
         'PORT': '5432'
     }
